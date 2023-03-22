@@ -1,6 +1,6 @@
-# ikirenga
+# ikirengaauto
 
-mechanics ecommerce app
+A new Flutter project.
 
 ## Getting Started
 

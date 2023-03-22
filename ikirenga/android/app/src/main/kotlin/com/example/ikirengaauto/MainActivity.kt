@@ -1,4 +1,4 @@
-package com.ikirenga.ikirenga
+package com.example.ikirengaauto
 
 import io.flutter.embedding.android.FlutterActivity
 
