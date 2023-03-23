@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ikirengaauto/widget/first_Text.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+
+import '../home/homepage.dart';
 
 class OtpScreen extends StatefulWidget {
   const OtpScreen({super.key});
@@ -90,7 +93,13 @@ class _OtpScreenState extends State<OtpScreen> {
                         horizontal: 100, vertical: 15),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20))),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      PageTransition(
+                          type: PageTransitionType.rightToLeft,
+                          child: const HomePage()));
+                },
                 child: const Text('CONTINUE',
                     style: TextStyle(fontSize: 16, color: Colors.black)),
               ),
