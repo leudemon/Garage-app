@@ -7,6 +7,7 @@ import 'package:ikirengaauto/widget/loginwidget.dart';
 import 'package:page_transition/page_transition.dart';
 
 import '../Registration/registration.dart';
+import '../home/homepage.dart';
 import '../widget/password_widget.dart';
 
 class LoginPage extends StatelessWidget {
@@ -100,7 +101,13 @@ class LoginPage extends StatelessWidget {
                               horizontal: 130, vertical: 15),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20))),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            PageTransition(
+                                child: const HomePage(),
+                                type: PageTransitionType.rightToLeftWithFade));
+                      },
                       child: const Text('SIGN IN',
                           style: TextStyle(fontSize: 16, color: Colors.black)),
                     ),
