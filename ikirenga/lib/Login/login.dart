@@ -5,7 +5,6 @@ import 'package:ikirengaauto/forgot_password/forgot_password.dart';
 import 'package:ikirengaauto/widget/first_Text.dart';
 import 'package:ikirengaauto/widget/loginwidget.dart';
 import 'package:page_transition/page_transition.dart';
-
 import '../Registration/registration.dart';
 import '../widget/password_widget.dart';
 
@@ -17,28 +16,38 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        toolbarHeight: 150.h,
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: const Icon(
-          Icons.add_location,
-          color: Colors.black,
+        titleSpacing: 2,
+        leadingWidth: 50,
+        leading: const Padding(
+          padding: EdgeInsets.only(left:20.0),
+          child: Image(
+            image: AssetImage('assets/icons/location.png'),
+            semanticLabel: 'location',
+            color: Colors.amberAccent,
+          ),
         ),
         title: const Text(
           'Kigali, Rwanda',
+          textAlign: TextAlign.right,
           style: TextStyle(
             color: Colors.black,
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
+            fontSize: 18,
           ),
         ),
       ),
       body: Container(
         width: double.infinity,
-        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 30),
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
+            mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+
             children: [
               FirstText(
                   firstText: 'Let\'s Sign You In',
@@ -47,21 +56,22 @@ class LoginPage extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  SizedBox(height: 30.h),
                   const Text(
                     'Username or Email',
                     style: TextStyle(
-                      color: Colors.black54,
+                      color: Colors.black26,
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
                   SizedBox(height: 10.h),
                   LoginWidget(),
-                  SizedBox(height: 20.h),
+                  SizedBox(height: 40.h),
                   const Text(
                     'Password',
                     style: TextStyle(
-                      color: Colors.black54,
+                      color: Colors.black26,
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
                     ),
@@ -82,66 +92,124 @@ class LoginPage extends StatelessWidget {
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 14,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 160.h),
+          Column(
+            children: [
+              Align(
+                alignment: Alignment.center,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    elevation: 0,
+                    backgroundColor: const Color(0xFFFFDB47),
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                  ),
+                  onPressed: () {},
+                  child: Row(
+                    children: [
+                      const Spacer(),
+
+                      Expanded(
+                        child: Container(
+                          alignment: Alignment.center,
+                          child: const Text(
+                            'SIGN IN',
+                            style: TextStyle(fontSize: 16, color: Colors.black),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          alignment: Alignment.centerRight,
+                          child: const Image(
+                            image: AssetImage('assets/icons/log-in.png'),
+                            width: 20,
+                            height: 20,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Don\'t have an account?',
+                    style: TextStyle(
+                      color: Colors.black26,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          PageTransition(
+                              child: const SignUp(),
+                              type:
+                              PageTransitionType.rightToLeftWithFade));
+                    },
+                    child: const Text(
+                      'Sign Up',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 14,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 100.h),
-              Column(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Align(
-                    alignment: Alignment.center,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFFFFDB47),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 130, vertical: 15),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20))),
-                      onPressed: () {},
-                      child: const Text('SIGN IN',
-                          style: TextStyle(fontSize: 16, color: Colors.black)),
+                  const Text(
+                    'or',
+                    style: TextStyle(
+                      color: Colors.black26,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        'Don\'t have an account?',
-                        style: TextStyle(
-                          color: Colors.black54,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                        ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          PageTransition(
+                              child: const SignUp(),
+                              type:
+                              PageTransitionType.rightToLeftWithFade));
+                    },
+                    child: const Text(
+                      'Skip',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
                       ),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              PageTransition(
-                                  child: const SignUp(),
-                                  type:
-                                      PageTransitionType.rightToLeftWithFade));
-                        },
-                        child: const Text(
-                          'Sign Up',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
                 ],
               ),
+
             ],
+          )
+                ],
+              ),
           ),
         ),
-      ),
     );
   }
 }

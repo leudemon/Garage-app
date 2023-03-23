@@ -23,12 +23,12 @@ class FirstText extends StatelessWidget {
           style: const TextStyle(
               color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold),
         ),
-        SizedBox(height: 10.h),
+        SizedBox(height: 15.h),
         Text(
           secondText,
           style: const TextStyle(
-            color: Colors.black54,
-            fontSize: 14,
+            color: Colors.black38,
+            fontSize: 16,
             fontWeight: FontWeight.w500,
           ),
         ),

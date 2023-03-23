@@ -1,7 +1,6 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-
 class LoginWidget extends StatelessWidget {
   IconData? icon;
   LoginWidget({
@@ -18,10 +17,10 @@ class LoginWidget extends StatelessWidget {
       decoration: InputDecoration(
           border: InputBorder.none,
           enabledBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.black),
+            borderSide: BorderSide(color: Colors.black12),
           ),
           prefixIcon:
-              const Icon(Icons.perm_identity_rounded, color: Colors.black),
+              Image.asset('assets/icons/person.png', scale: 2,),
           hintText: 'Username',
           hintStyle: const TextStyle(color: Colors.black54),
           suffixIcon: Icon(icon, color: Colors.green)),

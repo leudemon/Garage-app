@@ -12,15 +12,15 @@ class PasswordWidget extends StatelessWidget {
       obscuringCharacter: '●',
       style: const TextStyle(fontSize: 20, color: Colors.black),
       controller: controller,
-      decoration: const InputDecoration(
+      decoration:  InputDecoration(
           border: InputBorder.none,
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.black),
+          enabledBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.black12),
           ),
-          prefixIcon: Icon(Icons.lock, color: Colors.black),
-          hintStyle: TextStyle(color: Colors.black54),
-          hintText: '●●●●●●●●●●',
-          suffixIcon: Icon(Icons.visibility_off, color: Colors.black)),
+          prefixIcon: Image.asset('assets/icons/lock.png', scale: 2,),
+          hintStyle: const TextStyle(color: Colors.black54),
+          hintText: '●●●●●●●●',
+          suffixIcon: Image.asset('assets/icons/eye.png', scale: 2,),)
     );
   }
 }

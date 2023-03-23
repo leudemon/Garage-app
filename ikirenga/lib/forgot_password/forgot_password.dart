@@ -15,9 +15,13 @@ class ForgotPassword extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: const Icon(
-          Icons.add_location,
-          color: Colors.black,
+        leading: const Padding(
+          padding: EdgeInsets.only(left:20.0),
+          child: Image(
+            image: AssetImage('assets/icons/location.png'),
+            semanticLabel: 'location',
+            color: Colors.amberAccent,
+          ),
         ),
         title: const Text(
           'Kigali, Rwanda',

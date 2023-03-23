@@ -3,15 +3,19 @@
 import 'package:flutter/material.dart';
 import 'package:ikirengaauto/Login/login.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:flutter/services.dart';
+
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
+
 
   @override
   State<OnBoardingScreen> createState() => _OnBoardingScreenState();
 }
 
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
+
   List images = [
     'assets/images/onboarding1.png',
     'assets/images/onboarding1.png',
@@ -24,12 +28,16 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   void initState() {
     super.initState();
     _pageController = PageController(initialPage: 0);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+
   }
 
   @override
   void dispose() {
     _pageController!.dispose();
     super.dispose();
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
+
   }
 
   @override
@@ -87,22 +95,42 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     const SizedBox(
                       height: 30,
                     ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      child:ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          elevation: 0,
                           backgroundColor: const Color(0xFFFFDB47),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 100, vertical: 15),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20))),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            PageTransition(
-                                child: const LoginPage(),
-                                type: PageTransitionType.rightToLeftWithFade));
-                      },
-                      child: const Text('GET STARTED',
-                          style: TextStyle(fontSize: 16, color: Colors.black)),
+                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                        ),
+                        onPressed: () {},
+                        child: Row(
+                          children: [
+                            const Spacer(),
+
+                            Expanded(
+                              child: Container(
+                                alignment: Alignment.center,
+                                child: const Text(
+                                  'GET STARTED',
+                                  style: TextStyle(fontSize: 16, color: Colors.black),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Container(
+                                alignment: Alignment.centerRight,
+                                child: const Image(
+                                  image: AssetImage('assets/icons/arrow-right.png'),
+                                  width: 20,
+                                  height: 20,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     )
                   ]);
                 },

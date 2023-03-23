@@ -20,9 +20,14 @@ class SignUp extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: const Icon(
-          Icons.add_location,
-          color: Colors.black,
+        titleSpacing: 2,
+        leading: const Padding(
+          padding: EdgeInsets.only(left:20.0),
+          child: Image(
+            image: AssetImage('assets/icons/location.png'),
+            semanticLabel: 'location',
+            color: Colors.amberAccent,
+          ),
         ),
         title: const Text(
           'Kigali, Rwanda',
@@ -108,29 +113,54 @@ class SignUp extends StatelessWidget {
                     SizedBox(
                       height: 40.h,
                     ),
-                    Column(
-                      children: [
-                        Align(
-                          alignment: Alignment.center,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xFFFFDB47),
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 130, vertical: 15),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20))),
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  PageTransition(
-                                      child: const OtpScreen(),
-                                      type: PageTransitionType
-                                          .rightToLeftWithFade));
-                            },
-                            child: const Text('SIGN UP',
-                                style: TextStyle(
-                                    fontSize: 16, color: Colors.black)),
-                          ),
+
+                        Column(
+                          children: [
+                            Align(
+                              alignment: Alignment.center,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  elevation: 0,
+                                  backgroundColor: const Color(0xFFFFDB47),
+                                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                                ),
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      PageTransition(
+                                          child: const OtpScreen(),
+                                          type: PageTransitionType
+                                              .rightToLeftWithFade));
+                                },
+                                child: Row(
+                                  children: [
+                                    const Spacer(),
+
+                                    Expanded(
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        child: const Text(
+                                          'SIGN UP',
+                                          style: TextStyle(fontSize: 16, color: Colors.black),
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Container(
+                                        alignment: Alignment.centerRight,
+                                        child: const Image(
+                                          image: AssetImage('assets/icons/log-in.png'),
+                                          width: 20,
+                                          height: 20,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -167,10 +197,10 @@ class SignUp extends StatelessWidget {
                     ),
                   ],
                 )
-              ],
+
             ),
           ),
-        ),
+
       ),
     );
   }
