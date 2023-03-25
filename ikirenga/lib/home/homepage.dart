@@ -14,10 +14,9 @@ class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
   final screens = [
     const Home(),
-    const Center(child: Text('Profile')),
     const Center(child: Text('Car')),
     const Center(child: Text('Search')),
-    const Center(child: Text('Settings')),
+    const Center(child: Text('Profile')),
   ];
   @override
   Widget build(BuildContext context) {
@@ -38,18 +37,17 @@ class _HomePageState extends State<HomePage> {
               text: 'Home',
             ),
             GButton(
-              icon: Icons.account_circle,
-              text: 'Profile',
-            ),
-            GButton(
               icon: Icons.car_crash,
               text: 'Car',
             ),
             GButton(
               icon: Icons.addchart,
-              text: 'Search',
+              text: 'Cart',
             ),
-            GButton(icon: Icons.settings, text: 'Settings')
+            GButton(
+              icon: Icons.account_circle,
+              text: 'Profile',
+            ),
           ],
           selectedIndex: _currentIndex,
           onTabChange: (index) {
