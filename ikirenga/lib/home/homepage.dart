@@ -14,9 +14,10 @@ class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
   final screens = [
     const Home(),
-    const Center(child: Text('Search')),
-    const Center(child: Text('Orders')),
-    const Center(child: Text('Profile')),
+    const Center(child: Text('Used Cars')),
+    const Center(child: Text('Spare Parts')),
+    const Center(child: Text('Mechanics')),
+    const Center(child: Text('Settings'))
   ];
   @override
   Widget build(BuildContext context) {
@@ -29,10 +30,10 @@ class _HomePageState extends State<HomePage> {
           padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 7),
           color: Colors.black,
           activeColor: Colors.black,
-          tabBackgroundColor: Colors.yellow.shade600.withOpacity(0.8),
+          tabBackgroundColor: Colors.yellow,
           iconSize: 30,
           gap: 5,
-          duration: const Duration(microseconds: 2000),
+          duration: const Duration(microseconds: 5000),
           tabs: const [
             GButton(
 
@@ -41,13 +42,18 @@ class _HomePageState extends State<HomePage> {
             ),
             GButton(
 
-              icon: Icons.accessibility_outlined,
-              text: 'Mechanics',
+              icon: Icons.car_repair_outlined,
+              text: 'Used Cars',
             ),
             GButton(
 
-              icon: Icons.shopping_bag_outlined,
-              text: 'Order',
+              icon: Icons.settings_applications_outlined,
+              text: 'Spare parts',
+            ),
+            GButton(
+
+              icon: Icons.accessibility_outlined,
+              text: 'Mechanics',
             ),
             GButton(
 

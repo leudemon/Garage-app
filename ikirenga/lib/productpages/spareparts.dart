@@ -62,17 +62,7 @@ class _SparePartsState extends State<SpareParts> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        leading: IconButton(
-          onPressed: () => Navigator.pop(context),
-          icon: const Icon(
-            Icons.arrow_back_ios_new_outlined,
-            color: Colors.black,
-          ),
-        ),
-      ),
+
       body: SafeArea(
         child: Column(children: [
           Container(
