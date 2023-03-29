@@ -83,7 +83,7 @@ class _SingleCarDetailState extends State<SingleCarDetail> {
                             color: Colors.grey,
                             fontWeight: FontWeight.bold)),
                     SizedBox(height: 5.h),
-                    Text('Vechicle Type: Sedan',
+                    Text('Vehicle Type: Sedan',
                         style: TextStyle(
                             fontSize: 20.sp,
                             color: Colors.grey,
@@ -113,13 +113,14 @@ class _SingleCarDetailState extends State<SingleCarDetail> {
                             color: Colors.grey,
                             fontWeight: FontWeight.bold)),
                     SizedBox(height: 50.h),
+
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFFFFDB47),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 120, vertical: 15),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20))),
+                        elevation: 0,
+                        backgroundColor: const Color(0xFFFFDB47),
+                        padding: const EdgeInsets.symmetric(horizontal: 120, vertical: 15),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                      ),
                       onPressed: () {},
                       child: const Text('ADD TO CART',
                           style: TextStyle(fontSize: 16, color: Colors.black)),

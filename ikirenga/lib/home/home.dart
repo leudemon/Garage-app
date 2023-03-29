@@ -6,7 +6,7 @@ import 'package:ikirengaauto/widget/item_container.dart';
 import 'package:page_transition/page_transition.dart';
 
 import '../productpages/garage.dart';
-import '../productpages/professional_machanics.dart';
+import '../productpages/mechanics.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -24,10 +24,11 @@ class _HomeState extends State<Home> {
             context,
             PageTransition(
                 child: const SpareParts(),
-                type: PageTransitionType.rightToLeftWithFade));
+                alignment: Alignment.center,
+                type: PageTransitionType.fade));
       },
-      title: 'Spare',
-      subtitle: 'Parts',
+      title: 'Spare Parts',
+      subtitle: '',
       image: 'assets/images/spareparts.png',
     ),
     ContainerModel(
@@ -36,10 +37,11 @@ class _HomeState extends State<Home> {
             context,
             PageTransition(
                 child: const UsedCars(),
-                type: PageTransitionType.rightToLeftWithFade));
+                alignment: Alignment.center,
+                type: PageTransitionType.fade));
       },
-      title: 'Used',
-      subtitle: 'Cars',
+      title: 'Used Cars',
+      subtitle: '',
       image: 'assets/images/usedcars.png',
     ),
     ContainerModel(
@@ -48,7 +50,8 @@ class _HomeState extends State<Home> {
             context,
             PageTransition(
                 child: const GaragePage(),
-                type: PageTransitionType.rightToLeftWithFade));
+                alignment: Alignment.center,
+                type: PageTransitionType.fade));
       },
       title: 'Garages',
       subtitle: '',
@@ -56,13 +59,11 @@ class _HomeState extends State<Home> {
     ),
     ContainerModel(
       ontap: (BuildContext context) {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => const ProfessionalMachanics()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const Mechanics()));
       },
-      title: 'Professional',
-      subtitle: 'Machanics',
+      title: 'Mechanics',
+      subtitle: '',
       image: 'assets/images/machines.png',
     ),
     ContainerModel(
@@ -71,10 +72,11 @@ class _HomeState extends State<Home> {
             context,
             PageTransition(
                 child: const UsedCars(),
-                type: PageTransitionType.rightToLeftWithFade));
+                alignment: Alignment.center,
+                type: PageTransitionType.fade));
       },
-      title: 'Used',
-      subtitle: 'Cars',
+      title: 'Used Cars',
+      subtitle: '',
       image: 'assets/images/usedcars.png',
     ),
     ContainerModel(
@@ -83,7 +85,8 @@ class _HomeState extends State<Home> {
             context,
             PageTransition(
                 child: const SpareParts(),
-                type: PageTransitionType.rightToLeftWithFade));
+                alignment: Alignment.bottomCenter,
+                type: PageTransitionType.fade));
       },
       title: 'Garages',
       subtitle: '',
@@ -110,49 +113,61 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Welcome Back',
-          style: TextStyle(
-              fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: Colors.white,
+        automaticallyImplyLeading: false,
+        toolbarHeight: 30,
+        titleSpacing: 0,
+        centerTitle: false,
+        backgroundColor: Colors.transparent,
         elevation: 0.0,
-        actions: [
-          IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.account_circle,
-                color: Colors.black,
-              )),
-        ],
+        leadingWidth: 25,
+        bottom: PreferredSize(
+          preferredSize:
+              const Size.fromHeight(40.0), // Set the height as needed
+          child: Container(
+            alignment: Alignment.bottomLeft,
+            padding: const EdgeInsets.symmetric(
+                vertical: 15.0, horizontal: 30), // Adjust the padding as needed
+            child: const Text('Welcome Back, Severin!',
+                style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold)),
+          ),
+        ),
       ),
       body: SafeArea(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              margin: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Colors.grey[300],
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: TextField(
-                onChanged: (value) => search(value),
-                decoration: const InputDecoration(
-                  border: InputBorder.none,
-                  prefixIcon: Icon(Icons.search),
-                  hintText: 'Search',
+                alignment: AlignmentDirectional.centerEnd,
+                margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 0),
+                decoration: BoxDecoration(
+                  color: Colors.grey[300],
+                  borderRadius: BorderRadius.circular(15),
                 ),
-              ),
-            ),
+                child: Center(
+                  child: TextField(
+                    textAlign: TextAlign.start,
+                    onChanged: (value) => search(value),
+                    decoration: const InputDecoration(
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                      suffixIconColor: Colors.black26,
+                      alignLabelWithHint: true,
+                      border: InputBorder.none,
+                      suffixIcon: Icon(Icons.cancel_outlined),
+                      hintText: 'Search',
+                    ),
+                  ),
+                )),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       childAspectRatio: 0.7,
                       crossAxisCount: 2,
-                      crossAxisSpacing: 4.0,
-                      mainAxisSpacing: 4.0),
+                      crossAxisSpacing: 0.0,
+                      mainAxisSpacing: 0.0),
                   itemBuilder: ((context, index) => ItemContainer(
                         containerModel: searchList[index],
                         onTap: () => searchList[index].ontap!(context),

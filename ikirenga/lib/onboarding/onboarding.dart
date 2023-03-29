@@ -28,15 +28,23 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   void initState() {
     super.initState();
     _pageController = PageController(initialPage: 0);
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
-
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [
+      SystemUiOverlay.top,
+      // SystemUiOverlay.bottom,
+    ]
+    );
   }
+
 
   @override
   void dispose() {
     _pageController!.dispose();
     super.dispose();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.blue,
+      systemNavigationBarColor: Colors.red,
+    );
 
   }
 
@@ -96,7 +104,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       height: 30,
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
                       child:ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           elevation: 0,
@@ -104,7 +112,14 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              PageTransition(
+                                  child: const LoginPage(),
+                                  type: PageTransitionType
+                                      .rightToLeftWithFade));
+                        },
                         child: Row(
                           children: [
                             const Spacer(),

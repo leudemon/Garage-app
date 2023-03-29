@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ikirengaauto/forgot_password/forgot_password.dart';
+import 'package:ikirengaauto/home/homepage.dart';
 import 'package:ikirengaauto/widget/first_Text.dart';
 import 'package:ikirengaauto/widget/loginwidget.dart';
 import 'package:page_transition/page_transition.dart';
@@ -109,7 +110,14 @@ class LoginPage extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        PageTransition(
+                            child: const HomePage(),
+                            type: PageTransitionType
+                                .rightToLeftWithFade));
+                  },
                   child: Row(
                     children: [
                       const Spacer(),
@@ -172,37 +180,37 @@ class LoginPage extends StatelessWidget {
                   ),
                 ],
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    'or',
-                    style: TextStyle(
-                      color: Colors.black26,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          PageTransition(
-                              child: const SignUp(),
-                              type:
-                              PageTransitionType.rightToLeftWithFade));
-                    },
-                    child: const Text(
-                      'Skip',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: [
+              //     const Text(
+              //       'or',
+              //       style: TextStyle(
+              //         color: Colors.black26,
+              //         fontSize: 14,
+              //         fontWeight: FontWeight.w500,
+              //       ),
+              //     ),
+              //     TextButton(
+              //       onPressed: () {
+              //         Navigator.push(
+              //             context,
+              //             PageTransition(
+              //                 child: const SignUp(),
+              //                 type:
+              //                 PageTransitionType.rightToLeftWithFade));
+              //       },
+              //       child: const Text(
+              //         'Skip',
+              //         style: TextStyle(
+              //           color: Colors.black,
+              //           fontSize: 14,
+              //           fontWeight: FontWeight.bold,
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // ),
 
             ],
           )

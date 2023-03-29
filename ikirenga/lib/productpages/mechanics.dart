@@ -5,14 +5,14 @@ import 'package:page_transition/page_transition.dart';
 
 import 'widget/single_service_detail.dart';
 
-class ProfessionalMachanics extends StatefulWidget {
-  const ProfessionalMachanics({super.key});
+class Mechanics extends StatefulWidget {
+  const Mechanics({super.key});
 
   @override
-  State<ProfessionalMachanics> createState() => _ProfessionalMachanicsState();
+  State<Mechanics> createState() => _MechanicsState();
 }
 
-class _ProfessionalMachanicsState extends State<ProfessionalMachanics> {
+class _MechanicsState extends State<Mechanics> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +31,7 @@ class _ProfessionalMachanicsState extends State<ProfessionalMachanics> {
           style: TextStyle(
               fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         elevation: 0.0,
         actions: [
           IconButton(
@@ -43,7 +43,7 @@ class _ProfessionalMachanicsState extends State<ProfessionalMachanics> {
         ],
       ),
       body: SafeArea(
-          child: Expanded(
+
         child: ListView(
           children: [
             MachanicsContainer(
@@ -102,7 +102,7 @@ class _ProfessionalMachanicsState extends State<ProfessionalMachanics> {
             ),
           ],
         ),
-      )),
+      )
     );
   }
 }

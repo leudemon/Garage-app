@@ -14,8 +14,8 @@ class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
   final screens = [
     const Home(),
-    const Center(child: Text('Car')),
     const Center(child: Text('Search')),
+    const Center(child: Text('Orders')),
     const Center(child: Text('Profile')),
   ];
   @override
@@ -23,29 +23,35 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+        padding: const EdgeInsets.fromLTRB(25, 1, 25, 35),
         child: GNav(
-          tabBorderRadius: 20,
-          padding: const EdgeInsets.all(20),
+          tabBorderRadius: 50,
+          padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 7),
           color: Colors.black,
           activeColor: Colors.black,
           tabBackgroundColor: Colors.yellow.shade600.withOpacity(0.8),
-          iconSize: 20,
+          iconSize: 30,
+          gap: 5,
+          duration: const Duration(microseconds: 2000),
           tabs: const [
             GButton(
-              icon: Icons.home,
+
+              icon: Icons.home_outlined,
               text: 'Home',
             ),
             GButton(
-              icon: Icons.car_crash,
-              text: 'Car',
+
+              icon: Icons.accessibility_outlined,
+              text: 'Mechanics',
             ),
             GButton(
-              icon: Icons.addchart,
-              text: 'Cart',
+
+              icon: Icons.shopping_bag_outlined,
+              text: 'Order',
             ),
             GButton(
-              icon: Icons.account_circle,
+
+              icon: Icons.person_4_outlined,
               text: 'Profile',
             ),
           ],

@@ -63,7 +63,7 @@ class _SparePartsState extends State<SpareParts> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         elevation: 0.0,
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
@@ -97,8 +97,8 @@ class _SparePartsState extends State<SpareParts> {
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     childAspectRatio: 0.7,
                     crossAxisCount: 2,
-                    crossAxisSpacing: 4.0,
-                    mainAxisSpacing: 4.0),
+                    crossAxisSpacing: 0,
+                    mainAxisSpacing: 0),
                 itemBuilder: ((context, index) => SpartPartCars(
                       sparePartsModel: searchList[index],
                       onTap: () => searchList[index].ontap!(context),

@@ -17,7 +17,7 @@ class GaragePage extends StatelessWidget {
           style: TextStyle(
               fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         elevation: 0.0,
         leading: IconButton(
           onPressed: () => Navigator.pop(context),

@@ -17,15 +17,19 @@ class ItemContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
         color: Colors.grey[300],
+        shape: BoxShape.rectangle,
+        borderRadius: BorderRadius.circular(15),
       ),
       child: Column(
         children: [
           Image.asset(
             containerModel.image,
             fit: BoxFit.cover,
+            width: 150
           ),
           SizedBox(
             height: 10.h,
@@ -37,10 +41,10 @@ class ItemContainer extends StatelessWidget {
                 style: TextStyle(
                     fontSize: 20.sp,
                     fontWeight: FontWeight.bold,
-                    color: Colors.black),
+                    color: Colors.black54),
               ),
               SizedBox(
-                height: 10.h,
+                height: 5.h,
               ),
               Text(
                 containerModel.subtitle!,
@@ -58,7 +62,7 @@ class ItemContainer extends StatelessWidget {
                     'viewmore',
                     style: TextStyle(
                         fontSize: 15.sp,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w200,
                         color: Colors.black),
                   )),
             ],

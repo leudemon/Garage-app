@@ -11,10 +11,10 @@ class HomeContainer extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Container(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: Colors.grey[200],
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(15),
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,6 +35,7 @@ class HomeContainer extends StatelessWidget {
                 SizedBox(height: 10.h),
                 Image.asset(
                   image,
+                  scale: 1,
                 ),
               ],
             ),
@@ -46,15 +47,16 @@ class HomeContainer extends StatelessWidget {
                   const Text(
                       'An oil and filter change extends the lifespan of your car. You should book an oil change regularly',
                       style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                           color: Colors.black)),
                   SizedBox(height: 20.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+
                       Image.asset('assets/images/garages.png',
-                          height: 30, width: 40),
+                          height: 30, width: 30, scale: 2,),
                       Container(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 20, vertical: 10),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'onboarding/onboarding.dart';
-
+import 'package:flutter/services.dart';
 
 
 
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         title: 'IKIRENGA AUTO',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.yellow,
         ),
         home: const OnBoardingScreen(),
       ),
