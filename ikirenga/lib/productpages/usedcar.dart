@@ -100,39 +100,39 @@ class _UsedCarsState extends State<UsedCars> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 70,
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        leading: IconButton(
-          onPressed: () => Navigator.pop(context),
-          icon: const Padding(
-            padding: EdgeInsets.only(left: 15),
-            child:  Icon(
-              Icons.arrow_back_ios_new_outlined,
-              color: Colors.black,
-            ),
-          )
-        ),
-        leadingWidth: 40,
-        titleSpacing: 0,
-        centerTitle: false,
-        title: Container(
-          margin: const EdgeInsets.all(30),
-          decoration: BoxDecoration(
-            color: Colors.grey[300],
-            borderRadius: BorderRadius.circular(15),
-          ),
-          child: TextField(
-            onChanged: (value) => search(value),
-            decoration: const InputDecoration(
-              border: InputBorder.none,
-              prefixIcon: Icon(Icons.search),
-              hintText: 'Search',
-            ),
-          ),
-        ),
-      ),
+      // appBar: AppBar(
+      //   toolbarHeight: 70,
+      //   backgroundColor: Colors.transparent,
+      //   elevation: 0.0,
+      //   leading: IconButton(
+      //     onPressed: () => Navigator.pop(context),
+      //     icon: const Padding(
+      //       padding: EdgeInsets.only(left: 15),
+      //       child:  Icon(
+      //         Icons.arrow_back_ios_new_outlined,
+      //         color: Colors.black,
+      //       ),
+      //     )
+      //   ),
+      //   leadingWidth: 40,
+      //   titleSpacing: 0,
+      //   centerTitle: false,
+      //   title: Container(
+      //     margin: const EdgeInsets.all(30),
+      //     decoration: BoxDecoration(
+      //       color: Colors.grey[300],
+      //       borderRadius: BorderRadius.circular(15),
+      //     ),
+      //     child: TextField(
+      //       onChanged: (value) => search(value),
+      //       decoration: const InputDecoration(
+      //         border: InputBorder.none,
+      //         prefixIcon: Icon(Icons.search),
+      //         hintText: 'Search',
+      //       ),
+      //     ),
+      //   ),
+      // ),
       body: SafeArea(
         child: Column(children: [
 

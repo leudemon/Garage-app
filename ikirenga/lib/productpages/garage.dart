@@ -13,7 +13,7 @@ class GaragePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Welcome Back',
+          '',
           style: TextStyle(
               fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
         ),
@@ -21,11 +21,9 @@ class GaragePage extends StatelessWidget {
         elevation: 0.0,
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
-          icon: const Icon(
-            Icons.arrow_back_ios_new_outlined,
-            color: Colors.black,
+          icon: Image.asset('assets/icons/log-in.png', scale: 2,)
           ),
-        ),
+
         actions: [
           IconButton(
               onPressed: () {},
