@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.fromLTRB(25, 1, 25, 35),
+        padding: const EdgeInsets.fromLTRB(25, 10, 30, 45),
         child: GNav(
           tabBorderRadius: 50,
           padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 7),
@@ -36,8 +36,8 @@ class _HomePageState extends State<HomePage> {
           activeColor: Colors.black,
           tabBackgroundColor: Colors.yellow,
           iconSize: 30,
-          gap: 5,
-          duration: const Duration(microseconds: 5000),
+          // gap: 5,
+          // duration: const Duration(microseconds: 10000),
           tabs: const [
             GButton(
 
@@ -74,6 +74,10 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: screens[_currentIndex],
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){},
+        child: const Icon(Icons.shopping_bag_outlined,),
+      ),
     );
   }
 }

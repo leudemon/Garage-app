@@ -161,7 +161,7 @@ class _HomeState extends State<Home> {
             Expanded(
               child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                const EdgeInsets.fromLTRB(10,20,10,0 ),
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       childAspectRatio: 0.7,
@@ -179,10 +179,7 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-          onPressed: (){},
-          child: const Icon(Icons.shopping_bag_outlined,),
-      ),
+
     );
   }
 }
