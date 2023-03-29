@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:ikirengaauto/productpages/spareparts.dart';
+import 'package:ikirengaauto/productpages/usedcar.dart';
+import '../productpages/garage.dart';
+import '../productpages/mechanics.dart';
 
 import 'home.dart';
 
@@ -14,10 +18,10 @@ class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
   final screens = [
     const Home(),
-    const Center(child: Text('Used Cars')),
-    const Center(child: Text('Spare Parts')),
-    const Center(child: Text('Mechanics')),
-    const Center(child: Text('Settings'))
+    const UsedCars(),
+    const SpareParts(),
+    const Mechanics(),
+    const GaragePage()
   ];
   @override
   Widget build(BuildContext context) {
