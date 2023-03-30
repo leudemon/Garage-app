@@ -21,7 +21,7 @@ class GaragePage extends StatelessWidget {
         elevation: 0.0,
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
-          icon: Image.asset('assets/icons/log-in.png', scale: 2,)
+          icon: Image.asset('assets/icons/log-in.png', scale: 2)
           ),
 
         actions: [

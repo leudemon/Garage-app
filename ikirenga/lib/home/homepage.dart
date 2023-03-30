@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:ikirengaauto/ikirenga_icons.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:ikirengaauto/productpages/spareparts.dart';
 import 'package:ikirengaauto/productpages/usedcar.dart';
 import '../productpages/garage.dart';
 import '../productpages/mechanics.dart';
-
+import '../productpages/orders.dart';
 import 'home.dart';
 
 class HomePage extends StatefulWidget {
@@ -14,15 +16,17 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
+
 class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
   final screens = [
     const Home(),
-    const UsedCars(),
     const SpareParts(),
+    const UsedCars(),
+    const GaragePage(),
     const Mechanics(),
-    const GaragePage()
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,35 +39,35 @@ class _HomePageState extends State<HomePage> {
           color: Colors.black,
           activeColor: Colors.black,
           tabBackgroundColor: Colors.yellow,
-          iconSize: 30,
-          // gap: 5,
+          iconSize: 25,
+          gap: 5,
           // duration: const Duration(microseconds: 10000),
-          tabs: const [
+          tabs:  const[
             GButton(
-
-              icon: Icons.home_outlined,
+              icon: Ikirenga.home,
               text: 'Home',
             ),
             GButton(
 
-              icon: Icons.car_repair_outlined,
+              icon: Ikirenga.fix,
+              text: 'Spare Parts',
+            ),
+            GButton(
+
+              icon: Ikirenga.carfix,
               text: 'Used Cars',
             ),
             GButton(
 
-              icon: Icons.settings_applications_outlined,
-              text: 'Spare parts',
+              icon: Ikirenga.toolkit,
+              text: '  Garages',
             ),
             GButton(
 
-              icon: Icons.accessibility_outlined,
+              icon: Ikirenga.mechanic,
               text: 'Mechanics',
             ),
-            GButton(
 
-              icon: Icons.person_4_outlined,
-              text: 'Profile',
-            ),
           ],
           selectedIndex: _currentIndex,
           onTabChange: (index) {
@@ -75,7 +79,14 @@ class _HomePageState extends State<HomePage> {
       ),
       body: screens[_currentIndex],
       floatingActionButton: FloatingActionButton(
-        onPressed: (){},
+        onPressed: (){
+          Navigator.push(
+              context,
+              PageTransition(
+                  child: const Orders(),
+                  alignment: Alignment.center,
+                  type: PageTransitionType.fade));
+        },
         child: const Icon(Icons.shopping_bag_outlined,),
       ),
     );

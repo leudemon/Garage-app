@@ -16,32 +16,7 @@ class _MechanicsState extends State<Mechanics> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // appBar: AppBar(
-        //   leading: IconButton(
-        //     onPressed: () {
-        //       Navigator.pop(context);
-        //     },
-        //     icon: const Icon(
-        //       Icons.arrow_back_ios,
-        //       color: Colors.black,
-        //     ),
-        //   ),
-        //   title: const Text(
-        //     'MECHANICS',
-        //     style: TextStyle(
-        //         fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
-        //   ),
-        //   backgroundColor: Colors.transparent,
-        //   elevation: 0.0,
-        //   actions: [
-        //     IconButton(
-        //         onPressed: () {},
-        //         icon: const Icon(
-        //           Icons.filter_list_outlined,
-        //           color: Colors.black,
-        //         )),
-        //   ],
-        // ),
+
         body: Padding(
       padding: const EdgeInsets.only(top: 25),
       child: SafeArea(
