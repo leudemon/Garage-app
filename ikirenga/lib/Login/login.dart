@@ -114,7 +114,7 @@ class LoginPage extends StatelessWidget {
                     Navigator.push(
                         context,
                         PageTransition(
-                            child: const HomePage(),
+                            child: const HomePage(ordersCount: 0,),
                             type: PageTransitionType
                                 .rightToLeftWithFade));
                   },
