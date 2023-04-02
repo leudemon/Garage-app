@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ikirengaauto/model/container_model.dart';
-import 'package:ikirengaauto/productpages/spareparts.dart';
-import 'package:ikirengaauto/productpages/usedcar.dart';
 import 'package:ikirengaauto/widget/item_container.dart';
-import 'package:page_transition/page_transition.dart';
-
-import '../productpages/mechanics.dart';
 
 class Cars extends StatefulWidget {
   const Cars({super.key});
@@ -16,9 +11,7 @@ class Cars extends StatefulWidget {
 
 class _CarsState extends State<Cars> {
   List<ContainerModel> searchList = [];
-  List<ContainerModel> containerModel = [
-
-  ];
+  List<ContainerModel> containerModel = [];
 
   void search(String searchString) {
     setState(() {
@@ -86,9 +79,9 @@ class _CarsState extends State<Cars> {
                     crossAxisSpacing: 4.0,
                     mainAxisSpacing: 4.0),
                 itemBuilder: ((context, index) => ItemContainer(
-                  containerModel: searchList[index],
-                  onTap: () => searchList[index].ontap!(context),
-                )),
+                      containerModel: searchList[index],
+                      onTap: () => searchList[index].ontap!(context),
+                    )),
                 itemCount: searchList.length,
               ),
             ),

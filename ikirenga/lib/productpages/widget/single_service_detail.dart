@@ -21,14 +21,17 @@ class SingleServicedetail extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         child: Column(
           children: [
             Container(
-              padding: const EdgeInsets.all(15.0),
               decoration: BoxDecoration(
                 color: Colors.grey[200],
               ),
-              child: Image.asset('assets/images/mechanic.png'),
+              child: Image.asset(
+                'assets/images/mechanic.png',
+                fit: BoxFit.contain,
+              ),
             ),
             SizedBox(height: 15.h),
             Padding(
@@ -47,8 +50,10 @@ class SingleServicedetail extends StatelessWidget {
                   SizedBox(height: 15.h),
                   container('Experience',
                       'An oil and filter change extends the lifespan of your car. You should book an oil change regularly.'),
+                  SizedBox(height: 15.h),
                   container('Professionalism',
                       'An oil and filter change extends the lifespan of your car. You should book an oil change regularly.'),
+                  SizedBox(height: 15.h),
                   Container(
                     padding: const EdgeInsets.symmetric(
                         vertical: 10, horizontal: 10),
@@ -76,33 +81,30 @@ class SingleServicedetail extends StatelessWidget {
   }
 
   Widget container(String title, String subtitle) {
-    return Padding(
+    return Container(
       padding: const EdgeInsets.all(10.0),
-      child: Container(
-        padding: const EdgeInsets.all(10.0),
-        decoration: BoxDecoration(
-          color: Colors.grey[200],
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Center(
-          child: Column(
-            children: [
-              Text(title,
+      decoration: BoxDecoration(
+        color: Colors.grey[200],
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Center(
+        child: Column(
+          children: [
+            Text(title,
+                style: const TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20)),
+            SizedBox(height: 10.h),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(subtitle,
                   style: const TextStyle(
-                      color: Colors.black,
+                      color: Colors.black54,
                       fontWeight: FontWeight.bold,
                       fontSize: 20)),
-              SizedBox(height: 10.h),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(subtitle,
-                    style: const TextStyle(
-                        color: Colors.black54,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20)),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

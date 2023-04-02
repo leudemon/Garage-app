@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:ikirengaauto/model/container_model.dart';
+import 'package:ikirengaauto/widget/item_container.dart';
 
-
-
-
-class CustomSearchBar extends StatefulWidget {
-  const CustomSearchBar({Key? key}) : super(key: key);
+class Search extends StatefulWidget {
+  const Search({super.key});
 
   @override
-  CustomSearchBarState createState() => CustomSearchBarState();
+  State<Search> createState() => _SearchState();
 }
 
-class CustomSearchBarState extends State<CustomSearchBar> {
-  final TextEditingController _searchController = TextEditingController();
+class _SearchState extends State<Search> {
   List<ContainerModel> searchList = [];
   List<ContainerModel> containerModel = [];
 
@@ -25,12 +22,6 @@ class CustomSearchBarState extends State<CustomSearchBar> {
     });
   }
 
-  void clearSearch() {
-    _searchController.clear();
-    search('');
-    FocusScope.of(context).unfocus();
-  }
-
   @override
   void initState() {
     search('');
@@ -39,31 +30,61 @@ class CustomSearchBarState extends State<CustomSearchBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
-      decoration: BoxDecoration(
-        color: Colors.grey[300],
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Row(
+    return SafeArea(
+      child: Column(
         children: [
-          IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () => Navigator.pop(context),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: const [
+                Text(
+                  'Recent Searches',
+                  style: TextStyle(
+                      fontSize: 30,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold),
+                ),
+                Icon(
+                  Icons.history,
+                  color: Colors.black,
+                  size: 35,
+                )
+              ],
+            ),
           ),
-          Expanded(
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+            decoration: BoxDecoration(
+              color: Colors.grey[300],
+              borderRadius: BorderRadius.circular(10),
+            ),
             child: TextField(
-              controller: _searchController,
               onChanged: (value) => search(value),
               decoration: const InputDecoration(
                 border: InputBorder.none,
+                prefixIcon: Icon(Icons.search),
                 hintText: 'Search',
               ),
             ),
           ),
-          IconButton(
-            icon: const Icon(Icons.clear),
-            onPressed: clearSearch,
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    childAspectRatio: 0.7,
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 4.0,
+                    mainAxisSpacing: 4.0),
+                itemBuilder: ((context, index) => ItemContainer(
+                      containerModel: searchList[index],
+                      onTap: () => searchList[index].ontap!(context),
+                    )),
+                itemCount: searchList.length,
+              ),
+            ),
           ),
         ],
       ),

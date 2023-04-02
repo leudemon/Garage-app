@@ -135,7 +135,6 @@ class _UsedCarsState extends State<UsedCars> {
       // ),
       body: SafeArea(
         child: Column(children: [
-
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(15.0),

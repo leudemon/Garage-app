@@ -4,7 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class HomeContainer extends StatelessWidget {
   final String title;
   final String image;
-  const HomeContainer({super.key, required this.title, required this.image});
+  final Function()? onTap;
+  const HomeContainer(
+      {super.key,
+      required this.title,
+      required this.image,
+      required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -54,21 +59,27 @@ class HomeContainer extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-
-                      Image.asset('assets/images/garages.png',
-                          height: 30, width: 30, scale: 2,),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 10),
-                        decoration: BoxDecoration(
-                            color: Colors.yellow,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: const Center(
-                          child: Text(
-                            'Book',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold),
+                      Image.asset(
+                        'assets/images/garages.png',
+                        height: 30,
+                        width: 30,
+                        scale: 2,
+                      ),
+                      GestureDetector(
+                        onTap: onTap,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                          decoration: BoxDecoration(
+                              color: Colors.yellow,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: const Center(
+                            child: Text(
+                              'Book',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
                         ),
                       )

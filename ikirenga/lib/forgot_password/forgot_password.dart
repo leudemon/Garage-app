@@ -16,7 +16,7 @@ class ForgotPassword extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: const Padding(
-          padding: EdgeInsets.only(left:20.0),
+          padding: EdgeInsets.only(left: 20.0),
           child: Image(
             image: AssetImage('assets/icons/location.png'),
             semanticLabel: 'location',

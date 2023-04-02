@@ -23,7 +23,7 @@ class LoginPage extends StatelessWidget {
         titleSpacing: 2,
         leadingWidth: 50,
         leading: const Padding(
-          padding: EdgeInsets.only(left:20.0),
+          padding: EdgeInsets.only(left: 20.0),
           child: Image(
             image: AssetImage('assets/icons/location.png'),
             semanticLabel: 'location',
@@ -48,7 +48,6 @@ class LoginPage extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
-
             children: [
               FirstText(
                   firstText: 'Let\'s Sign You In',
@@ -98,126 +97,126 @@ class LoginPage extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 160.h),
-          Column(
-            children: [
-              Align(
-                alignment: Alignment.center,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    elevation: 0,
-                    backgroundColor: const Color(0xFFFFDB47),
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        PageTransition(
-                            child: const HomePage(ordersCount: 0,),
-                            type: PageTransitionType
-                                .rightToLeftWithFade));
-                  },
-                  child: Row(
-                    children: [
-                      const Spacer(),
-
-                      Expanded(
-                        child: Container(
-                          alignment: Alignment.center,
-                          child: const Text(
-                            'SIGN IN',
-                            style: TextStyle(fontSize: 16, color: Colors.black),
+              SizedBox(height: 50.h),
+              Column(
+                children: [
+                  Align(
+                    alignment: Alignment.center,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        elevation: 0,
+                        backgroundColor: const Color(0xFFFFDB47),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 15),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8)),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            PageTransition(
+                                child: const HomePage(),
+                                type: PageTransitionType.rightToLeftWithFade));
+                      },
+                      child: Row(
+                        children: [
+                          const Spacer(),
+                          Expanded(
+                            child: Container(
+                              alignment: Alignment.center,
+                              child: const Text(
+                                'SIGN IN',
+                                style: TextStyle(
+                                    fontSize: 16, color: Colors.black),
+                              ),
+                            ),
                           ),
+                          Expanded(
+                            child: Container(
+                              alignment: Alignment.centerRight,
+                              child: const Image(
+                                image: AssetImage('assets/icons/log-in.png'),
+                                width: 20,
+                                height: 20,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        'Don\'t have an account?',
+                        style: TextStyle(
+                          color: Colors.black26,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
-                      Expanded(
-                        child: Container(
-                          alignment: Alignment.centerRight,
-                          child: const Image(
-                            image: AssetImage('assets/icons/log-in.png'),
-                            width: 20,
-                            height: 20,
+                      TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              PageTransition(
+                                  child: const SignUp(),
+                                  type:
+                                      PageTransitionType.rightToLeftWithFade));
+                        },
+                        child: const Text(
+                          'Sign Up',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
                     ],
                   ),
-                ),
-              ),
-            ],
-          ),
-          Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    'Don\'t have an account?',
-                    style: TextStyle(
-                      color: Colors.black26,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          PageTransition(
-                              child: const SignUp(),
-                              type:
-                              PageTransitionType.rightToLeftWithFade));
-                    },
-                    child: const Text(
-                      'Sign Up',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+                  //     const Text(
+                  //       'or',
+                  //       style: TextStyle(
+                  //         color: Colors.black26,
+                  //         fontSize: 14,
+                  //         fontWeight: FontWeight.w500,
+                  //       ),
+                  //     ),
+                  //     TextButton(
+                  //       onPressed: () {
+                  //         Navigator.push(
+                  //             context,
+                  //             PageTransition(
+                  //                 child: const SignUp(),
+                  //                 type:
+                  //                 PageTransitionType.rightToLeftWithFade));
+                  //       },
+                  //       child: const Text(
+                  //         'Skip',
+                  //         style: TextStyle(
+                  //           color: Colors.black,
+                  //           fontSize: 14,
+                  //           fontWeight: FontWeight.bold,
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                 ],
-              ),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.center,
-              //   children: [
-              //     const Text(
-              //       'or',
-              //       style: TextStyle(
-              //         color: Colors.black26,
-              //         fontSize: 14,
-              //         fontWeight: FontWeight.w500,
-              //       ),
-              //     ),
-              //     TextButton(
-              //       onPressed: () {
-              //         Navigator.push(
-              //             context,
-              //             PageTransition(
-              //                 child: const SignUp(),
-              //                 type:
-              //                 PageTransitionType.rightToLeftWithFade));
-              //       },
-              //       child: const Text(
-              //         'Skip',
-              //         style: TextStyle(
-              //           color: Colors.black,
-              //           fontSize: 14,
-              //           fontWeight: FontWeight.bold,
-              //         ),
-              //       ),
-              //     ),
-              //   ],
-              // ),
-
+              )
             ],
-          )
-                ],
-              ),
           ),
         ),
+      ),
     );
   }
 }

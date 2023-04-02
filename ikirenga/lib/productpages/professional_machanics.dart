@@ -5,46 +5,45 @@ import 'package:page_transition/page_transition.dart';
 
 import 'widget/single_service_detail.dart';
 
-class Mechanics extends StatefulWidget {
-  const Mechanics({super.key});
+class ProfessionalMachanics extends StatefulWidget {
+  const ProfessionalMachanics({super.key});
 
   @override
-  State<Mechanics> createState() => _MechanicsState();
+  State<ProfessionalMachanics> createState() => _ProfessionalMachanicsState();
 }
 
-class _MechanicsState extends State<Mechanics> {
+class _ProfessionalMachanicsState extends State<ProfessionalMachanics> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // appBar: AppBar(
-        //   leading: IconButton(
-        //     onPressed: () {
-        //       Navigator.pop(context);
-        //     },
-        //     icon: const Icon(
-        //       Icons.arrow_back_ios,
-        //       color: Colors.black,
-        //     ),
-        //   ),
-        //   title: const Text(
-        //     'MECHANICS',
-        //     style: TextStyle(
-        //         fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
-        //   ),
-        //   backgroundColor: Colors.transparent,
-        //   elevation: 0.0,
-        //   actions: [
-        //     IconButton(
-        //         onPressed: () {},
-        //         icon: const Icon(
-        //           Icons.filter_list_outlined,
-        //           color: Colors.black,
-        //         )),
-        //   ],
-        // ),
-        body: Padding(
-      padding: const EdgeInsets.only(top: 25),
-      child: SafeArea(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black,
+          ),
+        ),
+        title: const Text(
+          'MECHANICS',
+          style: TextStyle(
+              fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: Colors.white,
+        elevation: 0.0,
+        actions: [
+          IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.filter_list_outlined,
+                color: Colors.black,
+              )),
+        ],
+      ),
+      body: SafeArea(
+          child: Expanded(
         child: ListView(
           children: [
             MachanicsContainer(
@@ -103,7 +102,7 @@ class _MechanicsState extends State<Mechanics> {
             ),
           ],
         ),
-      ),
-    ));
+      )),
+    );
   }
 }

@@ -18,108 +18,164 @@ class _SingleCarDetailState extends State<SingleCarDetail> {
               Navigator.pop(context);
             },
             icon: const Icon(
-              Icons.arrow_back_ios_new,
+              Icons.keyboard_backspace_outlined,
               color: Colors.black,
+              size: 30,
             )),
-        title: const Text(
-          'CAR > AUDI',
-          style: TextStyle(
-              fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
+        title: Center(
+          child: Text(
+            'CAR > AUDI',
+            style: TextStyle(
+                fontSize: 18.sp,
+                color: Colors.black,
+                fontWeight: FontWeight.w400),
+          ),
         ),
         backgroundColor: Colors.white,
         elevation: 0.0,
-        actions: [
-          IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.filter_list,
-                color: Colors.black,
-              )),
-        ],
+        actions: [Image.asset('assets/icons/filter.jpg')],
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
               Container(
                   padding: const EdgeInsets.all(20),
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: Colors.grey[100],
+                    color: Colors.grey[200],
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Column(
                     children: [
-                      Image.asset('assets/images/carimagefour.png',
-                          height: 200.h, width: 200.w),
+                      Image.asset(
+                        'assets/images/carimagefour.png',
+                        height: 250.h,
+                        width: 300.w,
+                      ),
                       Text('Audi e45',
                           style: TextStyle(
-                              fontSize: 20.sp,
+                              fontSize: 25.sp,
                               color: Colors.black,
                               fontWeight: FontWeight.bold)),
                       SizedBox(height: 10.h),
                       Text('Sedan',
                           style: TextStyle(
                               fontSize: 20.sp,
-                              color: Colors.grey,
-                              fontWeight: FontWeight.bold)),
+                              color: Colors.black54,
+                              fontWeight: FontWeight.w400)),
                     ],
                   )),
-              SizedBox(height: 10.h),
+              SizedBox(height: 40.h),
               Text('Compressor',
                   style: TextStyle(
                       fontSize: 20.sp,
                       color: Colors.black,
                       fontWeight: FontWeight.bold)),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
+              Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Condition: Used',
-                        style: TextStyle(
-                            fontSize: 20.sp,
-                            color: Colors.grey,
-                            fontWeight: FontWeight.bold)),
-                    SizedBox(height: 5.h),
-                    Text('Vehicle Type: Sedan',
-                        style: TextStyle(
-                            fontSize: 20.sp,
-                            color: Colors.grey,
-                            fontWeight: FontWeight.bold)),
-                    SizedBox(height: 5.h),
-                    Text('Make: Audi',
-                        style: TextStyle(
-                            fontSize: 20.sp,
-                            color: Colors.grey,
-                            fontWeight: FontWeight.bold)),
-                    SizedBox(height: 5.h),
-                    Text('Model: A4(B9)',
-                        style: TextStyle(
-                            fontSize: 20.sp,
-                            color: Colors.grey,
-                            fontWeight: FontWeight.bold)),
-                    SizedBox(height: 5.h),
-                    Text('Transmission: Automatic',
-                        style: TextStyle(
-                            fontSize: 20.sp,
-                            color: Colors.grey,
-                            fontWeight: FontWeight.bold)),
-                    SizedBox(height: 5.h),
-                    Text('Fuel Type: Diesel',
-                        style: TextStyle(
-                            fontSize: 20.sp,
-                            color: Colors.grey,
-                            fontWeight: FontWeight.bold)),
-                    SizedBox(height: 50.h),
-
+                    Row(
+                      children: [
+                        Text('Condition:',
+                            style: TextStyle(
+                                fontSize: 20.sp,
+                                color: Colors.black54,
+                                fontWeight: FontWeight.bold)),
+                        SizedBox(width: 5.w),
+                        Text('Used',
+                            style: TextStyle(
+                              fontSize: 20.sp,
+                              color: Colors.black45,
+                            ))
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text('Vehicle Type:',
+                            style: TextStyle(
+                                fontSize: 20.sp,
+                                color: Colors.black54,
+                                fontWeight: FontWeight.bold)),
+                        SizedBox(width: 5.w),
+                        Text('Sedan',
+                            style: TextStyle(
+                              fontSize: 20.sp,
+                              color: Colors.black45,
+                            ))
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text('Make:',
+                            style: TextStyle(
+                                fontSize: 20.sp,
+                                color: Colors.black54,
+                                fontWeight: FontWeight.bold)),
+                        SizedBox(width: 5.w),
+                        Text('Audi',
+                            style: TextStyle(
+                              fontSize: 20.sp,
+                              color: Colors.black45,
+                            ))
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text('Model:',
+                            style: TextStyle(
+                                fontSize: 20.sp,
+                                color: Colors.black54,
+                                fontWeight: FontWeight.bold)),
+                        SizedBox(width: 5.w),
+                        Text('A4(B9)',
+                            style: TextStyle(
+                              fontSize: 20.sp,
+                              color: Colors.black45,
+                            ))
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text('Transmission:',
+                            style: TextStyle(
+                                fontSize: 20.sp,
+                                color: Colors.black54,
+                                fontWeight: FontWeight.bold)),
+                        SizedBox(width: 5.w),
+                        Text('Automatic',
+                            style: TextStyle(
+                              fontSize: 20.sp,
+                              color: Colors.black45,
+                            ))
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text('Fuel Type:',
+                            style: TextStyle(
+                                fontSize: 20.sp,
+                                color: Colors.black54,
+                                fontWeight: FontWeight.bold)),
+                        SizedBox(width: 5.w),
+                        Text('Disel',
+                            style: TextStyle(
+                              fontSize: 20.sp,
+                              color: Colors.black45,
+                            ))
+                      ],
+                    ),
+                    const Spacer(),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         elevation: 0,
                         backgroundColor: const Color(0xFFFFDB47),
-                        padding: const EdgeInsets.symmetric(horizontal: 120, vertical: 15),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 120, vertical: 15),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8)),
                       ),
                       onPressed: () {},
                       child: const Text('ADD TO CART',

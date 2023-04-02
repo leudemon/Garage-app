@@ -5,17 +5,14 @@ import 'package:ikirengaauto/Login/login.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter/services.dart';
 
-
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
-
 
   @override
   State<OnBoardingScreen> createState() => _OnBoardingScreenState();
 }
 
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
-
   List images = [
     'assets/images/onboarding1.png',
     'assets/images/onboarding1.png',
@@ -31,21 +28,19 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [
       SystemUiOverlay.top,
       // SystemUiOverlay.bottom,
-    ]
-    );
+    ]);
   }
-
 
   @override
   void dispose() {
     _pageController!.dispose();
     super.dispose();
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+        overlays: SystemUiOverlay.values);
     const SystemUiOverlayStyle(
       statusBarColor: Colors.blue,
       systemNavigationBarColor: Colors.red,
     );
-
   }
 
   @override
@@ -105,31 +100,33 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child:ElevatedButton(
+                      child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           elevation: 0,
                           backgroundColor: const Color(0xFFFFDB47),
-                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 15),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8)),
                         ),
                         onPressed: () {
                           Navigator.push(
                               context,
                               PageTransition(
                                   child: const LoginPage(),
-                                  type: PageTransitionType
-                                      .rightToLeftWithFade));
+                                  type:
+                                      PageTransitionType.rightToLeftWithFade));
                         },
                         child: Row(
                           children: [
                             const Spacer(),
-
                             Expanded(
                               child: Container(
                                 alignment: Alignment.center,
                                 child: const Text(
                                   'GET STARTED',
-                                  style: TextStyle(fontSize: 16, color: Colors.black),
+                                  style: TextStyle(
+                                      fontSize: 16, color: Colors.black),
                                 ),
                               ),
                             ),
@@ -137,7 +134,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                               child: Container(
                                 alignment: Alignment.centerRight,
                                 child: const Image(
-                                  image: AssetImage('assets/icons/arrow-right.png'),
+                                  image: AssetImage(
+                                      'assets/icons/arrow-right.png'),
                                   width: 20,
                                   height: 20,
                                 ),

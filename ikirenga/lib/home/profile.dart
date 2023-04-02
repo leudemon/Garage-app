@@ -1,12 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ikirengaauto/model/container_model.dart';
-import 'package:ikirengaauto/productpages/spareparts.dart';
-import 'package:ikirengaauto/productpages/usedcar.dart';
-import 'package:ikirengaauto/widget/item_container.dart';
-import 'package:page_transition/page_transition.dart';
-
-import '../productpages/mechanics.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -16,76 +9,91 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
+  double? height, width;
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 40),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: const [
-                Text(
-                  'Profile',
-                  style: TextStyle(
-                      fontSize: 30,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold),
+    height = MediaQuery.of(context).size.height;
+    width = MediaQuery.of(context).size.width;
+    return Scaffold(
+        body: Stack(
+      children: [
+        Column(
+          children: [
+            Container(
+              height: height! * .6,
+              width: double.infinity,
+              decoration: const BoxDecoration(
+                color: Color(0xFFFFDB47),
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(30),
+                  bottomRight: Radius.circular(30),
                 ),
-
+              ),
+              child: Column(
+                children: [
+                  SizedBox(height: 40.h),
+                  Image.asset(
+                    'assets/images/profile.png',
+                    height: 100.h,
+                    width: 100.w,
+                  ),
+                  SizedBox(height: 10.h),
+                  Text(
+                    'Severine',
+                    style:
+                        TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 15.h),
+                  Text(
+                    'severin@gmail.com',
+                    style:
+                        TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w400),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+        Positioned(
+          top: height! * .28,
+          left: width! * .1,
+          child: Container(
+            height: height! * .4,
+            width: width! * .8,
+            padding: EdgeInsets.symmetric(vertical: 20.h),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ListTile(
+                    leading:
+                        Icon(Icons.person, color: Colors.black54, size: 30.sp),
+                    title: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('My Account',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.bold)),
+                        SizedBox(height: 10.h),
+                        Text(
+                          'Edit your information',
+                          style: TextStyle(
+                              fontSize: 15.sp,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black54),
+                        ),
+                      ],
+                    )),
               ],
             ),
           ),
-
-           Padding(
-           padding: const EdgeInsets.all(10.0),
-           child:  Expanded(
-           child: Column(
-
-                  children: [
-                    Icon(
-                      Icons.account_circle,
-                      color: Colors.grey,
-                      size: 150.h,
-                    )
-                  ],
-                ),
-              )
-           ),
-
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Column(
-                children: [
-                   Expanded(
-
-                     child: Column(
-                       children: const [
-                            Text(
-                              'Bios',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold
-                                )
-                            )
-                       ],
-                     )
-
-                  )
-                ],
-              )
-
-            ),
-          ),
-        ],
-      ),
-    );
+        )
+      ],
+    ));
   }
 }
