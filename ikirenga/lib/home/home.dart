@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ikirengaauto/Ikirenga_icons.dart';
 import 'package:ikirengaauto/model/container_model.dart';
 import 'package:ikirengaauto/productpages/spareparts.dart';
 import 'package:ikirengaauto/productpages/usedcar.dart';
@@ -17,6 +19,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List<ContainerModel> searchList = [];
+
   List<ContainerModel> containerModel = [
     ContainerModel(
       ontap: (BuildContext context) {
@@ -27,7 +30,7 @@ class _HomeState extends State<Home> {
                 alignment: Alignment.center,
                 type: PageTransitionType.fade));
       },
-      title: 'Spare Parts',
+      title: 'SPARE PARTS',
       subtitle: '',
       image: 'assets/images/spareparts.png',
     ),
@@ -40,7 +43,7 @@ class _HomeState extends State<Home> {
                 alignment: Alignment.center,
                 type: PageTransitionType.fade));
       },
-      title: 'Used Cars',
+      title: 'USED CARS',
       subtitle: '',
       image: 'assets/images/usedcars.png',
     ),
@@ -53,7 +56,7 @@ class _HomeState extends State<Home> {
                 alignment: Alignment.center,
                 type: PageTransitionType.fade));
       },
-      title: 'Garages',
+      title: 'GARAGES',
       subtitle: '',
       image: 'assets/images/garages.png',
     ),
@@ -62,7 +65,7 @@ class _HomeState extends State<Home> {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => const Mechanics()));
       },
-      title: 'Mechanics',
+      title: 'MECHANICS',
       subtitle: '',
       image: 'assets/images/machines.png',
     ),
@@ -75,7 +78,7 @@ class _HomeState extends State<Home> {
                 alignment: Alignment.center,
                 type: PageTransitionType.fade));
       },
-      title: 'Used Cars',
+      title: 'USEDCARS',
       subtitle: '',
       image: 'assets/images/usedcars.png',
     ),
@@ -88,11 +91,12 @@ class _HomeState extends State<Home> {
                 alignment: Alignment.bottomCenter,
                 type: PageTransitionType.fade));
       },
-      title: 'Garages',
+      title: 'GARAGES',
       subtitle: '',
       image: 'assets/images/machines.png',
     ),
   ];
+  final TextEditingController _searchController = TextEditingController();
 
   void search(String searchString) {
     setState(() {
@@ -102,6 +106,12 @@ class _HomeState extends State<Home> {
           .toList();
     });
   }
+  void clearSearch() {
+    _searchController.clear();
+    search('');
+    FocusScope.of(context).unfocus();
+  }
+
 
   @override
   void initState() {
@@ -113,54 +123,77 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        toolbarHeight: 30,
-        titleSpacing: 0,
-        centerTitle: false,
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        leadingWidth: 25,
-        bottom: PreferredSize(
-          preferredSize:
-              const Size.fromHeight(40.0), // Set the height as needed
-          child: Container(
-            alignment: Alignment.bottomLeft,
-            padding: const EdgeInsets.symmetric(
-                vertical: 15.0, horizontal: 30), // Adjust the padding as needed
-            child: const Text('Welcome Back, Severin!',
-                style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold)),
+        toolbarHeight: 75.h,
+        backgroundColor: Colors.white,
+        elevation: 0,
+        titleSpacing: 10,
+        leadingWidth: 55,
+        leading: const Padding(
+          padding: EdgeInsets.only(left:20.0),
+          child: CircleAvatar(
+            radius: 10,
+            child: Icon(
+              Ikirenga.person,
+              color: Colors.yellow,
+              size: 30,
+            ),
+          )
+        ),
+        title: const Text(
+          'Welcome Back, Severin!',
+          textAlign: TextAlign.right,
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 18,
           ),
         ),
+        actions:  [
+          Padding(
+            padding: const EdgeInsets.only(right: 20),
+            child: IconButton(
+                onPressed: (){},
+                icon: const Icon(Icons.settings_rounded)
+            ),
+          ),
+        ],
       ),
+
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
                 alignment: AlignmentDirectional.centerEnd,
-                margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 0),
+                margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
                 decoration: BoxDecoration(
                   color: Colors.grey[300],
                   borderRadius: BorderRadius.circular(15),
                 ),
                 child: Center(
                   child: TextField(
+
                     textAlign: TextAlign.start,
                     onChanged: (value) => search(value),
-                    decoration: const InputDecoration(
+                    decoration:  InputDecoration(
+                      prefixIcon: const Icon(Icons.search_rounded),
+                      prefixIconColor: Colors.black,
                       contentPadding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                      suffixIconColor: Colors.black26,
+                      const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
+                      suffixIconColor: Colors.black,
                       alignLabelWithHint: true,
                       border: InputBorder.none,
-                      suffixIcon: Icon(Icons.cancel_outlined),
+                      suffixIcon:  IconButton(
+                        icon:  const Icon(Icons.clear_all_rounded),
+                        onPressed: clearSearch,
+                      ),
                       hintText: 'Search',
                     ),
                   ),
                 )),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
+                padding:
+                const EdgeInsets.fromLTRB(10,20,10,0 ),
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       childAspectRatio: 0.7,
@@ -168,9 +201,9 @@ class _HomeState extends State<Home> {
                       crossAxisSpacing: 0.0,
                       mainAxisSpacing: 0.0),
                   itemBuilder: ((context, index) => ItemContainer(
-                        containerModel: searchList[index],
-                        onTap: () => searchList[index].ontap!(context),
-                      )),
+                    containerModel: searchList[index],
+                    onTap: () => searchList[index].ontap!(context),
+                  )),
                   itemCount: searchList.length,
                 ),
               ),
@@ -178,6 +211,7 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
+
     );
   }
 }
