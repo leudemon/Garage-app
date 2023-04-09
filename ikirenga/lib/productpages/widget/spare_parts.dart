@@ -36,7 +36,7 @@ class SpartPartCars extends StatelessWidget {
               height: 10.h,
             ),
             Text(
-              sparePartsModel.price,
+              'Rwf ${sparePartsModel.price}',
               style: TextStyle(
                   fontSize: 20.sp,
                   fontWeight: FontWeight.w300,

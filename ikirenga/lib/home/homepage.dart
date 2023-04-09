@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:ikirengaauto/Ikirenga_icons.dart';
 import 'package:ikirengaauto/home/profile.dart';
 import 'package:ikirengaauto/productpages/spareparts.dart';
 import 'package:ikirengaauto/productpages/usedcar.dart';
@@ -31,35 +30,35 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.fromLTRB(25, 10, 30, 35),
+        padding: const EdgeInsets.fromLTRB(25, 10, 30, 45),
         child: GNav(
           tabBorderRadius: 50,
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 7),
           color: Colors.black,
           activeColor: Colors.black,
           tabBackgroundColor: Colors.yellow,
-          iconSize: 25,
-          gap: 5,
-          duration: const Duration(microseconds: 10000),
+          iconSize: 30,
+          // gap: 5,
+          // duration: const Duration(microseconds: 10000),
           tabs: const [
             GButton(
-              icon: Ikirenga.home,
+              icon: Icons.home_outlined,
               text: 'Home',
             ),
             GButton(
-              icon: Ikirenga.fix,
-              text: 'Spare Parts',
+              icon: Icons.car_repair_outlined,
+              text: 'Used Cars',
             ),
             GButton(
-              icon: Ikirenga.carfix,
+              icon: Icons.settings_applications_outlined,
               text: 'Spare parts',
             ),
             GButton(
-              icon: Ikirenga.toolkit,
-              text: '  Garages',
+              icon: Icons.accessibility_outlined,
+              text: 'Mechanics',
             ),
             GButton(
-              icon: Ikirenga.mechanic,
+              icon: Icons.person_outline_outlined,
               text: 'Profile',
             ),
           ],
@@ -81,7 +80,6 @@ class _HomePageState extends State<HomePage> {
         },
         child: const Icon(
           Icons.shopping_bag_outlined,
-          size: 30,
         ),
       ),
     );

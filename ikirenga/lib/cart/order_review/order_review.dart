@@ -103,7 +103,7 @@ class OrderReview extends StatelessWidget {
                 padding: const EdgeInsets.all(10),
                 child: Row(
                   children: [
-                    const Icon(Icons.call, color: Colors.green),
+                    const Icon(Icons.phone, color: Colors.green),
                     SizedBox(
                       width: 10.w,
                     ),

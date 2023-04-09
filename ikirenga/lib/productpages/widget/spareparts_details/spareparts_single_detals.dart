@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ikirengaauto/model/container_model.dart';
+import 'package:ikirengaauto/model/viewmodel/product.dart';
+import 'package:provider/provider.dart';
 
 class SparePartSingleDetail extends StatelessWidget {
-  const SparePartSingleDetail({super.key});
+  final SparePartsModel sparePartsModel;
+  const SparePartSingleDetail({super.key, required this.sparePartsModel});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +27,7 @@ class SparePartSingleDetail extends StatelessWidget {
           IconButton(
               onPressed: () {},
               icon: Icon(
-                Icons.email_sharp,
+                Icons.shopping_bag_outlined,
                 color: Colors.black,
                 size: 20.sp,
               ))
@@ -53,7 +57,7 @@ class SparePartSingleDetail extends StatelessWidget {
                         ),
                         SizedBox(height: 5.h),
                         Text(
-                          'Compressor',
+                          sparePartsModel.title,
                           style: TextStyle(
                               fontSize: 20.sp,
                               color: Colors.black,
@@ -69,7 +73,7 @@ class SparePartSingleDetail extends StatelessWidget {
                         ),
                         SizedBox(height: 5.h),
                         Text(
-                          '200,000 Rwf',
+                          'Rwf ${sparePartsModel.price}',
                           style: TextStyle(
                               fontSize: 20.sp,
                               color: Colors.black,
@@ -98,7 +102,7 @@ class SparePartSingleDetail extends StatelessWidget {
                       ],
                     ),
                     Image.asset(
-                      'assets/images/spare.png',
+                      sparePartsModel.image,
                       width: 200,
                     ),
                   ],
@@ -108,7 +112,7 @@ class SparePartSingleDetail extends StatelessWidget {
               Center(
                 child: Column(
                   children: [
-                    Text('Compressor',
+                    Text(sparePartsModel.title,
                         style: TextStyle(
                             fontSize: 20.sp,
                             color: Colors.black,
@@ -117,9 +121,7 @@ class SparePartSingleDetail extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
-                        'The idling device of the compressor 1.18493 controls the flow rate if less air is required.'
-                        'A feed pump can be flanged directly to the compressor. The crankshaft is forged. All highly stressed surfaces are induction hardened to minimize wear.'
-                        'The connecting rods are made of die-cast aluminum. Valve reeds are made of a special flexible stainless steel. All of these measures significantly increase the service life of the compressor',
+                        sparePartsModel.description,
                         style: TextStyle(
                             fontSize: 15.sp,
                             color: Colors.black54,
@@ -130,18 +132,25 @@ class SparePartSingleDetail extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 30.h),
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    elevation: 0,
-                    backgroundColor: const Color(0xFFFFDB47),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 120, vertical: 15),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                  ),
-                  onPressed: () {},
-                  child: const Text('ADD TO CART',
-                      style: TextStyle(fontSize: 16, color: Colors.black))),
+              Consumer<CartModel>(
+                builder: (context, value, child) {
+                  return ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        elevation: 0,
+                        backgroundColor: const Color(0xFFFFDB47),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 120, vertical: 15),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8)),
+                      ),
+                      onPressed: () {
+                        Provider.of<CartModel>(context, listen: false)
+                            .addToCart(sparePartsModel);
+                      },
+                      child: const Text('ADD TO CART',
+                          style: TextStyle(fontSize: 16, color: Colors.black)));
+                },
+              ),
             ],
           ),
         ),

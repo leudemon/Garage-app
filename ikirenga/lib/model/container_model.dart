@@ -27,14 +27,16 @@ class UsedCarsModel {
 }
 
 class SparePartsModel {
-  final Function(BuildContext context)? ontap;
+  // final Function(BuildContext context)? ontap;
   final String title;
   final String image;
-  final String price;
+  final double price;
+  final String description;
   SparePartsModel({
-    required this.ontap,
+    // required this.ontap,
     required this.title,
     required this.image,
     required this.price,
+    required this.description,
   });
 }

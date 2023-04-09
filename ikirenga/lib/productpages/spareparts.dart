@@ -16,71 +16,89 @@ class _SparePartsState extends State<SpareParts> {
   List<SparePartsModel> searchList = [];
   List<SparePartsModel> sparePartsModel = [
     SparePartsModel(
-        ontap: (BuildContext context) {
-          Navigator.push(
-              context,
-              PageTransition(
-                  child: const SparePartSingleDetail(),
-                  type: PageTransitionType.rightToLeft));
-        },
-        title: 'Engine Pistons',
-        image: 'assets/images/imput_image_one.png',
-        price: '21,000,000 Rwf'),
+      // ontap: (BuildContext context) {
+      //   Navigator.push(
+      //       context,
+      //       PageTransition(
+      //           child: const SparePartSingleDetail(),
+      //           type: PageTransitionType.rightToLeft));
+      // },
+      title: 'Engine Pistons',
+      image: 'assets/images/imput_image_one.png',
+      price: 21000000,
+      description:
+          'The idling device of the compressor 1.18493 controls the flow rate if less air is required. A feed pump can be flanged directly to the compressor. The crankshaft is forged. All highly stressed surfaces are induction hardened to minimize wear. The connecting rods are made of die-cast aluminum. Valve reeds are made of a special flexible stainless steel. All of these measures significantly increase the service life of the compressor',
+    ),
     SparePartsModel(
-        ontap: (BuildContext context) {
-          Navigator.push(
-              context,
-              PageTransition(
-                  child: const SparePartSingleDetail(),
-                  type: PageTransitionType.rightToLeft));
-        },
-        title: 'Brake Caliper',
-        image: 'assets/images/imput_image2.png',
-        price: '100,000 Rwf'),
+      // ontap: (BuildContext context) {
+      //   Navigator.push(
+      //       context,
+      //       PageTransition(
+      //           child: const SparePartSingleDetail(),
+      //           type: PageTransitionType.rightToLeft));
+      // },
+      title: 'Brake Caliper',
+      image: 'assets/images/imput_image2.png',
+      price: 100000,
+      description:
+          'The idling device of the compressor 1.18493 controls the flow rate if less air is required. A feed pump can be flanged directly to the compressor. The crankshaft is forged. All highly stressed surfaces are induction hardened to minimize wear. The connecting rods are made of die-cast aluminum. Valve reeds are made of a special flexible stainless steel. All of these measures significantly increase the service life of the compressor',
+    ),
     SparePartsModel(
-        ontap: (BuildContext context) {
-          Navigator.push(
-              context,
-              PageTransition(
-                  child: const SparePartSingleDetail(),
-                  type: PageTransitionType.rightToLeft));
-        },
-        title: 'Window Motor',
-        image: 'assets/images/imput_image3.png',
-        price: '34,000,000 Rwf'),
+      // ontap: (BuildContext context) {
+      //   Navigator.push(
+      //       context,
+      //       PageTransition(
+      //           child: const SparePartSingleDetail(),
+      //           type: PageTransitionType.rightToLeft));
+      // },
+      title: 'Window Motor',
+      image: 'assets/images/imput_image3.png',
+      price: 34000000,
+      description:
+          'The idling device of the compressor 1.18493 controls the flow rate if less air is required. A feed pump can be flanged directly to the compressor. The crankshaft is forged. All highly stressed surfaces are induction hardened to minimize wear. The connecting rods are made of die-cast aluminum. Valve reeds are made of a special flexible stainless steel. All of these measures significantly increase the service life of the compressor',
+    ),
     SparePartsModel(
-        ontap: (BuildContext context) {
-          Navigator.push(
-              context,
-              PageTransition(
-                  child: const SparePartSingleDetail(),
-                  type: PageTransitionType.rightToLeft));
-        },
-        title: 'Wheel bearing',
-        image: 'assets/images/imput_image4.png',
-        price: '38,000,000 Rwf'),
+      // ontap: (BuildContext context) {
+      //   Navigator.push(
+      //       context,
+      //       PageTransition(
+      //           child: const SparePartSingleDetail(),
+      //           type: PageTransitionType.rightToLeft));
+      // },
+      title: 'Wheel bearing',
+      image: 'assets/images/imput_image4.png',
+      price: 38000000,
+      description:
+          'The idling device of the compressor 1.18493 controls the flow rate if less air is required. A feed pump can be flanged directly to the compressor. The crankshaft is forged. All highly stressed surfaces are induction hardened to minimize wear. The connecting rods are made of die-cast aluminum. Valve reeds are made of a special flexible stainless steel. All of these measures significantly increase the service life of the compressor',
+    ),
     SparePartsModel(
-        ontap: (BuildContext context) {
-          Navigator.push(
-              context,
-              PageTransition(
-                  child: const SparePartSingleDetail(),
-                  type: PageTransitionType.rightToLeft));
-        },
-        title: 'Engine Pistons',
-        image: 'assets/images/imput_image_one.png',
-        price: '32,000,000, Rwf'),
+      // ontap: (BuildContext context) {
+      //   Navigator.push(
+      //       context,
+      //       PageTransition(
+      //           child: const SparePartSingleDetail(),
+      //           type: PageTransitionType.rightToLeft));
+      // },
+      title: 'Engine Pistons',
+      image: 'assets/images/imput_image_one.png',
+      price: 32000000,
+      description:
+          'The idling device of the compressor 1.18493 controls the flow rate if less air is required. A feed pump can be flanged directly to the compressor. The crankshaft is forged. All highly stressed surfaces are induction hardened to minimize wear. The connecting rods are made of die-cast aluminum. Valve reeds are made of a special flexible stainless steel. All of these measures significantly increase the service life of the compressor',
+    ),
     SparePartsModel(
-        ontap: (BuildContext context) {
-          Navigator.push(
-              context,
-              PageTransition(
-                  child: const SparePartSingleDetail(),
-                  type: PageTransitionType.rightToLeft));
-        },
-        title: 'Window Motor',
-        image: 'assets/images/imput_image3.png',
-        price: '80,000,000 Rwf'),
+      // ontap: (BuildContext context) {
+      //   Navigator.push(
+      //       context,
+      //       PageTransition(
+      //           child: const SparePartSingleDetail(),
+      //           type: PageTransitionType.rightToLeft));
+      // },
+      title: 'Window Motor',
+      image: 'assets/images/imput_image3.png',
+      price: 80000000,
+      description:
+          'The idling device of the compressor 1.18493 controls the flow rate if less air is required. A feed pump can be flanged directly to the compressor. The crankshaft is forged. All highly stressed surfaces are induction hardened to minimize wear. The connecting rods are made of die-cast aluminum. Valve reeds are made of a special flexible stainless steel. All of these measures significantly increase the service life of the compressor',
+    ),
   ];
   void search(String searchString) {
     setState(() {
@@ -128,7 +146,15 @@ class _SparePartsState extends State<SpareParts> {
                     mainAxisSpacing: 0),
                 itemBuilder: ((context, index) => SpartPartCars(
                       sparePartsModel: searchList[index],
-                      onTap: () => searchList[index].ontap!(context),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            PageTransition(
+                                child: SparePartSingleDetail(
+                                  sparePartsModel: searchList[index],
+                                ),
+                                type: PageTransitionType.rightToLeft));
+                      },
                     )),
                 itemCount: searchList.length,
               ),
