@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "used_cars",
+  "info": {
+    "singularName": "used-car",
+    "pluralName": "used-cars",
+    "displayName": "UsedCar",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "make": {
+      "type": "string",
+      "required": true
+    },
+    "model": {
+      "type": "string"
+    },
+    "price": {
+      "type": "biginteger",
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "in_stock": {
+      "type": "boolean"
+    },
+    "year": {
+      "type": "integer"
+    }
+  }
+}

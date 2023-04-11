@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "mechanics",
+  "info": {
+    "singularName": "mechanic",
+    "pluralName": "mechanics",
+    "displayName": "Mechanic",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "location": {
+      "type": "string"
+    },
+    "phoneNumber": {
+      "type": "string",
+      "required": true
+    },
+    "rating": {
+      "type": "enumeration",
+      "enum": [
+        "one",
+        "two",
+        "three",
+        "four",
+        "five"
+      ]
+    },
+    "mechanic_id": {
+      "type": "uid",
+      "targetField": "name"
+    }
+  }
+}

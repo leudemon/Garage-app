@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "booking_used_cars",
+  "info": {
+    "singularName": "booking-used-car",
+    "pluralName": "booking-used-cars",
+    "displayName": "Booking_Used_Car",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "used_car_id": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::booking.booking",
+      "mappedBy": "used_car_id"
+    }
+  }
+}

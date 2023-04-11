@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bookings",
+  "info": {
+    "singularName": "booking",
+    "pluralName": "bookings",
+    "displayName": "Booking",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user_id": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "mechanic_id": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::mechanic.mechanic"
+    },
+    "garage_id": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::garage.garage"
+    },
+    "used_car_id": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::booking-used-car.booking-used-car",
+      "inversedBy": "used_car_id"
+    },
+    "spare_part_id": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::booking-spare-part.booking-spare-part",
+      "mappedBy": "spare_part_id"
+    }
+  }
+}

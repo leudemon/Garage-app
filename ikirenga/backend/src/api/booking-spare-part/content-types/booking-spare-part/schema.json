@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "booking_spare_parts",
+  "info": {
+    "singularName": "booking-spare-part",
+    "pluralName": "booking-spare-parts",
+    "displayName": "Booking_Spare_Part",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "spare_part_id": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::booking.booking",
+      "inversedBy": "spare_part_id"
+    }
+  }
+}

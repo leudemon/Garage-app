@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:ikirengaauto/Ikirenga_icons.dart';
 import 'package:ikirengaauto/home/profile.dart';
 import 'package:ikirengaauto/productpages/spareparts.dart';
 import 'package:ikirengaauto/productpages/usedcar.dart';
@@ -37,29 +38,29 @@ class _HomePageState extends State<HomePage> {
           color: Colors.black,
           activeColor: Colors.black,
           tabBackgroundColor: Colors.yellow,
-          iconSize: 30,
-          // gap: 5,
-          // duration: const Duration(microseconds: 10000),
+          iconSize: 25,
+          gap: 5,
+          duration: const Duration(microseconds: 10000),
           tabs: const [
             GButton(
-              icon: Icons.home_outlined,
+              icon: Ikirenga.home,
               text: 'Home',
             ),
             GButton(
-              icon: Icons.car_repair_outlined,
+              icon: Ikirenga.carfix,
               text: 'Used Cars',
             ),
             GButton(
-              icon: Icons.settings_applications_outlined,
+              icon: Ikirenga.fix,
               text: 'Spare parts',
             ),
             GButton(
-              icon: Icons.accessibility_outlined,
-              text: 'Mechanics',
+              icon: Ikirenga.eye,
+              text: 'Garages',
             ),
             GButton(
-              icon: Icons.person_outline_outlined,
-              text: 'Profile',
+              icon: Ikirenga.mechanic,
+              text: 'Mechanics',
             ),
           ],
           selectedIndex: _currentIndex,

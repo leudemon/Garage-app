@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "spare_parts",
+  "info": {
+    "singularName": "spare-part",
+    "pluralName": "spare-parts",
+    "displayName": "SparePart",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "price": {
+      "type": "biginteger",
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "inStock": {
+      "type": "boolean"
+    },
+    "spare_part_id": {
+      "type": "uid",
+      "targetField": "name"
+    }
+  }
+}
