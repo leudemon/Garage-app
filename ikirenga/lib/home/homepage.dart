@@ -55,8 +55,8 @@ class _HomePageState extends State<HomePage> {
               text: 'Spare parts',
             ),
             GButton(
-              icon: Ikirenga.eye,
-              text: 'Garages',
+              icon: Ikirenga.toolkit,
+              text: '  Garages',
             ),
             GButton(
               icon: Ikirenga.mechanic,
