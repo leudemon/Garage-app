@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ikirengaauto/model/viewmodel/usedcars_cartmodel.dart';
 import 'package:provider/provider.dart';
 import 'model/viewmodel/sparepart_cartmodel.dart';
 import 'onboarding/onboarding.dart';
@@ -17,8 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => SparePartCartModel()),
-        ChangeNotifierProvider(create: (context) => UsedCarsCartModel()),
+        ChangeNotifierProvider(create: (context) => CartModel()),
       ],
       child: ScreenUtilInit(
         designSize: const Size(375, 812),

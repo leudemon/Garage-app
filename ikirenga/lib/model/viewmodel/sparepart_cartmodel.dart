@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:ikirengaauto/model/container_model.dart';
 
-class SparePartCartModel extends ChangeNotifier {
+class CartModel extends ChangeNotifier {
   final List<CartItem> _cartItems = [];
   get cartItems => _cartItems;
 
-  int getCartItemQuantity(SparePartsModel item) {
+  int getCartItemQuantity(Item item) {
     int index =
         _cartItems.indexWhere((element) => element.item.title == item.title);
     if (index == -1) {
@@ -14,7 +13,7 @@ class SparePartCartModel extends ChangeNotifier {
     return _cartItems[index].quantity;
   }
 
-  void addToCart(SparePartsModel item) {
+  void addToCart(Item item) {
     int index =
         _cartItems.indexWhere((element) => element.item.title == item.title);
     if (index != -1) {
@@ -26,14 +25,14 @@ class SparePartCartModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void removeFromCart(SparePartsModel item) {
+  void removeFromCart(Item item) {
     int index =
         _cartItems.indexWhere((element) => element.item.title == item.title);
     _cartItems.removeAt(index);
     notifyListeners();
   }
 
-  void decreaseQuantity(SparePartsModel item) {
+  void decreaseQuantity(Item item) {
     int index =
         _cartItems.indexWhere((element) => element.item.title == item.title);
     if (cartItems[index].quantity < 2) {
@@ -61,8 +60,21 @@ class SparePartCartModel extends ChangeNotifier {
   }
 }
 
+class Item {
+  final String title;
+  final String image;
+  final String description;
+  final int price;
+  Item(
+      {required this.title,
+      required this.image,
+      required this.description,
+      required this.price});
+}
+
 class CartItem {
-  final SparePartsModel item;
+  // final SparePartsModel item;
+  final Item item;
   int quantity;
-  CartItem({required this.item, required this.quantity});
+  CartItem({required this.quantity, required this.item});
 }

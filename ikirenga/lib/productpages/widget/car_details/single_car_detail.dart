@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ikirengaauto/model/container_model.dart';
-import 'package:ikirengaauto/model/viewmodel/usedcars_cartmodel.dart';
 import 'package:provider/provider.dart';
+
+import '../../../model/viewmodel/sparepart_cartmodel.dart';
 
 class SingleCarDetail extends StatelessWidget {
   final UsedCarsModel usedCarsModel;
@@ -23,7 +24,7 @@ class SingleCarDetail extends StatelessWidget {
             )),
         title: Center(
           child: Text(
-            'CAR > AUDI',
+            'CAR > ${usedCarsModel.make}',
             style: TextStyle(
                 fontSize: 18.sp,
                 color: Colors.black,
@@ -67,7 +68,7 @@ class SingleCarDetail extends StatelessWidget {
                     ],
                   )),
               SizedBox(height: 40.h),
-              Text('Compressor',
+              Text(usedCarsModel.title,
                   style: TextStyle(
                       fontSize: 20.sp,
                       color: Colors.black,
@@ -84,7 +85,7 @@ class SingleCarDetail extends StatelessWidget {
                                 color: Colors.black54,
                                 fontWeight: FontWeight.bold)),
                         SizedBox(width: 5.w),
-                        Text('Used',
+                        Text(usedCarsModel.condition,
                             style: TextStyle(
                               fontSize: 20.sp,
                               color: Colors.black45,
@@ -99,7 +100,7 @@ class SingleCarDetail extends StatelessWidget {
                                 color: Colors.black54,
                                 fontWeight: FontWeight.bold)),
                         SizedBox(width: 5.w),
-                        Text('Sedan',
+                        Text(usedCarsModel.type,
                             style: TextStyle(
                               fontSize: 20.sp,
                               color: Colors.black45,
@@ -114,7 +115,7 @@ class SingleCarDetail extends StatelessWidget {
                                 color: Colors.black54,
                                 fontWeight: FontWeight.bold)),
                         SizedBox(width: 5.w),
-                        Text('Audi',
+                        Text(usedCarsModel.make,
                             style: TextStyle(
                               fontSize: 20.sp,
                               color: Colors.black45,
@@ -129,7 +130,7 @@ class SingleCarDetail extends StatelessWidget {
                                 color: Colors.black54,
                                 fontWeight: FontWeight.bold)),
                         SizedBox(width: 5.w),
-                        Text('A4(B9)',
+                        Text(usedCarsModel.model,
                             style: TextStyle(
                               fontSize: 20.sp,
                               color: Colors.black45,
@@ -144,7 +145,7 @@ class SingleCarDetail extends StatelessWidget {
                                 color: Colors.black54,
                                 fontWeight: FontWeight.bold)),
                         SizedBox(width: 5.w),
-                        Text('Automatic',
+                        Text(usedCarsModel.transmission,
                             style: TextStyle(
                               fontSize: 20.sp,
                               color: Colors.black45,
@@ -159,7 +160,7 @@ class SingleCarDetail extends StatelessWidget {
                                 color: Colors.black54,
                                 fontWeight: FontWeight.bold)),
                         SizedBox(width: 5.w),
-                        Text('Disel',
+                        Text(usedCarsModel.fuelType,
                             style: TextStyle(
                               fontSize: 20.sp,
                               color: Colors.black45,
@@ -167,7 +168,8 @@ class SingleCarDetail extends StatelessWidget {
                       ],
                     ),
                     const Spacer(),
-                    Consumer<UsedCarsCartModel>(
+                    //make a button to add to cart
+                    Consumer<CartModel>(
                       builder: (context, value, child) {
                         return ElevatedButton(
                           style: ElevatedButton.styleFrom(
@@ -179,9 +181,12 @@ class SingleCarDetail extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(8)),
                           ),
                           onPressed: () {
-                            Provider.of<UsedCarsCartModel>(context,
-                                    listen: false)
-                                .addToCart(usedCarsModel);
+                            Provider.of<CartModel>(context, listen: false)
+                                .addToCart(Item(
+                                    title: usedCarsModel.title,
+                                    image: usedCarsModel.image,
+                                    description: usedCarsModel.type,
+                                    price: usedCarsModel.price));
                           },
                           child: const Text('ADD TO CART',
                               style:
