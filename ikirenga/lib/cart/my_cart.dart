@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ikirengaauto/model/viewmodel/product.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
+import '../model/viewmodel/sparepart_cartmodel.dart';
 import 'cart_container.dart';
 import 'order_review/order_review.dart';
 
@@ -47,7 +47,7 @@ class MyCart extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.all(25.0),
           child: SafeArea(
-            child: Consumer<CartModel>(
+            child: Consumer<SparePartCartModel>(
               builder: (context, value, child) => Column(
                 children: [
                   Expanded(

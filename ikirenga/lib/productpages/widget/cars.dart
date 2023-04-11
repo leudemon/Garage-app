@@ -41,7 +41,7 @@ class Cars extends StatelessWidget {
               height: 10.h,
             ),
             Text(
-              usedCarsModel.price,
+              usedCarsModel.price.toString(),
               style: TextStyle(
                   fontSize: 20.sp,
                   fontWeight: FontWeight.w300,

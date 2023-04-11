@@ -16,71 +16,29 @@ class _UsedCarsState extends State<UsedCars> {
   List<UsedCarsModel> searchList = [];
   List<UsedCarsModel> usedCarModel = [
     UsedCarsModel(
-        ontap: (BuildContext context) {
-          Navigator.push(
-              context,
-              PageTransition(
-                  child: const SingleCarDetail(),
-                  type: PageTransitionType.rightToLeftWithFade));
-        },
         title: 'Audi e45 2019',
         image: 'assets/images/carimagefour.png',
-        price: '140,000 Rwf'),
+        price: 140000),
     UsedCarsModel(
-        ontap: (BuildContext context) {
-          Navigator.push(
-              context,
-              PageTransition(
-                  child: const SingleCarDetail(),
-                  type: PageTransitionType.rightToLeftWithFade));
-        },
         title: 'Car Name',
         image: 'assets/images/carimagefour.png',
-        price: '100,000 Rwf'),
+        price: 100000),
     UsedCarsModel(
-        ontap: (BuildContext context) {
-          Navigator.push(
-              context,
-              PageTransition(
-                  child: const SingleCarDetail(),
-                  type: PageTransitionType.rightToLeftWithFade));
-        },
         title: 'Car Name',
         image: 'assets/images/carimagefour.png',
-        price: '80,000 Rwf'),
+        price: 80000),
     UsedCarsModel(
-        ontap: (BuildContext context) {
-          Navigator.push(
-              context,
-              PageTransition(
-                  child: const SingleCarDetail(),
-                  type: PageTransitionType.rightToLeftWithFade));
-        },
         title: 'Car Name',
         image: 'assets/images/carimagefour.png',
-        price: '38,000 Rwf'),
+        price: 38000),
     UsedCarsModel(
-        ontap: (BuildContext context) {
-          Navigator.push(
-              context,
-              PageTransition(
-                  child: const SingleCarDetail(),
-                  type: PageTransitionType.rightToLeftWithFade));
-        },
         title: 'Car Name',
         image: 'assets/images/carimagefour.png',
-        price: '140,000 Rwf'),
+        price: 140000),
     UsedCarsModel(
-        ontap: (BuildContext context) {
-          Navigator.push(
-              context,
-              PageTransition(
-                  child: const SingleCarDetail(),
-                  type: PageTransitionType.rightToLeftWithFade));
-        },
         title: 'Car Name',
         image: 'assets/images/carimagefour.png',
-        price: '80,000 Rwf'),
+        price: 80000),
   ];
   void search(String searchString) {
     setState(() {
@@ -145,9 +103,16 @@ class _UsedCarsState extends State<UsedCars> {
                     crossAxisSpacing: 1.0,
                     mainAxisSpacing: 1.0),
                 itemBuilder: ((context, index) => Cars(
-                      usedCarsModel: searchList[index],
-                      onTap: () => searchList[index].ontap!(context),
-                    )),
+                    usedCarsModel: searchList[index],
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          PageTransition(
+                              child: SingleCarDetail(
+                                usedCarsModel: searchList[index],
+                              ),
+                              type: PageTransitionType.rightToLeftWithFade));
+                    })),
                 itemCount: searchList.length,
               ),
             ),

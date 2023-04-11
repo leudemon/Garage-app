@@ -16,13 +16,6 @@ class _SparePartsState extends State<SpareParts> {
   List<SparePartsModel> searchList = [];
   List<SparePartsModel> sparePartsModel = [
     SparePartsModel(
-      // ontap: (BuildContext context) {
-      //   Navigator.push(
-      //       context,
-      //       PageTransition(
-      //           child: const SparePartSingleDetail(),
-      //           type: PageTransitionType.rightToLeft));
-      // },
       title: 'Engine Pistons',
       image: 'assets/images/imput_image_one.png',
       price: 21000000,
@@ -30,13 +23,6 @@ class _SparePartsState extends State<SpareParts> {
           'The idling device of the compressor 1.18493 controls the flow rate if less air is required. A feed pump can be flanged directly to the compressor. The crankshaft is forged. All highly stressed surfaces are induction hardened to minimize wear. The connecting rods are made of die-cast aluminum. Valve reeds are made of a special flexible stainless steel. All of these measures significantly increase the service life of the compressor',
     ),
     SparePartsModel(
-      // ontap: (BuildContext context) {
-      //   Navigator.push(
-      //       context,
-      //       PageTransition(
-      //           child: const SparePartSingleDetail(),
-      //           type: PageTransitionType.rightToLeft));
-      // },
       title: 'Brake Caliper',
       image: 'assets/images/imput_image2.png',
       price: 100000,
@@ -44,13 +30,6 @@ class _SparePartsState extends State<SpareParts> {
           'The idling device of the compressor 1.18493 controls the flow rate if less air is required. A feed pump can be flanged directly to the compressor. The crankshaft is forged. All highly stressed surfaces are induction hardened to minimize wear. The connecting rods are made of die-cast aluminum. Valve reeds are made of a special flexible stainless steel. All of these measures significantly increase the service life of the compressor',
     ),
     SparePartsModel(
-      // ontap: (BuildContext context) {
-      //   Navigator.push(
-      //       context,
-      //       PageTransition(
-      //           child: const SparePartSingleDetail(),
-      //           type: PageTransitionType.rightToLeft));
-      // },
       title: 'Window Motor',
       image: 'assets/images/imput_image3.png',
       price: 34000000,
@@ -58,13 +37,6 @@ class _SparePartsState extends State<SpareParts> {
           'The idling device of the compressor 1.18493 controls the flow rate if less air is required. A feed pump can be flanged directly to the compressor. The crankshaft is forged. All highly stressed surfaces are induction hardened to minimize wear. The connecting rods are made of die-cast aluminum. Valve reeds are made of a special flexible stainless steel. All of these measures significantly increase the service life of the compressor',
     ),
     SparePartsModel(
-      // ontap: (BuildContext context) {
-      //   Navigator.push(
-      //       context,
-      //       PageTransition(
-      //           child: const SparePartSingleDetail(),
-      //           type: PageTransitionType.rightToLeft));
-      // },
       title: 'Wheel bearing',
       image: 'assets/images/imput_image4.png',
       price: 38000000,
@@ -72,13 +44,6 @@ class _SparePartsState extends State<SpareParts> {
           'The idling device of the compressor 1.18493 controls the flow rate if less air is required. A feed pump can be flanged directly to the compressor. The crankshaft is forged. All highly stressed surfaces are induction hardened to minimize wear. The connecting rods are made of die-cast aluminum. Valve reeds are made of a special flexible stainless steel. All of these measures significantly increase the service life of the compressor',
     ),
     SparePartsModel(
-      // ontap: (BuildContext context) {
-      //   Navigator.push(
-      //       context,
-      //       PageTransition(
-      //           child: const SparePartSingleDetail(),
-      //           type: PageTransitionType.rightToLeft));
-      // },
       title: 'Engine Pistons',
       image: 'assets/images/imput_image_one.png',
       price: 32000000,
@@ -86,13 +51,6 @@ class _SparePartsState extends State<SpareParts> {
           'The idling device of the compressor 1.18493 controls the flow rate if less air is required. A feed pump can be flanged directly to the compressor. The crankshaft is forged. All highly stressed surfaces are induction hardened to minimize wear. The connecting rods are made of die-cast aluminum. Valve reeds are made of a special flexible stainless steel. All of these measures significantly increase the service life of the compressor',
     ),
     SparePartsModel(
-      // ontap: (BuildContext context) {
-      //   Navigator.push(
-      //       context,
-      //       PageTransition(
-      //           child: const SparePartSingleDetail(),
-      //           type: PageTransitionType.rightToLeft));
-      // },
       title: 'Window Motor',
       image: 'assets/images/imput_image3.png',
       price: 80000000,

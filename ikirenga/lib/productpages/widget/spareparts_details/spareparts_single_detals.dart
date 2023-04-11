@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ikirengaauto/model/container_model.dart';
-import 'package:ikirengaauto/model/viewmodel/product.dart';
+import 'package:ikirengaauto/model/viewmodel/sparepart_cartmodel.dart';
 import 'package:provider/provider.dart';
 
 class SparePartSingleDetail extends StatelessWidget {
@@ -132,7 +132,7 @@ class SparePartSingleDetail extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 30.h),
-              Consumer<CartModel>(
+              Consumer<SparePartCartModel>(
                 builder: (context, value, child) {
                   return ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -144,7 +144,7 @@ class SparePartSingleDetail extends StatelessWidget {
                             borderRadius: BorderRadius.circular(8)),
                       ),
                       onPressed: () {
-                        Provider.of<CartModel>(context, listen: false)
+                        Provider.of<SparePartCartModel>(context, listen: false)
                             .addToCart(sparePartsModel);
                       },
                       child: const Text('ADD TO CART',

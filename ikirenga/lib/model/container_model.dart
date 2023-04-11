@@ -14,12 +14,10 @@ class ContainerModel {
 }
 
 class UsedCarsModel {
-  final Function(BuildContext context)? ontap;
   final String title;
   final String image;
-  final String price;
+  final int price;
   UsedCarsModel({
-    required this.ontap,
     required this.title,
     required this.image,
     required this.price,
@@ -27,13 +25,11 @@ class UsedCarsModel {
 }
 
 class SparePartsModel {
-  // final Function(BuildContext context)? ontap;
   final String title;
   final String image;
-  final double price;
+  final int price;
   final String description;
   SparePartsModel({
-    // required this.ontap,
     required this.title,
     required this.image,
     required this.price,

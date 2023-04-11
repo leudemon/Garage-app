@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ikirengaauto/model/container_model.dart';
+import 'package:ikirengaauto/model/viewmodel/usedcars_cartmodel.dart';
+import 'package:provider/provider.dart';
 
-class SingleCarDetail extends StatefulWidget {
-  const SingleCarDetail({super.key});
+class SingleCarDetail extends StatelessWidget {
+  final UsedCarsModel usedCarsModel;
+  const SingleCarDetail({super.key, required this.usedCarsModel});
 
-  @override
-  State<SingleCarDetail> createState() => _SingleCarDetailState();
-}
-
-class _SingleCarDetailState extends State<SingleCarDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,17 +49,17 @@ class _SingleCarDetailState extends State<SingleCarDetail> {
                   child: Column(
                     children: [
                       Image.asset(
-                        'assets/images/carimagefour.png',
+                        usedCarsModel.image,
                         height: 250.h,
                         width: 300.w,
                       ),
-                      Text('Audi e45',
+                      Text(usedCarsModel.title,
                           style: TextStyle(
                               fontSize: 25.sp,
                               color: Colors.black,
                               fontWeight: FontWeight.bold)),
                       SizedBox(height: 10.h),
-                      Text('Sedan',
+                      Text('Rwf ${usedCarsModel.price}',
                           style: TextStyle(
                               fontSize: 20.sp,
                               color: Colors.black54,
@@ -168,18 +167,27 @@ class _SingleCarDetailState extends State<SingleCarDetail> {
                       ],
                     ),
                     const Spacer(),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        elevation: 0,
-                        backgroundColor: const Color(0xFFFFDB47),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 120, vertical: 15),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8)),
-                      ),
-                      onPressed: () {},
-                      child: const Text('ADD TO CART',
-                          style: TextStyle(fontSize: 16, color: Colors.black)),
+                    Consumer<UsedCarsCartModel>(
+                      builder: (context, value, child) {
+                        return ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            elevation: 0,
+                            backgroundColor: const Color(0xFFFFDB47),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 120, vertical: 15),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8)),
+                          ),
+                          onPressed: () {
+                            Provider.of<UsedCarsCartModel>(context,
+                                    listen: false)
+                                .addToCart(usedCarsModel);
+                          },
+                          child: const Text('ADD TO CART',
+                              style:
+                                  TextStyle(fontSize: 16, color: Colors.black)),
+                        );
+                      },
                     ),
                   ],
                 ),
