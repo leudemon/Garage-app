@@ -132,7 +132,7 @@ class SparePartSingleDetail extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 30.h),
-              Consumer<SparePartCartModel>(
+              Consumer<CartModel>(
                 builder: (context, value, child) {
                   return ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -144,8 +144,12 @@ class SparePartSingleDetail extends StatelessWidget {
                             borderRadius: BorderRadius.circular(8)),
                       ),
                       onPressed: () {
-                        Provider.of<SparePartCartModel>(context, listen: false)
-                            .addToCart(sparePartsModel);
+                        Provider.of<CartModel>(context, listen: false)
+                            .addToCart(Item(
+                                title: sparePartsModel.title,
+                                image: sparePartsModel.image,
+                                description: sparePartsModel.description,
+                                price: sparePartsModel.price));
                       },
                       child: const Text('ADD TO CART',
                           style: TextStyle(fontSize: 16, color: Colors.black)));

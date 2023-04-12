@@ -47,7 +47,7 @@ class MyCart extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.all(25.0),
           child: SafeArea(
-            child: Consumer<SparePartCartModel>(
+            child: Consumer<CartModel>(
               builder: (context, value, child) => Column(
                 children: [
                   Expanded(

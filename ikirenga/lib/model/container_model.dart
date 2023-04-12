@@ -29,10 +29,22 @@ class UsedCarsModel {
   final String title;
   final String image;
   final int price;
+  final String type;
+  final String condition;
+  final String make;
+  final String model;
+  final String transmission;
+  final String fuelType;
   UsedCarsModel({
     required this.title,
     required this.image,
     required this.price,
+    required this.type,
+    required this.condition,
+    required this.make,
+    required this.model,
+    required this.transmission,
+    required this.fuelType,
   });
 }
 

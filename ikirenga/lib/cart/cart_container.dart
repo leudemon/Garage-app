@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import '../model/container_model.dart';
 import '../model/viewmodel/sparepart_cartmodel.dart';
 
 class CartContainer extends StatefulWidget {
-  final SparePartsModel item;
+  final Item item;
   // final int quantity;
   const CartContainer({
     super.key,
@@ -20,7 +19,7 @@ class CartContainer extends StatefulWidget {
 class _CartContainerState extends State<CartContainer> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<SparePartCartModel>(
+    return Consumer<CartModel>(
       builder: (context, value, child) => Container(
         decoration: BoxDecoration(
           color: Colors.grey[100],
@@ -45,8 +44,7 @@ class _CartContainerState extends State<CartContainer> {
                       SizedBox(width: 15.w),
                       IconButton(
                           onPressed: () {
-                            Provider.of<SparePartCartModel>(context,
-                                    listen: false)
+                            Provider.of<CartModel>(context, listen: false)
                                 .removeFromCart(widget.item);
                           },
                           icon: Icon(
@@ -76,8 +74,7 @@ class _CartContainerState extends State<CartContainer> {
                     children: [
                       IconButton(
                         onPressed: () {
-                          Provider.of<SparePartCartModel>(context,
-                                  listen: false)
+                          Provider.of<CartModel>(context, listen: false)
                               .decreaseQuantity(widget.item);
                         },
                         icon: const Icon(Icons.remove),
@@ -91,8 +88,7 @@ class _CartContainerState extends State<CartContainer> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Text(
-                            Provider.of<SparePartCartModel>(context,
-                                    listen: false)
+                            Provider.of<CartModel>(context, listen: false)
                                 .getCartItemQuantity(widget.item)
                                 .toString(),
                             style: TextStyle(
@@ -103,8 +99,7 @@ class _CartContainerState extends State<CartContainer> {
                       SizedBox(width: 10.w),
                       IconButton(
                         onPressed: () {
-                          Provider.of<SparePartCartModel>(context,
-                                  listen: false)
+                          Provider.of<CartModel>(context, listen: false)
                               .addToCart(widget.item);
                         },
                         icon: const Icon(Icons.add),

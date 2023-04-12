@@ -138,7 +138,7 @@ class OrderReview extends StatelessWidget {
               ),
               const CartList(),
               SizedBox(
-                height: 60.h,
+                height: 20.h,
               ),
               Text('PAYMENT',
                   style: TextStyle(
@@ -146,41 +146,53 @@ class OrderReview extends StatelessWidget {
                       color: Colors.black54,
                       fontWeight: FontWeight.w400)),
               SizedBox(
-                height: 18,
+                height: 10.h,
               ),
               const PaymentContainer(),
               SizedBox(
-                height: 18.h,
+                height: 30.h,
               ),
-
-                  SafeArea(
-                    child: Consumer<SparePartCartModel>(
-                      builder: (context, value, child) => Column
-                      (
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Text('Total',
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 20.sp,
-                                    fontWeight: FontWeight.w300)),
-                            SizedBox( width: 150,),
-                            Text(value.calculateTotal(),
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 20.sp,
-                                    fontWeight: FontWeight.bold)),
-                          ],
-                        )
-                      ],
-                    ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Shippig',
+                      style: TextStyle(
+                          color: Colors.black54,
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.w400)),
+                  Text('free',
+                      style: TextStyle(
+                          color: Colors.black54,
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.w400)),
+                ],
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Total',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.w400)),
+                  Consumer<CartModel>(
+                    builder: (context, value, child) => Text(
+                        value.calculateTotal(),
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.bold)),
                   ),
-                  ),
-                  SizedBox(height: 100,),
+                ],
+              ),
+              const Spacer(),
+              Column(
+                children: [
                   Align(
-                    alignment: Alignment.bottomRight,
+                    alignment: Alignment.center,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         elevation: 0,
@@ -221,8 +233,10 @@ class OrderReview extends StatelessWidget {
                   ),
                 ],
               ),
+            ],
           ),
-          ),
-        );
+        ),
+      ),
+    );
   }
 }
