@@ -25,22 +25,26 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   void initState() {
     super.initState();
     _pageController = PageController(initialPage: 0);
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [
-      SystemUiOverlay.top,
-      // SystemUiOverlay.bottom,
-    ]);
+
+    // Make system UI and navigation bar transparent
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.dark,
+        systemNavigationBarColor: Colors.transparent,
+        systemNavigationBarIconBrightness: Brightness.dark,
+      ),
+    );
   }
+
 
   @override
   void dispose() {
     _pageController!.dispose();
+
+    // Restore system UI and navigation bar colors
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle());
     super.dispose();
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: SystemUiOverlay.values);
-    const SystemUiOverlayStyle(
-      statusBarColor: Colors.blue,
-      systemNavigationBarColor: Colors.red,
-    );
   }
 
   @override

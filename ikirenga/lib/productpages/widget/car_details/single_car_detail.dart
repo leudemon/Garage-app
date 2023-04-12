@@ -23,7 +23,7 @@ class SingleCarDetail extends StatelessWidget {
             )),
         title: Center(
           child: Text(
-            'CAR > AUDI',
+            '',
             style: TextStyle(
                 fontSize: 18.sp,
                 color: Colors.black,
@@ -48,7 +48,7 @@ class SingleCarDetail extends StatelessWidget {
                   ),
                   child: Column(
                     children: [
-                      Image.asset(
+                      Image.network(
                         usedCarsModel.image,
                         height: 250.h,
                         width: 300.w,
@@ -169,23 +169,25 @@ class SingleCarDetail extends StatelessWidget {
                     const Spacer(),
                     Consumer<UsedCarsCartModel>(
                       builder: (context, value, child) {
-                        return ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            elevation: 0,
-                            backgroundColor: const Color(0xFFFFDB47),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 120, vertical: 15),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8)),
+                        return Center(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              elevation: 0,
+                              backgroundColor: const Color(0xFFFFDB47),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 120, vertical: 15),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8)),
+                            ),
+                            onPressed: () {
+                              Provider.of<UsedCarsCartModel>(context,
+                                      listen: false)
+                                  .addToCart(usedCarsModel);
+                            },
+                            child: const Text('ADD TO CART',
+                                style:
+                                    TextStyle(fontSize: 16, color: Colors.black)),
                           ),
-                          onPressed: () {
-                            Provider.of<UsedCarsCartModel>(context,
-                                    listen: false)
-                                .addToCart(usedCarsModel);
-                          },
-                          child: const Text('ADD TO CART',
-                              style:
-                                  TextStyle(fontSize: 16, color: Colors.black)),
                         );
                       },
                     ),

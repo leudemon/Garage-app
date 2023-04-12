@@ -24,9 +24,19 @@ class Cars extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Image.asset(
-              usedCarsModel.image,
+        SizedBox(
+          height: MediaQuery.of(context).size.width / 4,
+          width: MediaQuery.of(context).size.width,
+          child: ClipRRect(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(15),
+              topRight: Radius.circular(15),
             ),
+          child: Image.network(
+            usedCarsModel.image,
+            fit: BoxFit.cover,
+          ),),
+        ),
             SizedBox(
               height: 10.h,
             ),

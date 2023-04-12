@@ -15,12 +15,28 @@ class _ProfileState extends State<Profile> {
     height = MediaQuery.of(context).size.height;
     width = MediaQuery.of(context).size.width;
     return Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            '',
+            style: TextStyle(
+                fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
+          ),
+          backgroundColor: Colors.yellow[600],
+          elevation: 0.0,
+          leading: IconButton(
+              onPressed: () => Navigator.pop(context),
+              icon: Image.asset(
+                'assets/icons/log-in.png',
+                scale: 2,
+              )),
+
+        ),
         body: Stack(
       children: [
         Column(
           children: [
             Container(
-              height: height! * .6,
+              height: height! * .5,
               width: double.infinity,
               decoration: const BoxDecoration(
                 color: Color(0xFFFFDB47),
@@ -31,19 +47,19 @@ class _ProfileState extends State<Profile> {
               ),
               child: Column(
                 children: [
-                  SizedBox(height: 40.h),
+                  SizedBox(height: 20.h),
                   Image.asset(
                     'assets/images/profile.png',
                     height: 100.h,
                     width: 100.w,
                   ),
-                  SizedBox(height: 10.h),
+                  SizedBox(height: 5.h),
                   Text(
                     'Severine',
                     style:
                         TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 15.h),
+                  SizedBox(height: 10.h),
                   Text(
                     'severin@gmail.com',
                     style:
@@ -55,7 +71,7 @@ class _ProfileState extends State<Profile> {
           ],
         ),
         Positioned(
-          top: height! * .28,
+          top: height! * .25,
           left: width! * .1,
           child: Container(
             height: height! * .4,

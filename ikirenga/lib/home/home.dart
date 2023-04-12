@@ -1,10 +1,15 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:ikirengaauto/Ikirenga_icons.dart';
+import 'package:ikirengaauto/home/profile.dart';
+import 'package:ikirengaauto/home/settings.dart';
 import 'package:ikirengaauto/model/container_model.dart';
 import 'package:ikirengaauto/productpages/spareparts.dart';
 import 'package:ikirengaauto/productpages/usedcar.dart';
 import 'package:ikirengaauto/widget/item_container.dart';
 import 'package:page_transition/page_transition.dart';
-
+import 'package:http/http.dart' as http;
 import '../productpages/garage.dart';
 import '../productpages/mechanics.dart';
 
@@ -16,6 +21,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
   List<ContainerModel> searchList = [];
   List<ContainerModel> containerModel = [
     ContainerModel(
@@ -117,18 +123,50 @@ class _HomeState extends State<Home> {
         toolbarHeight: 30,
         titleSpacing: 0,
         centerTitle: false,
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.yellow[550],
         elevation: 0.0,
         leadingWidth: 25,
         bottom: PreferredSize(
           preferredSize:
               const Size.fromHeight(40.0), // Set the height as needed
           child: Container(
+
             alignment: Alignment.bottomLeft,
-            padding: const EdgeInsets.symmetric(
-                vertical: 15.0, horizontal: 30), // Adjust the padding as needed
-            child: const Text('Welcome Back, Severin!',
-                style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold)),
+            padding: const EdgeInsets.fromLTRB(15,10,5,0), // Adjust the padding as needed
+            child: Row(
+
+              children:  [
+                 CircleAvatar(
+
+                    child: IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              PageTransition(
+                                  child: const Profile(), type: PageTransitionType.fade));
+                        },
+                      icon: const Icon(Ikirenga.person,
+                        color: Colors.yellow,
+                      )
+                    )
+                ),
+                const Expanded(
+
+                  child: Text('  Welcome Back, Severin!',
+                      style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
+                ),
+                IconButton(
+                    onPressed: (){
+                        Navigator.push(
+                            context,
+                            PageTransition(
+                                child: const Settings(), type: PageTransitionType.fade));
+
+                    },
+                    icon: const Icon(Icons.settings_rounded)),
+
+              ],
+            ),
           ),
         ),
       ),
@@ -138,29 +176,27 @@ class _HomeState extends State<Home> {
           children: [
             Container(
                 alignment: AlignmentDirectional.centerEnd,
-                margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 0),
-                decoration: BoxDecoration(
-                  color: Colors.grey[300],
-                  borderRadius: BorderRadius.circular(15),
-                ),
+                margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+                color: Colors.yellow,
                 child: Center(
                   child: TextField(
                     textAlign: TextAlign.start,
                     onChanged: (value) => search(value),
                     decoration: const InputDecoration(
                       contentPadding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                          EdgeInsets.symmetric(horizontal: 0, vertical: 15),
                       suffixIconColor: Colors.black26,
+                      prefixIcon: Icon(Icons.search_rounded),
                       alignLabelWithHint: true,
                       border: InputBorder.none,
-                      suffixIcon: Icon(Icons.cancel_outlined),
+                      suffixIcon: Icon(Icons.clear_all_rounded),
                       hintText: 'Search',
                     ),
                   ),
                 )),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       childAspectRatio: 0.7,
@@ -181,3 +217,4 @@ class _HomeState extends State<Home> {
     );
   }
 }
+

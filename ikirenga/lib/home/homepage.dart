@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:ikirengaauto/Ikirenga_icons.dart';
 import 'package:ikirengaauto/home/profile.dart';
+import 'package:ikirengaauto/productpages/garage.dart';
 import 'package:ikirengaauto/productpages/spareparts.dart';
 import 'package:ikirengaauto/productpages/usedcar.dart';
 import 'package:page_transition/page_transition.dart';
@@ -23,53 +24,50 @@ class _HomePageState extends State<HomePage> {
     const Home(),
     const UsedCars(),
     const SpareParts(),
+    const GaragePage(),
     const Mechanics(),
-    const Profile()
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.fromLTRB(25, 10, 30, 45),
-        child: GNav(
-          tabBorderRadius: 50,
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 7),
-          color: Colors.black,
-          activeColor: Colors.black,
-          tabBackgroundColor: Colors.yellow,
-          iconSize: 25,
-          gap: 5,
-          duration: const Duration(microseconds: 10000),
-          tabs: const [
-            GButton(
-              icon: Ikirenga.home,
-              text: 'Home',
-            ),
-            GButton(
-              icon: Ikirenga.carfix,
-              text: 'Used Cars',
-            ),
-            GButton(
-              icon: Ikirenga.fix,
-              text: 'Spare parts',
-            ),
-            GButton(
-              icon: Ikirenga.toolkit,
-              text: '  Garages',
-            ),
-            GButton(
-              icon: Ikirenga.mechanic,
-              text: 'Mechanics',
-            ),
-          ],
-          selectedIndex: _currentIndex,
-          onTabChange: (index) {
-            setState(() {
-              _currentIndex = index;
-            });
-          },
-        ),
+      bottomNavigationBar: GNav(
+        tabBorderRadius: 50,
+        tabMargin: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+        color: Colors.black,
+        activeColor: Colors.black,
+        tabBackgroundColor: Colors.yellow,
+        iconSize: 25,
+        gap: 5,
+        tabs: const [
+          GButton(
+            icon: Ikirenga.home,
+            text: 'Home',
+          ),
+          GButton(
+            icon: Ikirenga.carfix,
+            text: 'Used Cars',
+          ),
+          GButton(
+            icon: Ikirenga.fix,
+            text: 'Spare parts',
+          ),
+          GButton(
+            icon: Ikirenga.toolkit,
+            text: '  Garages',
+          ),
+          GButton(
+            icon: Ikirenga.mechanic,
+            text: 'Mechanics',
+          ),
+        ],
+        selectedIndex: _currentIndex,
+        onTabChange: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
       ),
       body: screens[_currentIndex],
       floatingActionButton: FloatingActionButton(
@@ -81,6 +79,7 @@ class _HomePageState extends State<HomePage> {
         },
         child: const Icon(
           Icons.shopping_bag_outlined,
+          size: 30,
         ),
       ),
     );

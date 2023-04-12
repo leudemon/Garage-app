@@ -30,63 +30,39 @@ class _SettingsState extends State<Settings> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: const [
-                Text(
-                  'Settings',
-                  style: TextStyle(
-                      fontSize: 30,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold),
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () => Navigator.pop(context),
+          icon: const Icon(Icons.arrow_back),
+        ),
+        elevation: 0.0,
+        title: const Text('Settings'),
+      ),
+      body: SafeArea(
+        child: Column(
+          children: [
+
+
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      childAspectRatio: 0.7,
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 4.0,
+                      mainAxisSpacing: 4.0),
+                  itemBuilder: ((context, index) => ItemContainer(
+                        containerModel: searchList[index],
+                        onTap: () => searchList[index].ontap!(context),
+                      )),
+                  itemCount: searchList.length,
                 ),
-                Icon(
-                  Icons.settings,
-                  color: Colors.black,
-                  size: 35,
-                )
-              ],
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
-            decoration: BoxDecoration(
-              color: Colors.grey[300],
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: TextField(
-              onChanged: (value) => search(value),
-              decoration: const InputDecoration(
-                border: InputBorder.none,
-                prefixIcon: Icon(Icons.search),
-                hintText: 'Search',
               ),
             ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    childAspectRatio: 0.7,
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 4.0,
-                    mainAxisSpacing: 4.0),
-                itemBuilder: ((context, index) => ItemContainer(
-                      containerModel: searchList[index],
-                      onTap: () => searchList[index].ontap!(context),
-                    )),
-                itemCount: searchList.length,
-              ),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

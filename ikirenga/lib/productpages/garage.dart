@@ -13,29 +13,7 @@ class GaragePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          '',
-          style: TextStyle(
-              fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        leading: IconButton(
-            onPressed: () => Navigator.pop(context),
-            icon: Image.asset(
-              'assets/icons/log-in.png',
-              scale: 2,
-            )),
-        actions: [
-          IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.account_circle,
-                color: Colors.black,
-              )),
-        ],
-      ),
+
       body: SafeArea(
         child: Column(
           children: [
@@ -53,7 +31,7 @@ class GaragePage extends StatelessWidget {
                     title: 'OIL REPLACEMENT',
                     image: 'assets/images/imput_image5.png',
                   ),
-                  SizedBox(height: 5.h),
+                  SizedBox(height: 1.h),
                   HomeContainer(
                     onTap: () {
                       Navigator.push(
@@ -65,7 +43,7 @@ class GaragePage extends StatelessWidget {
                     title: 'ENGINE OIL FILTER',
                     image: 'assets/images/imput_image5.png',
                   ),
-                  SizedBox(height: 5.h),
+                  SizedBox(height: 1.h),
                   HomeContainer(
                     onTap: () {
                       Navigator.push(
@@ -77,7 +55,7 @@ class GaragePage extends StatelessWidget {
                     title: 'ENGINE CHECK UP',
                     image: 'assets/images/imput_image5.png',
                   ),
-                  SizedBox(height: 5.h),
+                  SizedBox(height: 1.h),
                   HomeContainer(
                     onTap: () {
                       Navigator.push(

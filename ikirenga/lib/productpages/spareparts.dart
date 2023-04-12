@@ -76,6 +76,7 @@ class _SparePartsState extends State<SpareParts> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       body: SafeArea(
         child: Column(children: [
           Container(

@@ -13,6 +13,18 @@ class ContainerModel {
   });
 }
 
+class UsedCarData{
+  // final String make;
+  // final String model;
+  final String price;
+  UsedCarData({
+    // // required this.make,
+    // required this.model,
+    required this.price,
+
+});
+}
+
 class UsedCarsModel {
   final String title;
   final String image;
@@ -23,6 +35,8 @@ class UsedCarsModel {
     required this.price,
   });
 }
+
+
 
 class SparePartsModel {
   final String title;

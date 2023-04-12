@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ikirengaauto/model/container_model.dart';
 import 'package:ikirengaauto/productpages/widget/car_details/single_car_detail.dart';
+import 'package:ikirengaauto/productpages/widget/home_container.dart';
 import 'package:page_transition/page_transition.dart';
-
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'widget/cars.dart';
 
 class UsedCars extends StatefulWidget {
@@ -13,38 +15,38 @@ class UsedCars extends StatefulWidget {
 }
 
 class _UsedCarsState extends State<UsedCars> {
+  List<UsedCarsModel> usedCars = [];
+
+
   List<UsedCarsModel> searchList = [];
   List<UsedCarsModel> usedCarModel = [
-    UsedCarsModel(
-        title: 'Audi e45 2019',
-        image: 'assets/images/carimagefour.png',
-        price: 140000),
-    UsedCarsModel(
-        title: 'Car Name',
-        image: 'assets/images/carimagefour.png',
-        price: 100000),
-    UsedCarsModel(
-        title: 'Car Name',
-        image: 'assets/images/carimagefour.png',
-        price: 80000),
-    UsedCarsModel(
-        title: 'Car Name',
-        image: 'assets/images/carimagefour.png',
-        price: 38000),
-    UsedCarsModel(
-        title: 'Car Name',
-        image: 'assets/images/carimagefour.png',
-        price: 140000),
-    UsedCarsModel(
-        title: 'Car Name',
-        image: 'assets/images/carimagefour.png',
-        price: 80000),
+    // UsedCarsModel(
+    //     title: 'Car Name',
+    //     image: 'assets/images/carimagefour.png',
+    //     price: 100000),
+    // UsedCarsModel(
+    //     title: 'Car Name',
+    //     image: 'assets/images/carimagefour.png',
+    //     price: 80000),
+    // UsedCarsModel(
+    //     title: 'Car Name',
+    //     image: 'assets/images/carimagefour.png',
+    //     price: 38000),
+    // UsedCarsModel(
+    //     title: 'Car Name',
+    //     image: 'assets/images/carimagefour.png',
+    //     price: 140000),
+    // UsedCarsModel(
+    //     title: 'Car Name',
+    //     image: 'assets/images/carimagefour.png',
+    //     price: 80000),
   ];
+
   void search(String searchString) {
     setState(() {
       searchList = usedCarModel
           .where(
-              (element) => element.title.toLowerCase().contains(searchString))
+              (element) => element.title.toString().toLowerCase().contains(searchString))
           .toList();
     });
   }
@@ -53,6 +55,7 @@ class _UsedCarsState extends State<UsedCars> {
   void initState() {
     search('');
     super.initState();
+    fetchData();
   }
 
   @override
@@ -94,26 +97,27 @@ class _UsedCarsState extends State<UsedCars> {
       body: SafeArea(
         child: Column(children: [
           Expanded(
-            child: Padding(
+            child: usedCars.isEmpty // Check if the usedCars list is empty
+                ? const Center(child: CircularProgressIndicator()) // Show a CircularProgressIndicator while the data is being fetched
+                : Padding(
               padding: const EdgeInsets.all(15.0),
               child: GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     childAspectRatio: 0.7,
                     crossAxisCount: 2,
                     crossAxisSpacing: 1.0,
-                    mainAxisSpacing: 1.0),
-                itemBuilder: ((context, index) => Cars(
-                    usedCarsModel: searchList[index],
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          PageTransition(
-                              child: SingleCarDetail(
-                                usedCarsModel: searchList[index],
-                              ),
-                              type: PageTransitionType.rightToLeftWithFade));
-                    })),
-                itemCount: searchList.length,
+                    mainAxisSpacing: 1.0
+                ),
+                itemBuilder: (context, index) {
+                  final car = usedCars[index];
+                  return Cars(onTap: (){
+                    Navigator.push(
+                        context,
+                        PageTransition(
+                            child: SingleCarDetail(usedCarsModel: usedCars[index]), type: PageTransitionType.fade));
+                  }, usedCarsModel: usedCars[index]);
+                },
+                itemCount: usedCars.length,
               ),
             ),
           ),
@@ -121,4 +125,40 @@ class _UsedCarsState extends State<UsedCars> {
       ),
     );
   }
+
+  void fetchData() async {
+    try {
+      print('Fetching data...');
+      const ipaddress = '192.168.148.244';
+      const url = 'http://${ipaddress}:1337/api/used-cars?populate=image';
+      final uri = Uri.parse(url);
+      final response = await http.get(uri);
+      final body = response.body;
+      final json = jsonDecode(body);
+      final picture = json['data'];
+      final data = json["data"] as List<dynamic>;
+
+      final converts = data.map((e) {
+        final titleVal=e['attributes']['make'];
+        final imageVal="http://$ipaddress:1337${e['attributes']['image']['data'][0]['attributes']
+        ['formats']['thumbnail']['url']}";
+        final int priceVal = e['attributes']['price'];
+        return UsedCarsModel(
+          title: titleVal,
+          image: imageVal,
+          price: priceVal,
+        );
+      }).toList();
+      print(converts.length);
+      setState(() {
+        usedCars = converts;
+      });
+
+      print('fetch complete!');
+    } catch (e) {
+      print('error: $e');
+    }
+  }
+
 }
+
