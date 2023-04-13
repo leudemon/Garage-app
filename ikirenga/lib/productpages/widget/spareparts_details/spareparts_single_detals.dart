@@ -79,7 +79,7 @@ class SparePartSingleDetail extends StatelessWidget {
                               color: Colors.black,
                               fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(height: 70.h),
+                        SizedBox(height: 20.h),
                         Text(
                           'subscribe for',
                           style: TextStyle(
@@ -101,9 +101,16 @@ class SparePartSingleDetail extends StatelessWidget {
                         )
                       ],
                     ),
-                    Image.asset(
-                      sparePartsModel.image,
-                      width: 200,
+                    SizedBox(
+                      height: MediaQuery.of(context).size.width / 2,
+                      width: MediaQuery.of(context).size.width /2,
+                      child: ClipRRect(
+                        borderRadius: const BorderRadius.all(Radius.circular(15),),
+                        child: Image.network(
+                          sparePartsModel.image,
+                          width: 200,
+                          fit: BoxFit.cover,
+                        ),),
                     ),
                   ],
                 ),

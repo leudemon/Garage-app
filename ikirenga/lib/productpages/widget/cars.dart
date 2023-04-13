@@ -23,6 +23,7 @@ class Cars extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
         SizedBox(
           height: MediaQuery.of(context).size.width / 4,
@@ -38,7 +39,7 @@ class Cars extends StatelessWidget {
           ),),
         ),
             SizedBox(
-              height: 10.h,
+              height: 20.h,
             ),
             Text(
               usedCarsModel.title,
@@ -51,9 +52,9 @@ class Cars extends StatelessWidget {
               height: 10.h,
             ),
             Text(
-              usedCarsModel.price.toString(),
+              'Rwf ${usedCarsModel.price}',
               style: TextStyle(
-                  fontSize: 20.sp,
+                  fontSize: 16.sp,
                   fontWeight: FontWeight.w300,
                   color: Colors.black54),
             ),

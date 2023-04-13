@@ -31,14 +31,22 @@
         "images"
       ]
     },
-    "description": {
-      "type": "richtext"
-    },
     "in_stock": {
       "type": "boolean"
     },
     "year": {
       "type": "integer"
+    },
+    "condition": {
+      "type": "string",
+      "required": true
+    },
+    "transmission": {
+      "type": "string",
+      "required": true
+    },
+    "fuel_type": {
+      "type": "string"
     }
   }
 }

@@ -1,4 +1,7 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:ikirengaauto/Api/fetch.dart';
 import 'package:ikirengaauto/productpages/widget/spare_parts.dart';
 import 'package:ikirengaauto/productpages/widget/spareparts_details/spareparts_single_detals.dart';
 import 'package:page_transition/page_transition.dart';
@@ -13,65 +16,25 @@ class SpareParts extends StatefulWidget {
 }
 
 class _SparePartsState extends State<SpareParts> {
+  @override
+  void initState() {
+    search('');
+    super.initState();
+    fetchData();
+  }
+  List<SparePartsModel> spareParts= [];
   List<SparePartsModel> searchList = [];
-  List<SparePartsModel> sparePartsModel = [
-    SparePartsModel(
-      title: 'Engine Pistons',
-      image: 'assets/images/imput_image_one.png',
-      price: 21000000,
-      description:
-          'The idling device of the compressor 1.18493 controls the flow rate if less air is required. A feed pump can be flanged directly to the compressor. The crankshaft is forged. All highly stressed surfaces are induction hardened to minimize wear. The connecting rods are made of die-cast aluminum. Valve reeds are made of a special flexible stainless steel. All of these measures significantly increase the service life of the compressor',
-    ),
-    SparePartsModel(
-      title: 'Brake Caliper',
-      image: 'assets/images/imput_image2.png',
-      price: 100000,
-      description:
-          'The idling device of the compressor 1.18493 controls the flow rate if less air is required. A feed pump can be flanged directly to the compressor. The crankshaft is forged. All highly stressed surfaces are induction hardened to minimize wear. The connecting rods are made of die-cast aluminum. Valve reeds are made of a special flexible stainless steel. All of these measures significantly increase the service life of the compressor',
-    ),
-    SparePartsModel(
-      title: 'Window Motor',
-      image: 'assets/images/imput_image3.png',
-      price: 34000000,
-      description:
-          'The idling device of the compressor 1.18493 controls the flow rate if less air is required. A feed pump can be flanged directly to the compressor. The crankshaft is forged. All highly stressed surfaces are induction hardened to minimize wear. The connecting rods are made of die-cast aluminum. Valve reeds are made of a special flexible stainless steel. All of these measures significantly increase the service life of the compressor',
-    ),
-    SparePartsModel(
-      title: 'Wheel bearing',
-      image: 'assets/images/imput_image4.png',
-      price: 38000000,
-      description:
-          'The idling device of the compressor 1.18493 controls the flow rate if less air is required. A feed pump can be flanged directly to the compressor. The crankshaft is forged. All highly stressed surfaces are induction hardened to minimize wear. The connecting rods are made of die-cast aluminum. Valve reeds are made of a special flexible stainless steel. All of these measures significantly increase the service life of the compressor',
-    ),
-    SparePartsModel(
-      title: 'Engine Pistons',
-      image: 'assets/images/imput_image_one.png',
-      price: 32000000,
-      description:
-          'The idling device of the compressor 1.18493 controls the flow rate if less air is required. A feed pump can be flanged directly to the compressor. The crankshaft is forged. All highly stressed surfaces are induction hardened to minimize wear. The connecting rods are made of die-cast aluminum. Valve reeds are made of a special flexible stainless steel. All of these measures significantly increase the service life of the compressor',
-    ),
-    SparePartsModel(
-      title: 'Window Motor',
-      image: 'assets/images/imput_image3.png',
-      price: 80000000,
-      description:
-          'The idling device of the compressor 1.18493 controls the flow rate if less air is required. A feed pump can be flanged directly to the compressor. The crankshaft is forged. All highly stressed surfaces are induction hardened to minimize wear. The connecting rods are made of die-cast aluminum. Valve reeds are made of a special flexible stainless steel. All of these measures significantly increase the service life of the compressor',
-    ),
-  ];
+  List<SparePartsModel> sparePartsModel = [];
   void search(String searchString) {
     setState(() {
-      searchList = sparePartsModel
+      searchList = spareParts
           .where(
               (element) => element.title.toLowerCase().contains(searchString))
           .toList();
     });
   }
 
-  @override
-  void initState() {
-    search('');
-    super.initState();
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -101,26 +64,62 @@ class _SparePartsState extends State<SpareParts> {
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     childAspectRatio: 0.7,
                     crossAxisCount: 2,
-                    crossAxisSpacing: 0,
-                    mainAxisSpacing: 0),
-                itemBuilder: ((context, index) => SpartPartCars(
-                      sparePartsModel: searchList[index],
+                    crossAxisSpacing: 1.0,
+                    mainAxisSpacing: 1.0),
+                itemBuilder: (context, index) {
+                  print(spareParts[index]);
+                  return SpartPartCars(
+                      sparePartsModel: spareParts[index],
                       onTap: () {
                         Navigator.push(
                             context,
                             PageTransition(
                                 child: SparePartSingleDetail(
-                                  sparePartsModel: searchList[index],
+                                  sparePartsModel: spareParts[index],
                                 ),
                                 type: PageTransitionType.rightToLeft));
-                      },
-                    )),
-                itemCount: searchList.length,
+                      });
+                },
+                itemCount: spareParts.length,
               ),
             ),
           ),
         ]),
       ),
     );
+  }
+  void fetchData() async {
+    try {
+      print('Fetching data...');
+      const ipaddress = "192.168.6.244";
+      const url = 'http://$ipaddress:1337/api/spare-parts?populate=image';
+      final uri = Uri.parse(url);
+      final response = await http.get(uri);
+      final body = response.body;
+      final json = jsonDecode(body);
+      final data = json["data"] as List<dynamic>;
+
+      final converts = data.map((e) {
+        final titleVal=e['attributes']['name'];
+
+        final imageVal="http://$ipaddress:1337${e['attributes']['image']['data'][0]['attributes']
+        ['formats']['thumbnail']['url']}";
+        final int priceVal = e['attributes']['price'];
+        return SparePartsModel(
+          title: titleVal,
+          image: imageVal,
+          price: priceVal,
+          description: e['attributes']['description'],
+
+        );
+      }).toList();
+      print(converts.length);
+      setState(() {
+        spareParts = converts;
+      });
+      print('fetch complete!');
+    } catch (e) {
+      print('error: $e');
+    }
   }
 }

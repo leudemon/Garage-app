@@ -33,8 +33,8 @@ class _HomePageState extends State<HomePage> {
       resizeToAvoidBottomInset: true,
       bottomNavigationBar: GNav(
         tabBorderRadius: 50,
-        tabMargin: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+        tabMargin: const EdgeInsets.symmetric(horizontal: 5, vertical: 20),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
         color: Colors.black,
         activeColor: Colors.black,
         tabBackgroundColor: Colors.yellow,

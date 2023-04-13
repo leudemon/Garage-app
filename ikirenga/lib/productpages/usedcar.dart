@@ -109,13 +109,14 @@ class _UsedCarsState extends State<UsedCars> {
                     mainAxisSpacing: 1.0
                 ),
                 itemBuilder: (context, index) {
-                  final car = usedCars[index];
-                  return Cars(onTap: (){
-                    Navigator.push(
+                  return Cars(
+                      usedCarsModel: usedCars[index],
+                      onTap: (){
+                      Navigator.push(
                         context,
                         PageTransition(
                             child: SingleCarDetail(usedCarsModel: usedCars[index]), type: PageTransitionType.fade));
-                  }, usedCarsModel: usedCars[index]);
+                      });
                 },
                 itemCount: usedCars.length,
               ),
@@ -129,13 +130,12 @@ class _UsedCarsState extends State<UsedCars> {
   void fetchData() async {
     try {
       print('Fetching data...');
-      const ipaddress = '192.168.148.244';
-      const url = 'http://${ipaddress}:1337/api/used-cars?populate=image';
+      const ipaddress = '192.168.137.1';
+      const url = 'http://$ipaddress:1337/api/used-cars?populate=image';
       final uri = Uri.parse(url);
       final response = await http.get(uri);
       final body = response.body;
       final json = jsonDecode(body);
-      final picture = json['data'];
       final data = json["data"] as List<dynamic>;
 
       final converts = data.map((e) {
@@ -143,10 +143,17 @@ class _UsedCarsState extends State<UsedCars> {
         final imageVal="http://$ipaddress:1337${e['attributes']['image']['data'][0]['attributes']
         ['formats']['thumbnail']['url']}";
         final int priceVal = e['attributes']['price'];
+        final int yearVal = e['attributes']['year'];
         return UsedCarsModel(
           title: titleVal,
           image: imageVal,
           price: priceVal,
+          condition: e['attributes']['condition'],
+          make:e['attributes']['make'],
+          fuelType: e['attributes']['fuel_type'],
+          model: e['attributes']['model'],
+          transmission: e['attributes']['transmission'],
+          year: yearVal,
         );
       }).toList();
       print(converts.length);

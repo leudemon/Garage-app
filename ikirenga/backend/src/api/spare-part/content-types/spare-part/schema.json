@@ -17,7 +17,7 @@
       "required": true
     },
     "price": {
-      "type": "biginteger",
+      "type": "integer",
       "required": true
     },
     "image": {
@@ -34,6 +34,10 @@
     "spare_part_id": {
       "type": "uid",
       "targetField": "name"
+    },
+    "description": {
+      "type": "text",
+      "maxLength": 600
     }
   }
 }

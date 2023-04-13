@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ikirengaauto/model/container_model.dart';
 
 class SingleServicedetail extends StatelessWidget {
-  const SingleServicedetail({super.key});
+  final MechanicsModel mechanicsModel;
+  const SingleServicedetail({super.key, required this.mechanicsModel});
 
   @override
   Widget build(BuildContext context) {
@@ -23,13 +25,14 @@ class SingleServicedetail extends StatelessWidget {
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
               decoration: BoxDecoration(
                 color: Colors.grey[200],
               ),
-              child: Image.asset(
-                'assets/images/mechanic.png',
+              child: Image.network(
+                mechanicsModel.image,
                 fit: BoxFit.contain,
               ),
             ),
@@ -38,41 +41,33 @@ class SingleServicedetail extends StatelessWidget {
               padding:
                   const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    'Name: Machanic one',
-                    style: TextStyle(
+                  Text(
+                    mechanicsModel.name,
+                    style: const TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                         fontSize: 20),
                   ),
-                  SizedBox(height: 15.h),
-                  container('Experience',
-                      'An oil and filter change extends the lifespan of your car. You should book an oil change regularly.'),
-                  SizedBox(height: 15.h),
-                  container('Professionalism',
-                      'An oil and filter change extends the lifespan of your car. You should book an oil change regularly.'),
-                  SizedBox(height: 15.h),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 10),
-                    decoration: BoxDecoration(
-                      color: Colors.yellow,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        'Book',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20),
+                  SizedBox(height: 100.h),
+
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: Size(MediaQuery.of(context).size.width , 10),
+                        elevation: 0,
+                        backgroundColor: const Color(0xFFFFDB47),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 120, vertical: 15),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8)),
                       ),
-                    ),
-                  )
+                      onPressed: (){},
+                      child: const Text('Book',
+                          style: TextStyle(fontSize: 16, color: Colors.black)))
                 ],
-              ),
+              )
             )
           ],
         ),

@@ -36,6 +36,14 @@
     "mechanic_id": {
       "type": "uid",
       "targetField": "name"
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
     }
   }
 }
