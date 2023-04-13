@@ -201,7 +201,7 @@ class SignUp extends StatelessWidget {
 
 
                       Center(
-                        child: ElevatedButton(
+                        child: TextButton(
                           onPressed: () {
                             Navigator.push(
                                 context,
