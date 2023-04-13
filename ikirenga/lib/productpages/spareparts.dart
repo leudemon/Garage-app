@@ -60,7 +60,9 @@ class _SparePartsState extends State<SpareParts> {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(10.0),
-              child: GridView.builder(
+              child: spareParts.isEmpty // Check if the usedCars list is empty
+                  ? const Center(child: CircularProgressIndicator()) // Show a CircularProgressIndicator while the data is being fetched
+                  : GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     childAspectRatio: 0.7,
                     crossAxisCount: 2,
