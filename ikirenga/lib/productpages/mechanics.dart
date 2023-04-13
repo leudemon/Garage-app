@@ -30,7 +30,9 @@ class _MechanicsState extends State<Mechanics> {@override
         body: Padding(
       padding: const EdgeInsets.only(top: 25),
       child: SafeArea(
-        child: ListView.builder(
+        child: mechanics.isEmpty // Check if the usedCars list is empty
+            ? const Center(child: CircularProgressIndicator()) // Show a CircularProgressIndicator while the data is being fetched
+            :ListView.builder(
           itemCount: mechanics.length,
           itemBuilder: (context, index){
             return MachanicsContainer(
