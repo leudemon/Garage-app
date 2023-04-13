@@ -7,6 +7,7 @@ import 'package:ikirengaauto/widget/loginwidget.dart';
 import 'package:page_transition/page_transition.dart';
 
 import '../Login/login.dart';
+import '../home/homepage.dart';
 import '../widget/password_widget.dart';
 
 class SignUp extends StatelessWidget {
@@ -105,6 +106,8 @@ class SignUp extends StatelessWidget {
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
                                     )),
+
+
                               ],
                             ),
                           )
@@ -194,6 +197,28 @@ class SignUp extends StatelessWidget {
                             ),
                           ),
                         ],
+                      ),
+
+
+                      Center(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                PageTransition(
+                                    child: const HomePage(),
+                                    type:
+                                    PageTransitionType.rightToLeftWithFade));
+                          },
+                          child: const Text(
+                            'Skip',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ),

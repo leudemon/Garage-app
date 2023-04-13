@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:ikirengaauto/Api/fetch.dart';
+//import 'package:ikirengaauto/Api/fetch.dart';
 import 'package:ikirengaauto/productpages/widget/spare_parts.dart';
 import 'package:ikirengaauto/productpages/widget/spareparts_details/spareparts_single_detals.dart';
 import 'package:page_transition/page_transition.dart';

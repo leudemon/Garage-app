@@ -211,6 +211,26 @@ class LoginPage extends StatelessWidget {
                   //     ),
                   //   ],
                   // ),
+                  Center(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            PageTransition(
+                                child: const HomePage(),
+                                type:
+                                PageTransitionType.rightToLeftWithFade));
+                      },
+                      child: const Text(
+                        'Skip',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               )
             ],

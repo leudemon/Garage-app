@@ -15,8 +15,6 @@ class OnBoardingScreen extends StatefulWidget {
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
   List images = [
     'assets/images/onboarding1.png',
-    'assets/images/onboarding1.png',
-    'assets/images/onboarding1.png',
   ];
   int currentPage = 0;
   PageController? _pageController;
