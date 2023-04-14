@@ -1,15 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ikirengaauto/model/container_model.dart';
 import 'package:provider/provider.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 import '../../model/viewmodel/sparepart_cartmodel.dart';
-import 'widget/car_widget.dart';
 import 'widget/cart_list.dart';
 import 'widget/paymet_container.dart';
 
-class OrderReview extends StatelessWidget {
-  const OrderReview({super.key});
+class OrderReview extends StatefulWidget {
+  final String purchasedItem;
+  final String Itemprice;
+  const OrderReview({super.key, required this.purchasedItem, required this.Itemprice});
 
+  @override
+  State<OrderReview> createState() => _OrderReviewState();
+}
+
+
+
+
+
+class _OrderReviewState extends State<OrderReview> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -202,7 +213,14 @@ class OrderReview extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8)),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        openWhatsApp('250782554019',
+                          '*BOOKING INQUIRY*'
+                              '\nService:${widget.purchasedItem} '
+                              '\n1.Delivering car to garage'
+                              '\n2.Car should be picked up'
+                              '\nchoice: '
+                              '\n>> ');},
                       child: Row(
                         children: [
                           const Spacer(),
@@ -239,4 +257,12 @@ class OrderReview extends StatelessWidget {
       ),
     );
   }
+
+  void openWhatsApp(String number, String message) async {
+    String formattedMessage =
+    message.replaceAll('\n', '%0A').replaceAll('\t', '%09');
+    String url = "https://wa.me/$number?text=$formattedMessage";
+    await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
+    ;
+}
 }

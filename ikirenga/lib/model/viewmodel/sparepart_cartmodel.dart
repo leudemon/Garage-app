@@ -78,3 +78,4 @@ class CartItem {
   int quantity;
   CartItem({required this.quantity, required this.item});
 }
+

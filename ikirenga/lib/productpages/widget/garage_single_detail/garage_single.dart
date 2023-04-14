@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ikirengaauto/model/container_model.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 
 class GarageSingle extends StatefulWidget {
   final GaragesModel garagesModel;
@@ -66,14 +68,24 @@ class _GarageSingleState extends State<GarageSingle> {
                       const Spacer(),
                       ElevatedButton(
                           style: ElevatedButton.styleFrom(
+                            minimumSize:
+                            Size(MediaQuery.of(context).size.width , 20),
                             elevation: 0,
                             backgroundColor: const Color(0xFFFFDB47),
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 150, vertical: 15),
+                                horizontal: 0, vertical: 15),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8)),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            openWhatsApp('250782554019',
+                                '*BOOKING INQUIRY*'
+                                    '\nService:${widget.garagesModel.service} '
+                                    '\n1.Delivering car to garage'
+                                    '\n2.Car should be picked up'
+                                    '\nchoice: '
+                                    '\n>> ');
+                          },
                           child: const Text('BOOK',
                               style: TextStyle(
                                   fontSize: 16, color: Colors.black))),
@@ -85,4 +97,12 @@ class _GarageSingleState extends State<GarageSingle> {
           ),
         ));
   }
+}
+
+void openWhatsApp(String number, String message) async {
+  String formattedMessage =
+  message.replaceAll('\n', '%0A').replaceAll('\t', '%09');
+  String url = "https://wa.me/$number?text=$formattedMessage";
+  await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
+  ;
 }

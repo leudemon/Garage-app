@@ -5,37 +5,35 @@ import 'package:page_transition/page_transition.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'widget/cars.dart';
+import 'package:ikirengaauto/Variables/constants.dart';
+
 
 class UsedCars extends StatefulWidget {
-  const UsedCars({super.key});
+  const UsedCars({Key? key});
 
   @override
   State<UsedCars> createState() => _UsedCarsState();
 }
 
 class _UsedCarsState extends State<UsedCars> {
+  final TextEditingController _searchController = TextEditingController();
   List<UsedCarsModel> usedCars = [];
-
-
   List<UsedCarsModel> searchList = [];
   List<UsedCarsModel> usedCarModel = [];
+  bool isLoading = true;
 
-  void search(String searchString) {
-    setState(() {
-      usedCars = usedCarModel
-          .where(
-              (element) => element.title.toString().toLowerCase().contains(searchString))
-          .toList();
-    });
-  }
-
-  @override
-  void initState() {
-
+  void initialize() async{
+    await fetchData();
     search('');
-    super.initState();
-    fetchData();
   }
+  @override
+  void initState(){
+    initialize();
+    super.initState();
+
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -49,13 +47,18 @@ class _UsedCarsState extends State<UsedCars> {
               borderRadius: BorderRadius.circular(15),
             ),
             child: TextField(
-              onChanged: (value) => search(value),
+              controller: _searchController,
+              onChanged: (value) => search(value.toLowerCase()),
               decoration:  InputDecoration(
                 prefixIcon: const Icon(Icons.search_outlined,),
                 border: InputBorder.none,
                 hintText: 'Search',
                 suffixIcon: IconButton(
-                  onPressed:(){},
+                  onPressed:() {
+                    _searchController.clear();
+                    FocusScope.of(context).unfocus();
+                    search('');
+                  },
                   icon: const Icon(Icons.close, color: Colors.black,),
                   splashRadius: 1,
                 ),
@@ -64,9 +67,9 @@ class _UsedCarsState extends State<UsedCars> {
           ),
           const Divider(),
           Expanded(
-            child: usedCars.isEmpty // Check if the usedCars list is empty
-                ? const Center(child: CircularProgressIndicator()) // Show a CircularProgressIndicator while the data is being fetched
-                : Padding(
+            child: isLoading
+                ? const Center(child: CircularProgressIndicator())
+                :  Padding(
               padding: const EdgeInsets.all(15.0),
               child: GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -75,17 +78,17 @@ class _UsedCarsState extends State<UsedCars> {
                     crossAxisSpacing: 1.0,
                     mainAxisSpacing: 1.0
                 ),
-                itemBuilder: (context, index) {
-                  return Cars(
-                      usedCarsModel: usedCars[index],
-                      onTap: (){
-                      Navigator.push(
+                itemBuilder: ((context, index) => Cars(
+                  usedCarsModel: searchList[index],
+                  onTap: (){
+                    Navigator.push(
                         context,
                         PageTransition(
-                            child: SingleCarDetail(usedCarsModel: usedCars[index]), type: PageTransitionType.fade));
-                      });
-                },
-                itemCount: usedCars.length,
+                            child: SingleCarDetail(usedCarsModel: searchList[index]), type: PageTransitionType.fade));
+                  },
+              )),
+
+                itemCount: searchList.length,
               ),
             ),
           ),
@@ -94,9 +97,9 @@ class _UsedCarsState extends State<UsedCars> {
     );
   }
 
-  void fetchData() async {
+ Future fetchData() async {
     try {
-      const ipaddress = '192.168.137.1';
+      const ipaddress = ip;
       const url = 'http://$ipaddress:1337/api/used-cars?populate=image';
       final uri = Uri.parse(url);
       final response = await http.get(uri);
@@ -125,11 +128,28 @@ class _UsedCarsState extends State<UsedCars> {
       setState(() {
         usedCars = converts;
       });
+      return converts;
 
     } catch (e) {
-      print('error: $e');
+     throw(e);
     }
   }
+
+  void search(String searchString) {
+    setState(() {
+      isLoading = false;
+      if(searchString.isEmpty) {
+        searchList = usedCars;
+      }else{
+        searchList = usedCars
+            .where(
+                (element) => element.title.toString().toLowerCase().contains(searchString))
+            .toList();
+      }
+
+    });
+  }
+
 
 }
 

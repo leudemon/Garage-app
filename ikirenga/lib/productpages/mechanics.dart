@@ -6,6 +6,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'widget/single_service_detail.dart';
+import 'package:ikirengaauto/Variables/constants.dart';
 
 
 class Mechanics extends StatefulWidget {
@@ -55,7 +56,7 @@ class _MechanicsState extends State<Mechanics> {@override
   void fetchData() async {
     try {
       print('Fetching data...');
-      const ipaddress = "192.168.137.1";
+      const ipaddress = ip;
       const url = 'http://$ipaddress:1337/api/mechanics?populate=image';
       final uri = Uri.parse(url);
       final response = await http.get(uri);

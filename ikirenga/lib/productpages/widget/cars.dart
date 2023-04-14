@@ -26,23 +26,25 @@ class Cars extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-        SizedBox(
-          height: MediaQuery.of(context).size.width / 3.5,
-          width: MediaQuery.of(context).size.width,
-          child: ClipRRect(
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(30),
-              topRight: Radius.circular(30),
+            SizedBox(
+              height: MediaQuery.of(context).size.width / 3.5,
+              width: MediaQuery.of(context).size.width,
+              child: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(30),
+                  topRight: Radius.circular(30),
+                ),
+                child: Image.network(
+                  usedCarsModel.image,
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
-          child: Image.network(
-            usedCarsModel.image,
-            fit: BoxFit.cover,
-          ),),
-        ),
-
-            Container(
-             child: Column(
+            Expanded(
+              child: Column(
                 children: <Widget>[
+                  SizedBox(height: 20.h,),
+
                   Text(
                     usedCarsModel.title,
                     style: TextStyle(
@@ -50,9 +52,7 @@ class Cars extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         color: Colors.black),
                   ),
-                  SizedBox(
-                    height: 5.h,
-                  ),
+                  SizedBox(height: 5.h,),
                   Text(
                     'Rwf ${usedCarsModel.price}',
                     style: TextStyle(
@@ -60,9 +60,7 @@ class Cars extends StatelessWidget {
                         fontWeight: FontWeight.w300,
                         color: Colors.black54),
                   ),
-                  SizedBox(
-                    height: 30.h,
-                  ),
+                  const Spacer(),
                 ],
               ),
             )

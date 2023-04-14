@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_unnecessary_containers
 
 import 'package:flutter/material.dart';
-import 'package:ikirengaauto/Login/login.dart';
+import 'package:ikirengaauto/home/homepage.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter/services.dart';
 
@@ -52,18 +52,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         body: Column(
           children: [
             Expanded(
-              child: PageView.builder(
-                controller: _pageController,
-                itemCount: images.length,
-                onPageChanged: (int index) {
-                  setState(() {
-                    currentPage = index;
-                  });
-                },
-                itemBuilder: (_, i) {
-                  return Column(children: [
+              child: Column(children: [
                     Image.asset(
-                      images.length > i ? images[i] : images[0],
+                      images[0],
                       width: double.infinity,
                     ),
                     Container(
@@ -89,7 +80,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       padding:
                           EdgeInsets.symmetric(horizontal: 40.0, vertical: 5),
                       child: Text(
-                        'With long experience in the audio industry,\n we create the best quality products',
+                        'With long experience in the industry,\n we create the best quality products',
                         style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w400,
@@ -100,6 +91,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     const SizedBox(
                       height: 30,
                     ),
+                    const Spacer(),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: ElevatedButton(
@@ -115,23 +107,23 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                           Navigator.push(
                               context,
                               PageTransition(
-                                  child: const LoginPage(),
+                                  child: const HomePage(),
                                   type:
                                       PageTransitionType.rightToLeftWithFade));
                         },
                         child: Row(
                           children: [
                             const Spacer(),
-                            Expanded(
-                              child: Container(
-                                alignment: Alignment.center,
-                                child: const Text(
-                                  'GET STARTED',
-                                  style: TextStyle(
-                                      fontSize: 16, color: Colors.black),
-                                ),
+                            Container(
+                              alignment: Alignment.center,
+                              child: const Text(
+                                'GET STARTED',
+                                style: TextStyle(
+                                    fontSize: 16, color: Colors.black),
                               ),
                             ),
+
+
                             Expanded(
                               child: Container(
                                 alignment: Alignment.centerRight,
@@ -146,11 +138,12 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                           ],
                         ),
                       ),
-                    )
-                  ]);
-                },
+                    ),
+                const Spacer(),
+
+              ]),
+
               ),
-            ),
           ],
         ));
   }

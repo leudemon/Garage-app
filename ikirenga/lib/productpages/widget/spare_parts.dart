@@ -34,25 +34,32 @@ class SpartPartCars extends StatelessWidget {
                 ),),
             ),
             SizedBox(
-              height: 30.h,
+              height: 20.h,
             ),
-            Text(
-              sparePartsModel.title,
-              style: TextStyle(
-                  fontSize: 20.sp,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black),
-            ),
-            SizedBox(
-              height: 10.h,
-            ),
-            Text(
-              'Rwf ${sparePartsModel.price}',
-              style: TextStyle(
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w300,
-                  color: Colors.black54),
-            ),
+            Expanded(
+              child: Column(
+                children: <Widget>[
+                  SizedBox(height: 20.h,),
+
+                  Text(
+                    sparePartsModel.title,
+                    style: TextStyle(
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
+                  ),
+                  SizedBox(height: 5.h,),
+                  Text(
+                    'Rwf ${sparePartsModel.price}',
+                    style: TextStyle(
+                        fontSize: 15.sp,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.black54),
+                  ),
+                  const Spacer(),
+                ],
+              ),
+            )
           ],
         ),
       ),

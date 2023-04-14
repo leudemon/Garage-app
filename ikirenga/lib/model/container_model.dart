@@ -88,3 +88,8 @@ class MechanicsModel {
     required this.logo,
   });
 }
+
+class PurchasedItemModel {
+  final String total;
+  PurchasedItemModel({required this.total});
+}

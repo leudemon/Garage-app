@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-
 import '../model/viewmodel/sparepart_cartmodel.dart';
 import 'cart_container.dart';
 import 'order_review/order_review.dart';
@@ -12,6 +11,7 @@ class MyCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
@@ -74,7 +74,7 @@ class MyCart extends StatelessWidget {
                                   color: Colors.black,
                                   fontSize: 20.sp,
                                   fontWeight: FontWeight.w400)),
-                          Text(value.calculateTotal(),
+                          Text('${value.calculateTotal()} RWF',
                               style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 20.sp,
@@ -96,10 +96,12 @@ class MyCart extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(8)),
                               ),
                               onPressed: () {
+                                final total = value.calculateTotal();
+                                final 
                                 Navigator.push(
                                     context,
                                     PageTransition(
-                                        child: const OrderReview(),
+                                        child: OrderReview(purchasedItem: , Itemprice: total,),
                                         type: PageTransitionType.rightToLeft));
                               },
                               child: Row(
@@ -140,4 +142,6 @@ class MyCart extends StatelessWidget {
           ),
         ));
   }
+
 }
+

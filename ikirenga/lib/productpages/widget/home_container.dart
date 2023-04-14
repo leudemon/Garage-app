@@ -21,7 +21,7 @@ class _HomeContainerState extends State<HomeContainer> {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 5),
         child: Container(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.symmetric(horizontal:15 , vertical: 20),
           decoration: BoxDecoration(
             color: Colors.grey[200],
             borderRadius: BorderRadius.circular(30),
@@ -30,10 +30,10 @@ class _HomeContainerState extends State<HomeContainer> {
             children: [
               Row(
                 children: [
-                  Text(widget.garagesModel.service, style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),)
+                  Text(widget.garagesModel.service, style: const TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),)
                 ],
               ),
-              Divider(),
+              const Divider(),
               Row(
                 crossAxisAlignment:CrossAxisAlignment.start,
                 children: [
@@ -57,7 +57,7 @@ class _HomeContainerState extends State<HomeContainer> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8)),),
                               onPressed: widget.onTap,
-                              child: Text('more')
+                              child: const Text('more')
                           )
                         ],
                       )

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ikirengaauto/Variables/constants.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:ikirengaauto/model/container_model.dart';
 import 'widget/garage_single_detail/garage_single.dart';
@@ -56,7 +56,7 @@ class _GaragePageState extends State<GaragePage> {
   void fetchData() async {
     try {
       print('Fetching data...');
-      const ipaddress = '192.168.137.1';
+      const ipaddress = ip;
       const url = 'http://$ipaddress:1337/api/garages?populate=image&populate=logo';
       final uri = Uri.parse(url);
       final response = await http.get(uri);
