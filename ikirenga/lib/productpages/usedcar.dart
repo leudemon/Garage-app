@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ikirengaauto/model/container_model.dart';
 import 'package:ikirengaauto/productpages/widget/car_details/single_car_detail.dart';
-import 'package:ikirengaauto/productpages/widget/home_container.dart';
 import 'package:page_transition/page_transition.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -19,32 +18,11 @@ class _UsedCarsState extends State<UsedCars> {
 
 
   List<UsedCarsModel> searchList = [];
-  List<UsedCarsModel> usedCarModel = [
-    // UsedCarsModel(
-    //     title: 'Car Name',
-    //     image: 'assets/images/carimagefour.png',
-    //     price: 100000),
-    // UsedCarsModel(
-    //     title: 'Car Name',
-    //     image: 'assets/images/carimagefour.png',
-    //     price: 80000),
-    // UsedCarsModel(
-    //     title: 'Car Name',
-    //     image: 'assets/images/carimagefour.png',
-    //     price: 38000),
-    // UsedCarsModel(
-    //     title: 'Car Name',
-    //     image: 'assets/images/carimagefour.png',
-    //     price: 140000),
-    // UsedCarsModel(
-    //     title: 'Car Name',
-    //     image: 'assets/images/carimagefour.png',
-    //     price: 80000),
-  ];
+  List<UsedCarsModel> usedCarModel = [];
 
   void search(String searchString) {
     setState(() {
-      searchList = usedCarModel
+      usedCars = usedCarModel
           .where(
               (element) => element.title.toString().toLowerCase().contains(searchString))
           .toList();
@@ -53,6 +31,7 @@ class _UsedCarsState extends State<UsedCars> {
 
   @override
   void initState() {
+
     search('');
     super.initState();
     fetchData();
@@ -61,41 +40,29 @@ class _UsedCarsState extends State<UsedCars> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   toolbarHeight: 70,
-      //   backgroundColor: Colors.transparent,
-      //   elevation: 0.0,
-      //   leading: IconButton(
-      //     onPressed: () => Navigator.pop(context),
-      //     icon: const Padding(
-      //       padding: EdgeInsets.only(left: 15),
-      //       child:  Icon(
-      //         Icons.arrow_back_ios_new_outlined,
-      //         color: Colors.black,
-      //       ),
-      //     )
-      //   ),
-      //   leadingWidth: 40,
-      //   titleSpacing: 0,
-      //   centerTitle: false,
-      //   title: Container(
-      //     margin: const EdgeInsets.all(30),
-      //     decoration: BoxDecoration(
-      //       color: Colors.grey[300],
-      //       borderRadius: BorderRadius.circular(15),
-      //     ),
-      //     child: TextField(
-      //       onChanged: (value) => search(value),
-      //       decoration: const InputDecoration(
-      //         border: InputBorder.none,
-      //         prefixIcon: Icon(Icons.search),
-      //         hintText: 'Search',
-      //       ),
-      //     ),
-      //   ),
-      // ),
       body: SafeArea(
         child: Column(children: [
+          Container(
+            margin: const EdgeInsets.all(25),
+            decoration: BoxDecoration(
+              color: Colors.grey[200],
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: TextField(
+              onChanged: (value) => search(value),
+              decoration:  InputDecoration(
+                prefixIcon: const Icon(Icons.search_outlined,),
+                border: InputBorder.none,
+                hintText: 'Search',
+                suffixIcon: IconButton(
+                  onPressed:(){},
+                  icon: const Icon(Icons.close, color: Colors.black,),
+                  splashRadius: 1,
+                ),
+              ),
+            ),
+          ),
+          const Divider(),
           Expanded(
             child: usedCars.isEmpty // Check if the usedCars list is empty
                 ? const Center(child: CircularProgressIndicator()) // Show a CircularProgressIndicator while the data is being fetched
@@ -129,7 +96,6 @@ class _UsedCarsState extends State<UsedCars> {
 
   void fetchData() async {
     try {
-      print('Fetching data...');
       const ipaddress = '192.168.137.1';
       const url = 'http://$ipaddress:1337/api/used-cars?populate=image';
       final uri = Uri.parse(url);
@@ -156,12 +122,10 @@ class _UsedCarsState extends State<UsedCars> {
           year: yearVal,
         );
       }).toList();
-      print(converts.length);
       setState(() {
         usedCars = converts;
       });
 
-      print('fetch complete!');
     } catch (e) {
       print('error: $e');
     }

@@ -17,6 +17,7 @@ dependencies:
   google_nav_bar: ^5.0.6
   provider: ^6.0.5
   http: ^0.13.5
+  flutter_rating_bar: ^4.0.1
 
 
 dev_dependencies:
@@ -36,3 +37,15 @@ flutter:
     - family: Ikirenga
       fonts:
         - asset: fonts/Ikirenga.ttf
+    - family: Montserrat
+      fonts:
+        - asset: fonts/montserrat/Montserrat-Regular.ttf
+        - asset: fonts/montserrat/Montserrat-Bold.ttf
+        - asset: fonts/montserrat/Montserrat-Italic.ttf
+        - asset: fonts/montserrat/Montserrat-BoldItalic.ttf
+    - family: Lato
+      fonts:
+        - asset: fonts/lato/Lato-Regular.ttf
+        - asset: fonts/lato/Lato-Bold.ttf
+        - asset: fonts/lato/Lato-Italic.ttf
+        - asset: fonts/lato/Lato-BoldItalic.ttf

@@ -76,4 +76,15 @@ class MechanicsModel {
     required this.rating,
     required this.image,
   });
+}class GaragesModel {
+  final String service;
+  final String description;
+  final String image;
+  final String logo;
+  GaragesModel({
+    required this.service,
+    required this.description,
+    required this.image,
+    required this.logo,
+  });
 }

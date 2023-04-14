@@ -19,45 +19,53 @@ class Cars extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         decoration: BoxDecoration(
-          color: Colors.grey[300],
-          borderRadius: BorderRadius.circular(15),
+          color: Colors.grey[200],
+          borderRadius: BorderRadius.circular(30),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
         SizedBox(
-          height: MediaQuery.of(context).size.width / 4,
+          height: MediaQuery.of(context).size.width / 3.5,
           width: MediaQuery.of(context).size.width,
           child: ClipRRect(
             borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(15),
-              topRight: Radius.circular(15),
+              topLeft: Radius.circular(30),
+              topRight: Radius.circular(30),
             ),
           child: Image.network(
             usedCarsModel.image,
             fit: BoxFit.cover,
           ),),
         ),
-            SizedBox(
-              height: 20.h,
-            ),
-            Text(
-              usedCarsModel.title,
-              style: TextStyle(
-                  fontSize: 20.sp,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black),
-            ),
-            SizedBox(
-              height: 10.h,
-            ),
-            Text(
-              'Rwf ${usedCarsModel.price}',
-              style: TextStyle(
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w300,
-                  color: Colors.black54),
-            ),
+
+            Container(
+             child: Column(
+                children: <Widget>[
+                  Text(
+                    usedCarsModel.title,
+                    style: TextStyle(
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
+                  ),
+                  SizedBox(
+                    height: 5.h,
+                  ),
+                  Text(
+                    'Rwf ${usedCarsModel.price}',
+                    style: TextStyle(
+                        fontSize: 15.sp,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.black54),
+                  ),
+                  SizedBox(
+                    height: 30.h,
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),

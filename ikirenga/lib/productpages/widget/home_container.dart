@@ -1,96 +1,76 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ikirengaauto/model/container_model.dart';
 
-class HomeContainer extends StatelessWidget {
-  final String title;
-  final String image;
-  final Function()? onTap;
+
+class HomeContainer extends StatefulWidget {
+  final GaragesModel garagesModel;
+  final onTap;
   const HomeContainer(
       {super.key,
-      required this.title,
-      required this.image,
-      required this.onTap});
+      required this.garagesModel, required this.onTap});
 
   @override
+  State<HomeContainer> createState() => _HomeContainerState();
+}
+
+class _HomeContainerState extends State<HomeContainer> {
+  @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: Container(
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: Colors.grey[200],
-          borderRadius: BorderRadius.circular(15),
-        ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                    right: 20,
-                  ),
-                  child: Text(title,
-                      style: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey)),
-                ),
-                SizedBox(height: 10.h),
-                Image.asset(
-                  image,
-                  scale: 1,
-                ),
-              ],
-            ),
-            SizedBox(width: 10.w),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+        child: Container(
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: Colors.grey[200],
+            borderRadius: BorderRadius.circular(30),
+          ),
+          child: Column(
+            children: [
+              Row(
                 children: [
-                  const Text(
-                      'An oil and filter change extends the lifespan of your car. You should book an oil change regularly',
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black)),
-                  SizedBox(height: 20.h),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Image.asset(
-                        'assets/images/garages.png',
-                        height: 30,
-                        width: 30,
-                        scale: 2,
-                      ),
-                      GestureDetector(
-                        onTap: onTap,
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                          decoration: BoxDecoration(
-                              color: Colors.yellow,
-                              borderRadius: BorderRadius.circular(10)),
-                          child: const Center(
-                            child: Text(
-                              'Book',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
-                  )
+                  Text(widget.garagesModel.service, style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),)
                 ],
               ),
-            ),
-          ],
+              Divider(),
+              Row(
+                crossAxisAlignment:CrossAxisAlignment.start,
+                children: [
+                  Flexible(child: Image.network(widget.garagesModel.image, height: 100,)),
+                  SizedBox(width: 20.h,),
+                  Flexible(
+                    flex: 3,
+                    child: Column(
+                    children: [
+                    Text(widget.garagesModel.description),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Image.network(widget.garagesModel.logo),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              elevation: 0,
+                              backgroundColor: Colors.yellow[600],
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 10),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8)),),
+                              onPressed: widget.onTap,
+                              child: Text('more')
+                          )
+                        ],
+                      )
+                    ],
+                  ),),
+                ],
+              ),
+              Row()
+            ],
+          ),
         ),
       ),
     );
   }
 }
+

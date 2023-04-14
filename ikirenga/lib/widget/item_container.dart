@@ -19,7 +19,7 @@ class ItemContainer extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       decoration: BoxDecoration(
-        color: Colors.grey[300],
+        color: Colors.grey[200],
         shape: BoxShape.rectangle,
         borderRadius: BorderRadius.circular(15),
       ),

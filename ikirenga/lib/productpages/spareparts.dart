@@ -43,20 +43,26 @@ class _SparePartsState extends State<SpareParts> {
       body: SafeArea(
         child: Column(children: [
           Container(
-            margin: const EdgeInsets.all(20),
+            margin: const EdgeInsets.all(25),
             decoration: BoxDecoration(
-              color: Colors.grey[300],
-              borderRadius: BorderRadius.circular(10),
+              color: Colors.grey[200],
+              borderRadius: BorderRadius.circular(15),
             ),
             child: TextField(
               onChanged: (value) => search(value),
-              decoration: const InputDecoration(
+              decoration:  InputDecoration(
+                prefixIcon: const Icon(Icons.search_outlined,),
                 border: InputBorder.none,
-                prefixIcon: Icon(Icons.search),
                 hintText: 'Search',
+                suffixIcon: IconButton(
+                  onPressed:(){},
+                  icon: const Icon(Icons.close, color: Colors.black,),
+                  splashRadius: 1,
+                ),
               ),
             ),
           ),
+          const Divider(),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(10.0),
@@ -93,7 +99,7 @@ class _SparePartsState extends State<SpareParts> {
   void fetchData() async {
     try {
       print('Fetching data...');
-      const ipaddress = "192.168.6.244";
+      const ipaddress = "192.168.137.1";
       const url = 'http://$ipaddress:1337/api/spare-parts?populate=image';
       final uri = Uri.parse(url);
       final response = await http.get(uri);

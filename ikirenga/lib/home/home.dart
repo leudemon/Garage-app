@@ -72,32 +72,7 @@ class _HomeState extends State<Home> {
       subtitle: '',
       image: 'assets/images/machines.png',
     ),
-    ContainerModel(
-      ontap: (BuildContext context) {
-        Navigator.push(
-            context,
-            PageTransition(
-                child: const UsedCars(),
-                alignment: Alignment.center,
-                type: PageTransitionType.fade));
-      },
-      title: 'Used Cars',
-      subtitle: '',
-      image: 'assets/images/usedcars.png',
-    ),
-    ContainerModel(
-      ontap: (BuildContext context) {
-        Navigator.push(
-            context,
-            PageTransition(
-                child: const SpareParts(),
-                alignment: Alignment.bottomCenter,
-                type: PageTransitionType.fade));
-      },
-      title: 'Garages',
-      subtitle: '',
-      image: 'assets/images/machines.png',
-    ),
+
   ];
 
   void search(String searchString) {
@@ -153,7 +128,7 @@ class _HomeState extends State<Home> {
                 const Expanded(
 
                   child: Text('  Welcome Back, Severin!',
-                      style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
+                      style: TextStyle(fontFamily:'Lato', fontSize: 20.0, fontWeight: FontWeight.bold)),
                 ),
                 IconButton(
                     onPressed: (){

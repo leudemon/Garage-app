@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
           title: 'IKIRENGA AUTO',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
+            fontFamily: 'Lato',
             primarySwatch: Colors.yellow,
           ),
           home: const OnBoardingScreen(),

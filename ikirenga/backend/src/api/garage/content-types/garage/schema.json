@@ -4,23 +4,20 @@
   "info": {
     "singularName": "garage",
     "pluralName": "garages",
-    "displayName": "Garage"
+    "displayName": "Garage",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "name": {
+    "service": {
       "type": "string",
       "required": true
     },
-    "location": {
-      "type": "string",
-      "required": true
-    },
-    "phoneNumber": {
-      "type": "biginteger",
+    "description": {
+      "type": "text",
       "required": true
     },
     "rating": {
@@ -33,6 +30,21 @@
         "five"
       ],
       "default": "one"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "logo": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

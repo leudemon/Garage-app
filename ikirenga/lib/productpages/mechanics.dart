@@ -55,7 +55,7 @@ class _MechanicsState extends State<Mechanics> {@override
   void fetchData() async {
     try {
       print('Fetching data...');
-      const ipaddress = "192.168.6.244";
+      const ipaddress = "192.168.137.1";
       const url = 'http://$ipaddress:1337/api/mechanics?populate=image';
       final uri = Uri.parse(url);
       final response = await http.get(uri);

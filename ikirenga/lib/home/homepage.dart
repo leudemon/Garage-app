@@ -31,43 +31,46 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      bottomNavigationBar: GNav(
-        tabBorderRadius: 50,
-        tabMargin: const EdgeInsets.symmetric(horizontal: 5, vertical: 20),
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-        color: Colors.black,
-        activeColor: Colors.black,
-        tabBackgroundColor: Colors.yellow,
-        iconSize: 25,
-        gap: 5,
-        tabs: const [
-          GButton(
-            icon: Ikirenga.home,
-            text: 'Home',
-          ),
-          GButton(
-            icon: Ikirenga.carfix,
-            text: 'Used Cars',
-          ),
-          GButton(
-            icon: Ikirenga.fix,
-            text: 'Spare parts',
-          ),
-          GButton(
-            icon: Ikirenga.toolkit,
-            text: '  Garages',
-          ),
-          GButton(
-            icon: Ikirenga.mechanic,
-            text: 'Mechanics',
-          ),
-        ],
-        selectedIndex: _currentIndex,
-        onTabChange: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: GNav(
+          tabBorderRadius: 50,
+          tabMargin: const EdgeInsets.symmetric(horizontal: 0, vertical: 20),
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+          color: Colors.black,
+          activeColor: Colors.black,
+          tabBackgroundColor: Colors.yellow,
+          iconSize: 25,
+          gap: 5,
+          tabs: const [
+            GButton(
+              icon: Ikirenga.home,
+              text: 'Home',
+            ),
+            GButton(
+              icon: Ikirenga.carfix,
+              text: 'Used Cars',
+            ),
+            GButton(
+              icon: Ikirenga.fix,
+              text: 'Spare parts',
+            ),
+            GButton(
+              icon: Ikirenga.toolkit,
+              text: '  Garages',
+            ),
+            GButton(
+              icon: Ikirenga.mechanic,
+              text: 'Mechanics',
+            ),
+          ],
+          selectedIndex: _currentIndex,
+          onTabChange: (index) {
+            setState(() {
+              _currentIndex = index;
+            });
+          },
+        ),
       ),
       body: screens[_currentIndex],
       floatingActionButton: FloatingActionButton(

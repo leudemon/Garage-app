@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ikirengaauto/model/container_model.dart';
 
-class GarageSingle extends StatelessWidget {
-  const GarageSingle({super.key});
+class GarageSingle extends StatefulWidget {
+  final GaragesModel garagesModel;
+  const GarageSingle({super.key, required this.garagesModel});
 
+  @override
+  State<GarageSingle> createState() => _GarageSingleState();
+}
+
+class _GarageSingleState extends State<GarageSingle> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,8 +35,8 @@ class GarageSingle extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.r),
                 ),
-                child: Image.asset(
-                  'assets/images/garage.jpg',
+                child: Image.network(
+                  widget.garagesModel.image,
                   height: 300.h,
                   width: 100.w,
                   fit: BoxFit.cover,
@@ -42,7 +49,7 @@ class GarageSingle extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        'Oil and oil filter check and replacement',
+                        widget.garagesModel.service,
                         style: TextStyle(
                             fontSize: 20.sp,
                             fontWeight: FontWeight.bold,
@@ -50,10 +57,7 @@ class GarageSingle extends StatelessWidget {
                       ),
                       SizedBox(height: 15.h),
                       Text(
-                        'An oil and filter change extends the lifespan of '
-                        'your car. You should book an oil change regularly to keep your car in top condition.'
-                        'A small expense now can save you forking out for much larger car repairs in the future.'
-                        'If there isn\'t enough oil in your car, or the oil is dirty, you run the risk of severe engine problems and seeing the dreaded red engine management light.',
+                        widget.garagesModel.description,
                         style: TextStyle(
                             fontSize: 15.sp,
                             fontWeight: FontWeight.w400,
