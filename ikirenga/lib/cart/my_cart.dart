@@ -97,11 +97,11 @@ class MyCart extends StatelessWidget {
                               ),
                               onPressed: () {
                                 final total = value.calculateTotal();
-                                final 
+                                const itemName = '';
                                 Navigator.push(
                                     context,
                                     PageTransition(
-                                        child: OrderReview(purchasedItem: , Itemprice: total,),
+                                        child: OrderReview(purchasedItem: itemName, Itemprice: total,),
                                         type: PageTransitionType.rightToLeft));
                               },
                               child: Row(
