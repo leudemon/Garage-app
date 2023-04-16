@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:ikirengaauto/model/container_model.dart';
 import 'package:ikirengaauto/model/viewmodel/sparepart_cartmodel.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+
+import '../../../cart/my_cart.dart';
 
 class SparePartSingleDetail extends StatelessWidget {
   final SparePartsModel sparePartsModel;
-  const SparePartSingleDetail({super.key, required this.sparePartsModel});
+  const SparePartSingleDetail({Key? key, required this.sparePartsModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,13 +28,22 @@ class SparePartSingleDetail extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0.0,
         actions: [
-          IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.shopping_bag_outlined,
-                color: Colors.black,
-                size: 20.sp,
-              ))
+          Padding(
+            padding: const EdgeInsets.only(right: 20),
+            child: IconButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    PageTransition(
+                        child: const MyCart(), type: PageTransitionType.fade),
+                  );
+                },
+                icon: Icon(
+                  Icons.shopping_bag_outlined,
+                  color: Colors.black,
+                  size: 30.sp,
+                )),
+          )
         ],
       ),
       body: SingleChildScrollView(
@@ -98,7 +111,8 @@ class SparePartSingleDetail extends StatelessWidget {
                             Image.asset('assets/images/toyota.jpg',
                                 width: 50, height: 50),
                           ],
-                        )
+                        ),
+
                       ],
                     ),
                     SizedBox(
@@ -115,7 +129,7 @@ class SparePartSingleDetail extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 20.h),
+              const SizedBox(height: 10),
               Center(
                 child: Column(
                   children: [
@@ -138,7 +152,7 @@ class SparePartSingleDetail extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 30.h),
+              SizedBox(height: 200.h),
               Consumer<CartModel>(
                 builder: (context, value, child) {
                   return ElevatedButton(
@@ -157,6 +171,13 @@ class SparePartSingleDetail extends StatelessWidget {
                                 image: sparePartsModel.image,
                                 description: sparePartsModel.description,
                                 price: sparePartsModel.price));
+                        Fluttertoast.showToast(
+                            msg: "${sparePartsModel.title} added to cart",
+                            toastLength: Toast.LENGTH_LONG,
+                            gravity: ToastGravity.TOP,
+                            backgroundColor: Colors.yellowAccent[700],
+                            textColor: Colors.black,
+                            fontSize: 16.0);
                       },
                       child: const Text('ADD TO CART',
                           style: TextStyle(fontSize: 16, color: Colors.black)));

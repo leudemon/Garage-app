@@ -46,6 +46,8 @@ class _SingleServicedetailState extends State<SingleServicedetail> {
     }
     return Scaffold(
       appBar: AppBar(
+        title: Text(widget.mechanicsModel.name),
+        centerTitle: true,
         elevation: 0.0,
         backgroundColor: Colors.white,
         leading: IconButton(
@@ -80,8 +82,8 @@ class _SingleServicedetailState extends State<SingleServicedetail> {
                       const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5),
                   child: Column(
                     children: [
-                      Text(
-                        widget.mechanicsModel.name,
+                      const Text(
+                        'Professional Mechanic',
                         style: const TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
@@ -116,7 +118,9 @@ class _SingleServicedetailState extends State<SingleServicedetail> {
                           },
                           child: const Text('Book',
                               style:
-                                  TextStyle(fontSize: 16, color: Colors.black)))
+                                  TextStyle(fontSize: 16, color: Colors.black))),
+                      SizedBox(height: 10.h),
+
                     ],
                   )),
             )

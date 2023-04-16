@@ -102,7 +102,7 @@ class MyCart extends StatelessWidget {
                                     context,
                                     PageTransition(
                                         child: OrderReview(purchasedItem: itemName, Itemprice: total,),
-                                        type: PageTransitionType.rightToLeft));
+                                        type: PageTransitionType.fade));
                               },
                               child: Row(
                                 children: [

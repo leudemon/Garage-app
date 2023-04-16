@@ -21,6 +21,20 @@ class _UsedCarsState extends State<UsedCars> {
   List<UsedCarsModel> searchList = [];
   List<UsedCarsModel> usedCarModel = [];
   bool isLoading = true;
+  void search(String searchString) {
+    setState(() {
+      isLoading = false;
+      if(searchString.isEmpty) {
+        searchList = usedCars;
+      }else{
+        searchList = usedCars
+            .where(
+                (element) => element.title.toString().toLowerCase().contains(searchString))
+            .toList();
+      }
+
+    });
+  }
 
   void initialize() async{
     await fetchData();
@@ -100,7 +114,7 @@ class _UsedCarsState extends State<UsedCars> {
  Future fetchData() async {
     try {
       const ipaddress = ip;
-      const url = 'http://$ipaddress:1337/api/used-cars?populate=image';
+      const url = '$ipaddress/api/used-cars?populate=image';
       final uri = Uri.parse(url);
       final response = await http.get(uri);
       final body = response.body;
@@ -109,8 +123,8 @@ class _UsedCarsState extends State<UsedCars> {
 
       final converts = data.map((e) {
         final titleVal=e['attributes']['make'];
-        final imageVal="http://$ipaddress:1337${e['attributes']['image']['data'][0]['attributes']
-        ['formats']['thumbnail']['url']}";
+        final imageVal="$ipaddress${e['attributes']['image']['data'][0]['attributes']
+        ['formats']['small']['url']}";
         final int priceVal = e['attributes']['price'];
         final int yearVal = e['attributes']['year'];
         return UsedCarsModel(
@@ -131,24 +145,11 @@ class _UsedCarsState extends State<UsedCars> {
       return converts;
 
     } catch (e) {
-     throw(e);
+     rethrow;
     }
   }
 
-  void search(String searchString) {
-    setState(() {
-      isLoading = false;
-      if(searchString.isEmpty) {
-        searchList = usedCars;
-      }else{
-        searchList = usedCars
-            .where(
-                (element) => element.title.toString().toLowerCase().contains(searchString))
-            .toList();
-      }
 
-    });
-  }
 
 
 }

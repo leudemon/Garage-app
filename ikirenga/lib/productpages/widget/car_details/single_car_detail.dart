@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ikirengaauto/model/container_model.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-
+import 'package:fluttertoast/fluttertoast.dart';
+import '../../../cart/my_cart.dart';
 import '../../../model/viewmodel/sparepart_cartmodel.dart';
 
 class SingleCarDetail extends StatelessWidget {
@@ -13,6 +15,8 @@ class SingleCarDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leadingWidth: 50,
+        centerTitle: true,
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
@@ -22,18 +26,33 @@ class SingleCarDetail extends StatelessWidget {
               color: Colors.black,
               size: 30,
             )),
-        title: Center(
-          child: Text(
-            'CAR > ${usedCarsModel.make}',
-            style: TextStyle(
-                fontSize: 18.sp,
-                color: Colors.black,
-                fontWeight: FontWeight.w400),
-          ),
+        title: Text(
+          '${usedCarsModel.make} ${usedCarsModel.model} ${usedCarsModel.year}',
+          style: TextStyle(
+              fontSize: 18.sp,
+              color: Colors.black,
+              fontWeight: FontWeight.w400),
         ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 20),
+            child: IconButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    PageTransition(
+                        child: const MyCart(), type: PageTransitionType.fade),
+                  );
+                },
+                icon: Icon(
+                  Icons.shopping_bag_outlined,
+                  color: Colors.black,
+                  size: 30.sp,
+                )),
+          )
+        ],
         backgroundColor: Colors.white,
         elevation: 0.0,
-        actions: [Image.asset('assets/icons/filter.jpg')],
       ),
       body: SafeArea(
         child: Padding(
@@ -49,10 +68,11 @@ class SingleCarDetail extends StatelessWidget {
                   ),
                   child: Column(
                     children: [
-                      Image.asset(
+                      Image.network(
                         usedCarsModel.image,
                         height: 250.h,
                         width: 300.w,
+                        fit: BoxFit.contain,
                       ),
                       Text(usedCarsModel.title,
                           style: TextStyle(
@@ -169,30 +189,39 @@ class SingleCarDetail extends StatelessWidget {
                     ),
                     const Spacer(),
                     //make a button to add to cart
-                    Consumer<CartModel>(
-                      builder: (context, value, child) {
-                        return ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            elevation: 0,
-                            backgroundColor: const Color(0xFFFFDB47),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 120, vertical: 15),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8)),
-                          ),
-                          onPressed: () {
-                            Provider.of<CartModel>(context, listen: false)
-                                .addToCart(Item(
-                                title: usedCarsModel.title,
-                                image: usedCarsModel.image,
-                                description: usedCarsModel.title,
-                                price: usedCarsModel.price));
-                          },
-                          child: const Text('ADD TO CART',
-                              style:
-                              TextStyle(fontSize: 16, color: Colors.black)),
-                        );
-                      },
+                    Center(
+                      child: Consumer<CartModel>(
+                        builder: (context, value, child) {
+                          return ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              elevation: 0,
+                              backgroundColor: const Color(0xFFFFDB47),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 120, vertical: 15),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8)),
+                            ),
+                            onPressed: () {
+                              Provider.of<CartModel>(context, listen: false)
+                                  .addToCart(Item(
+                                  title: usedCarsModel.title,
+                                  image: usedCarsModel.image,
+                                  description: usedCarsModel.title,
+                                  price: usedCarsModel.price));
+                              Fluttertoast.showToast(
+                                  msg: "${usedCarsModel.title} ${usedCarsModel.model} added to cart",
+                                  toastLength: Toast.LENGTH_LONG,
+                                  gravity: ToastGravity.TOP,
+                                  backgroundColor: Colors.yellowAccent[700],
+                                  textColor: Colors.black,
+                                  fontSize: 16.0);
+                            },
+                            child: const Text('ADD TO CART',
+                                style:
+                                TextStyle(fontSize: 16, color: Colors.black)),
+                          );
+                        },
+                      ),
                     ),
                   ],
                 ),

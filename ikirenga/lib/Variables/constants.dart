@@ -1,1 +1,1 @@
-const ip = "192.168.137.1";
+const ip = "http://ikirenga.herokuapp.com";

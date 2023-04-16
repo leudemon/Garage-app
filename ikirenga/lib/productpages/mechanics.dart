@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ikirengaauto/model/container_model.dart';
 import 'package:ikirengaauto/productpages/widget/machines_container.dart';
 import 'package:page_transition/page_transition.dart';
@@ -19,10 +18,16 @@ class Mechanics extends StatefulWidget {
 
 
 class _MechanicsState extends State<Mechanics> {@override
-  void initState() {
-    super.initState();
-    fetchData();
-  }
+
+@override
+void initState(){
+  initialize();
+  super.initState();
+
+}
+void initialize() {
+  fetchData();
+}
 
   List<dynamic> mechanics = [];
   @override
@@ -43,7 +48,8 @@ class _MechanicsState extends State<Mechanics> {@override
                   context,
                   PageTransition(
                       child: SingleServicedetail( mechanicsModel: mechanics[index],),
-                      type: PageTransitionType.rightToLeftWithFade),
+                      type: PageTransitionType.fade),
+
                 );
               },
             );
@@ -55,20 +61,17 @@ class _MechanicsState extends State<Mechanics> {@override
   }
   void fetchData() async {
     try {
-      print('Fetching data...');
       const ipaddress = ip;
-      const url = 'http://$ipaddress:1337/api/mechanics?populate=image';
+      const url = '$ipaddress/api/mechanics?populate=image';
       final uri = Uri.parse(url);
       final response = await http.get(uri);
       final body = response.body;
       final json = jsonDecode(body);
       final data = json["data"] as List<dynamic>;
-
       final converts = data.map((e) {
         final name=e['attributes']['name'];
         final location=e['attributes']['location'];
-        final image="http://$ipaddress:1337${e['attributes']['image']['data']
-        ['attributes']['formats']['small']['url']}";
+        final image="$ipaddress${e['attributes']['image']['data']['attributes']['formats']['thumbnail']['url']}";
         final phone = e['attributes']['phoneNumber'];
         final rating = e['attributes']['rating'];
         return MechanicsModel(
@@ -80,13 +83,11 @@ class _MechanicsState extends State<Mechanics> {@override
 
         );
       }).toList();
-      print(converts.length);
       setState(() {
         mechanics = converts;
       });
-      print('fetch complete!');
     } catch (e) {
-      print('error: $e');
+    rethrow;
     }
   }
 }

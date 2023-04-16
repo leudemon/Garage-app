@@ -17,6 +17,8 @@ class _GarageSingleState extends State<GarageSingle> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          title: Text(widget.garagesModel.service),
+          centerTitle: true,
           leading: IconButton(
               onPressed: () {
                 Navigator.pop(context);
@@ -51,7 +53,7 @@ class _GarageSingleState extends State<GarageSingle> {
                   child: Column(
                     children: [
                       Text(
-                        widget.garagesModel.service,
+                        'Description',
                         style: TextStyle(
                             fontSize: 20.sp,
                             fontWeight: FontWeight.bold,

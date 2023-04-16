@@ -19,8 +19,9 @@ class _GaragePageState extends State<GaragePage> {
   List<GaragesModel> services = [];
   @override
   void initState() {
-    super.initState();
     fetchData();
+    super.initState();
+
   }
 
   @override
@@ -55,23 +56,20 @@ class _GaragePageState extends State<GaragePage> {
   }
   void fetchData() async {
     try {
-      print('Fetching data...');
       const ipaddress = ip;
-      const url = 'http://$ipaddress:1337/api/garages?populate=image&populate=logo';
+      const url = '$ipaddress/api/garages?populate=image&populate=logo';
       final uri = Uri.parse(url);
       final response = await http.get(uri);
       final body = response.body;
       final json = jsonDecode(body);
       final data = json["data"] as List<dynamic>;
-
       final converts = data.map((e) {
         final service=e['attributes']['service'];
-        final image="http://$ipaddress:1337${e['attributes']['image']['data']['attributes']
-        ['url']}";
-        final logo="http://$ipaddress:1337${e['attributes']['logo']['data']['attributes']
+        final image="$ipaddress${e['attributes']['image']['data']['attributes']
+        ['formats']['thumbnail']['url']}";
+        final logo="$ipaddress${e['attributes']['logo']['data']['attributes']
         ['url']}";
         final description = e['attributes']['description'];
-        print(description);
         return GaragesModel(
           service: service,
           description: description,
@@ -79,14 +77,12 @@ class _GaragePageState extends State<GaragePage> {
           image: image,
         );
       }).toList();
-      print(converts.length);
       setState(() {
         services = converts;
       });
-
-      print('fetch complete!');
     } catch (e) {
-      print('error: $e');
+      rethrow;
     }
   }
 }
+

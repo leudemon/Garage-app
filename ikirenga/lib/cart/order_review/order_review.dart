@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ikirengaauto/model/container_model.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../model/viewmodel/sparepart_cartmodel.dart';
@@ -126,21 +125,21 @@ class _OrderReviewState extends State<OrderReview> {
                             color: Colors.black,
                             fontWeight: FontWeight.bold)),
                     const Spacer(),
-                    Container(
-                      padding: const EdgeInsets.all(5),
-                      alignment: Alignment.centerRight,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFFFDB47),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Center(
-                        child: Text('Change',
-                            style: TextStyle(
-                                fontSize: 18.sp,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold)),
-                      ),
-                    ),
+                    // Container(
+                    //   padding: const EdgeInsets.all(5),
+                    //   alignment: Alignment.centerRight,
+                    //   decoration: BoxDecoration(
+                    //     color: const Color(0xFFFFDB47),
+                    //     borderRadius: BorderRadius.circular(10),
+                    //   ),
+                    //   child: Center(
+                    //     child: Text('Change',
+                    //         style: TextStyle(
+                    //             fontSize: 18.sp,
+                    //             color: Colors.black,
+                    //             fontWeight: FontWeight.bold)),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
@@ -166,7 +165,7 @@ class _OrderReviewState extends State<OrderReview> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Shippig',
+                  Text('Shipping',
                       style: TextStyle(
                           color: Colors.black54,
                           fontSize: 20.sp,
@@ -214,13 +213,11 @@ class _OrderReviewState extends State<OrderReview> {
                             borderRadius: BorderRadius.circular(8)),
                       ),
                       onPressed: () {
-                        openWhatsApp('250782554019',
-                          '*BOOKING INQUIRY*'
-                              '\nService:${widget.purchasedItem} '
-                              '\n1.Delivering car to garage'
-                              '\n2.Car should be picked up'
-                              '\nchoice: '
-                              '\n>> ');},
+                        openWhatsApp('250785737078',
+                          '*NEW ORDER*'
+                              '\nTotal:${widget.Itemprice} rwf'
+                              '\nPurchased Item(s):'
+                              '\n1.');},
                       child: Row(
                         children: [
                           const Spacer(),

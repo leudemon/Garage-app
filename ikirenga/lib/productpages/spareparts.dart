@@ -24,8 +24,8 @@ class _SparePartsState extends State<SpareParts> {
   }
   @override
   void initState(){
-    initialize();
     super.initState();
+    initialize();
 
   }
   bool isLoading = true;
@@ -97,11 +97,11 @@ class _SparePartsState extends State<SpareParts> {
       ),
     );
   }
-  Future fetchData() async {
+  Future<void> fetchData() async {
     try {
-      print('Fetching data...');
+
       const ipaddress = ip;
-      const url = 'http://$ipaddress:1337/api/spare-parts?populate=image';
+      const url = '$ipaddress/api/spare-parts?populate=image';
       final uri = Uri.parse(url);
       final response = await http.get(uri);
       final body = response.body;
@@ -111,7 +111,7 @@ class _SparePartsState extends State<SpareParts> {
       final converts = data.map((e) {
         final titleVal=e['attributes']['name'];
 
-        final imageVal="http://$ipaddress:1337${e['attributes']['image']['data'][0]['attributes']
+        final imageVal="$ipaddress${e['attributes']['image']['data'][0]['attributes']
         ['formats']['thumbnail']['url']}";
         final int priceVal = e['attributes']['price'];
         return SparePartsModel(
@@ -122,14 +122,17 @@ class _SparePartsState extends State<SpareParts> {
 
         );
       }).toList();
-      setState(() {
-        spareParts = converts;
-      });
-      return converts;
+      if (mounted) {
+        setState(() {
+          spareParts = converts;
+        });
+      }
     } catch (e) {
-      throw('error: $e');
+      rethrow;
     }
   }
+
+
   void search(String searchString) {
     setState(() {
       isLoading = false;

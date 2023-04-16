@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:ikirengaauto/Ikirenga_icons.dart';
@@ -9,7 +8,6 @@ import 'package:ikirengaauto/productpages/spareparts.dart';
 import 'package:ikirengaauto/productpages/usedcar.dart';
 import 'package:ikirengaauto/widget/item_container.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:http/http.dart' as http;
 import '../productpages/garage.dart';
 import '../productpages/mechanics.dart';
 
@@ -21,7 +19,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
+  final TextEditingController _searchController = TextEditingController();
   List<ContainerModel> searchList = [];
   List<ContainerModel> containerModel = [
     ContainerModel(
@@ -154,18 +152,29 @@ class _HomeState extends State<Home> {
                 margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
                 color: Colors.yellow,
                 child: Center(
-                  child: TextField(
-                    textAlign: TextAlign.start,
-                    onChanged: (value) => search(value),
-                    decoration: const InputDecoration(
-                      contentPadding:
-                          EdgeInsets.symmetric(horizontal: 0, vertical: 15),
-                      suffixIconColor: Colors.black26,
-                      prefixIcon: Icon(Icons.search_rounded),
-                      alignLabelWithHint: true,
-                      border: InputBorder.none,
-                      suffixIcon: Icon(Icons.clear_all_rounded),
-                      hintText: 'Search',
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(12,0,5,0),
+                    child: TextField(
+                      controller: _searchController,
+                      textAlign: TextAlign.start,
+                      onChanged: (value) => search(value),
+                      decoration:  InputDecoration(
+                        focusColor: Colors.black,
+                        contentPadding:
+                        const EdgeInsets.symmetric(horizontal: 0, vertical: 15),
+                        suffixIconColor: Colors.black26,
+                        prefixIcon: const Icon(Icons.search_rounded, color: Colors.black,),
+                        alignLabelWithHint: true,
+                        border: InputBorder.none,
+                        suffixIcon: IconButton(
+                            onPressed: (){
+                              _searchController.clear();
+                              FocusScope.of(context).unfocus();
+                              search('');
+                            },
+                            icon: const Icon(Icons.clear_all_rounded)),
+                        hintText: 'Search',
+                      ),
                     ),
                   ),
                 )),
