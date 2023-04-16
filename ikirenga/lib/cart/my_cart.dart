@@ -23,26 +23,17 @@ class MyCart extends StatelessWidget {
                 color: Colors.black,
                 size: 30,
               )),
-          title: Center(
-            child: Text(
-              'MY CART',
-              style: TextStyle(
-                  fontSize: 18.sp,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w400),
-            ),
+          title: Text(
+            'MY CART',
+            style: TextStyle(
+                fontSize: 18.sp,
+                color: Colors.black,
+                fontWeight: FontWeight.w400),
           ),
+          centerTitle: true,
           backgroundColor: Colors.white,
           elevation: 0.0,
-          actions: [
-            IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.more_horiz,
-                  color: Colors.black,
-                  size: 30,
-                ))
-          ],
+
         ),
         body: Padding(
           padding: const EdgeInsets.all(25.0),

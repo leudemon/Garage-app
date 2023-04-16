@@ -97,20 +97,23 @@ class _HomePageState extends State<HomePage> {
     return (await showDialog(
       context: context,
       builder: (context) => AlertDialog(
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(30.0))),
         title: const Text('Are you sure?'),
-        content: const Text('Do you want to exit the app?'),
+        content: const Text('Do you want to exit the app?'),actionsAlignment: MainAxisAlignment.center,
         actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('No'),
-          ),
           TextButton(
             onPressed: () {
               Navigator.of(context).pop(true);
               SystemNavigator.pop(); // exit the app
             },
-            child: const Text('Yes'),
+            child: const Text('Yes', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: Colors.black54),),
           ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text('No', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),),
+          ),
+
         ],
       ),
     )) ??

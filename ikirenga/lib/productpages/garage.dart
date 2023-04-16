@@ -35,7 +35,9 @@ class _GaragePageState extends State<GaragePage> {
               child: ListView.builder(
                 itemCount: services.length,
                 itemBuilder: (context, index){
-                  return HomeContainer(
+                  return services.isEmpty // Check if the usedCars list is empty
+                      ? const Center(child: CircularProgressIndicator()):
+                  HomeContainer(
                     garagesModel: services[index],
                     onTap: () {
                       Navigator.push(

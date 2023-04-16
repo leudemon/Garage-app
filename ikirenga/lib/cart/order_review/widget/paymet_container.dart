@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PaymentContainer extends StatelessWidget {
   const PaymentContainer({super.key});
@@ -13,7 +12,7 @@ class PaymentContainer extends StatelessWidget {
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
               elevation: 0,
-              backgroundColor: const Color(0xFF171717),
+              backgroundColor: Colors.grey[200],
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
@@ -28,26 +27,26 @@ class PaymentContainer extends StatelessWidget {
                       'CHECKOUT',
                       style: TextStyle(
                           fontSize: 16,
-                          color: Colors.white,
+                          color: Colors.black,
                           fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
-                Container(
-                  padding: const EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: const Color(0xFFFFDB47),
-                  ),
-                  alignment: Alignment.centerRight,
-                  child: Center(
-                    child: Text('Change',
-                        style: TextStyle(
-                            fontSize: 16.sp,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold)),
-                  ),
-                ),
+                // Container(
+                //   padding: const EdgeInsets.all(5),
+                //   decoration: BoxDecoration(
+                //     borderRadius: BorderRadius.circular(5),
+                //     color: Colors.black54,
+                //   ),
+                //   alignment: Alignment.centerRight,
+                //   child: Center(
+                //     child: Text('Change',
+                //         style: TextStyle(
+                //             fontSize: 13.sp,
+                //             color: Colors.white,
+                //             fontWeight: FontWeight.bold)),
+                //   ),
+                // ),
               ],
             ),
           ),
