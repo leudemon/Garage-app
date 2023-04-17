@@ -16,6 +16,7 @@ class SparePartSingleDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text(sparePartsModel.title),
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
@@ -133,7 +134,7 @@ class SparePartSingleDetail extends StatelessWidget {
               Center(
                 child: Column(
                   children: [
-                    Text(sparePartsModel.title,
+                    Text('Description',
                         style: TextStyle(
                             fontSize: 20.sp,
                             color: Colors.black,

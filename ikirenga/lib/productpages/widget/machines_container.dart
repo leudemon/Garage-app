@@ -101,12 +101,14 @@ class MachanicsContainer extends StatelessWidget {
                             SizedBox(
                               height: 15.h,
                             ),
-                            RatingBarIndicator(
-                              rating: rating,
-                                itemSize: 15,
-                                itemBuilder: (context, _)=>Icon(Icons.star, color: Colors.amber,)
-                            ),
-
+                            Row(children: [
+                              Text('$rating'),
+                              RatingBarIndicator(
+                                  rating: rating,
+                                  itemSize: 15,
+                                  itemBuilder: (context, _)=> const Icon(Icons.star, color: Colors.amber,)
+                              ),
+                            ],)
 
                           ])
                     ],

@@ -21,6 +21,7 @@ class _UsedCarsState extends State<UsedCars> {
   List<UsedCarsModel> searchList = [];
   List<UsedCarsModel> usedCarModel = [];
   bool isLoading = true;
+  bool isSearching = false;
   void search(String searchString) {
     setState(() {
       isLoading = false;
@@ -62,7 +63,12 @@ class _UsedCarsState extends State<UsedCars> {
             ),
             child: TextField(
               controller: _searchController,
-              onChanged: (value) => search(value.toLowerCase()),
+              onChanged: (value) {
+                search(value.toLowerCase());
+                setState(() {
+                  isSearching = true;
+                });
+              },
               decoration:  InputDecoration(
                 prefixIcon: const Icon(Icons.search_outlined,),
                 border: InputBorder.none,
@@ -79,7 +85,27 @@ class _UsedCarsState extends State<UsedCars> {
               ),
             ),
           ),
+
           const Divider(),
+          Align(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 30),
+                child: Visibility(
+                    visible: isSearching != false,
+                    child:Text("FOUND ${searchList.length ?? '0' } RESULTS", style: const TextStyle(fontSize: 14, color: Colors.grey),),)
+              )
+
+          ),          Align(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 30),
+                child: Visibility(
+                    visible: isSearching != true,
+                    child: const Text("ALL CARS", style: TextStyle(fontSize: 14, color: Colors.grey),),)
+              )
+
+          ),
           Expanded(
             child: isLoading
                 ? const Center(child: CircularProgressIndicator())
@@ -98,7 +124,7 @@ class _UsedCarsState extends State<UsedCars> {
                     Navigator.push(
                         context,
                         PageTransition(
-                            child: SingleCarDetail(usedCarsModel: searchList[index]), type: PageTransitionType.fade));
+                            child: SingleCarDetail(usedCarsModel: searchList[index], imageUrls:searchList[index].image ,), type: PageTransitionType.fade));
                   },
               )),
 
@@ -111,7 +137,8 @@ class _UsedCarsState extends State<UsedCars> {
     );
   }
 
- Future fetchData() async {
+
+  Future<List<UsedCarsModel>> fetchData() async {
     try {
       const ipaddress = ip;
       const url = '$ipaddress/api/used-cars?populate=image';
@@ -121,34 +148,40 @@ class _UsedCarsState extends State<UsedCars> {
       final json = jsonDecode(body);
       final data = json["data"] as List<dynamic>;
 
-      final converts = data.map((e) {
-        final titleVal=e['attributes']['make'];
-        final imageVal="$ipaddress${e['attributes']['image']['data'][0]['attributes']
-        ['formats']['small']['url']}";
+      final List<String> imageVal = []; // create an empty list of strings to hold the image URLs
+
+      final List<UsedCarsModel> converts = data.map((e) {
+        final List<dynamic> images = e['attributes']['image']['data'];
+        final List<String> urls = []; // create a list of strings to hold the URLs for the current car
+
+        for (final img in images) {
+          final url = "$ipaddress${img['attributes']['formats']['small']['url']}";
+          urls.add(url); // add the URL to the list of URLs
+        }
+
         final int priceVal = e['attributes']['price'];
         final int yearVal = e['attributes']['year'];
+        print(urls);
         return UsedCarsModel(
-          title: titleVal,
-          image: imageVal,
+          image: urls, // set the image variable to the list of URLs
           price: priceVal,
           condition: e['attributes']['condition'],
-          make:e['attributes']['make'],
+          make: e['attributes']['make'],
           fuelType: e['attributes']['fuel_type'],
           model: e['attributes']['model'],
           transmission: e['attributes']['transmission'],
           year: yearVal,
         );
       }).toList();
+
       setState(() {
         usedCars = converts;
       });
       return converts;
-
     } catch (e) {
-     rethrow;
+      rethrow;
     }
   }
-
 
 
 

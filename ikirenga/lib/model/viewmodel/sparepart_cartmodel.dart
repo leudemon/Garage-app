@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+
+
 class CartModel extends ChangeNotifier {
   final List<CartItem> _cartItems = [];
   get cartItems => _cartItems;
@@ -21,9 +23,11 @@ class CartModel extends ChangeNotifier {
       notifyListeners();
       return;
     }
-    _cartItems.add(CartItem(item: item, quantity: 1));
+    _cartItems.add(CartItem(item: item, quantity: 1, itemName: item.subtitle ?? item.title));
     notifyListeners();
   }
+
+
 
   void removeFromCart(Item item) {
     int index =
@@ -65,17 +69,21 @@ class Item {
   final String image;
   final String description;
   final int price;
+  final String? subtitle;
   Item(
-      {required this.title,
+      {
+        this.subtitle,
+        required this.title,
       required this.image,
       required this.description,
       required this.price});
 }
 
 class CartItem {
-  // final SparePartsModel item;
+  final String itemName;
   final Item item;
   int quantity;
-  CartItem({required this.quantity, required this.item});
+  CartItem({required this.itemName, required this.quantity, required this.item});
 }
+
 

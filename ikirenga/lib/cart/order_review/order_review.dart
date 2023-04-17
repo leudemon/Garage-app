@@ -7,21 +7,43 @@ import 'widget/cart_list.dart';
 import 'widget/paymet_container.dart';
 
 class OrderReview extends StatefulWidget {
-  final String purchasedItem;
-  final String Itemprice;
-  const OrderReview({super.key, required this.purchasedItem, required this.Itemprice});
+  final List<CartItem> purchasedItem;
+  final String itemPrice;
+  const OrderReview(
+      {super.key, required this.purchasedItem, required this.itemPrice});
 
   @override
   State<OrderReview> createState() => _OrderReviewState();
 }
 
-
-
-
-
 class _OrderReviewState extends State<OrderReview> {
+  List<CartItem> selectedItems = [];
+  List<String> itemNames = [];
+
+
+  @override
+  void initState() {
+    super.initState();
+    selectedItems = widget.purchasedItem;
+    setStuff();
+
+  }
+  void setStuff(){
+    for (var item in selectedItems) {
+      if(!itemNames.contains(item.itemName)){
+        itemNames.add(item.itemName);
+      }else{
+        itemNames.remove(item.itemName);
+      }
+    }
+
+
+  }
+
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -43,7 +65,6 @@ class _OrderReviewState extends State<OrderReview> {
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0.0,
-
       ),
       body: Padding(
         padding: const EdgeInsets.all(25.0),
@@ -51,7 +72,7 @@ class _OrderReviewState extends State<OrderReview> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-        SizedBox(
+              SizedBox(
                 height: 10.h,
               ),
               Text('ORDER VIA',
@@ -131,6 +152,29 @@ class _OrderReviewState extends State<OrderReview> {
               SizedBox(
                 height: 10.h,
               ),
+              SingleChildScrollView(
+                child: Column(
+                  children: [
+                    // Display the item names and prices
+                    SizedBox(
+                      height:230.h,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        physics: const AlwaysScrollableScrollPhysics(),
+                        itemCount: widget.purchasedItem.length,
+                        itemBuilder: (context, index) {
+                          final item = widget.purchasedItem[index];
+                          return ListTile(
+                            title: Text(item.itemName),
+                            trailing: Text('${item.item.price}'),
+                          );
+                        },
+                      ),
+                    ),
+                    const Divider(),
+                  ],
+                ),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -164,11 +208,21 @@ class _OrderReviewState extends State<OrderReview> {
                             borderRadius: BorderRadius.circular(8)),
                       ),
                       onPressed: () {
-                        openWhatsApp('250785737078',
+                        String latestListAsString = itemNames.join("\n");
+                        openWhatsApp(
+                          '250785737078',
                           '*NEW ORDER*'
-                              '\nTotal:${widget.Itemprice} rwf'
+                              '\nTotal:${widget.itemPrice} rwf'
                               '\nPurchased Item(s):'
-                              '\n1.');},
+                              '\n$latestListAsString'
+                              '\n___________________'
+                              '\n⚠WARNING⚠ '
+                              '\ndo not change anything above this section'
+                              '\n___________________'
+                              '\nThanks!',
+                        );
+                      },
+
                       child: Row(
                         children: [
                           const Spacer(),
@@ -208,9 +262,9 @@ class _OrderReviewState extends State<OrderReview> {
 
   void openWhatsApp(String number, String message) async {
     String formattedMessage =
-    message.replaceAll('\n', '%0A').replaceAll('\t', '%09');
+        message.replaceAll('\n', '%0A').replaceAll('\t', '%09');
     String url = "https://wa.me/$number?text=$formattedMessage";
     await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
     ;
-}
+  }
 }

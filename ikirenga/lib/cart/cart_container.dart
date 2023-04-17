@@ -43,11 +43,12 @@ class _CartContainerState extends State<CartContainer> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 15.h),
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(widget.item.title,
+                            overflow: TextOverflow.clip,
                             softWrap: true,
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
@@ -66,16 +67,24 @@ class _CartContainerState extends State<CartContainer> {
                             ))
                       ],
                     ),
-                    SizedBox(width: 10.w),
-                    SizedBox(height: 5.h),
-
+                Visibility(
+                  visible: widget.item.subtitle != null,
+                  child: SizedBox(
+                    height: 20.h,
+                    child: Text('${widget.item.subtitle}'),
+                  ),),Visibility(
+                  visible: widget.item.subtitle == null,
+                  child: SizedBox(
+                    height: 20.h,
+                    child: Text(''),
+                  ),),
                     SizedBox(height: 5.h),
                     Text('Rwf ${widget.item.price}',
                         style: TextStyle(
                             color: Colors.black54,
                             fontSize: 20.sp,
                             fontWeight: FontWeight.bold)),
-                    SizedBox(height: 10.h),
+                    SizedBox(height: 5.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [

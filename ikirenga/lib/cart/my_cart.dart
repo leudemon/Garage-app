@@ -13,6 +13,7 @@ class MyCart extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
+      backgroundColor: Colors.white,
         appBar: AppBar(
           leading: IconButton(
               onPressed: () {
@@ -54,7 +55,10 @@ class MyCart extends StatelessWidget {
                           );
                         }),
                   ),
+                  const Divider(),
+
                   SizedBox(height: 20.h),
+
                   Column(
                     children: [
                       Row(
@@ -88,11 +92,11 @@ class MyCart extends StatelessWidget {
                               ),
                               onPressed: () {
                                 final total = value.calculateTotal();
-                                const itemName = '';
+                                final itemNames = value.cartItems;
                                 Navigator.push(
                                     context,
                                     PageTransition(
-                                        child: OrderReview(purchasedItem: itemName, Itemprice: total,),
+                                        child: OrderReview(purchasedItem: itemNames, itemPrice: total,),
                                         type: PageTransitionType.fade));
                               },
                               child: Row(

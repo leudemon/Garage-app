@@ -28,30 +28,33 @@ class _GaragePageState extends State<GaragePage> {
   Widget build(BuildContext context) {
     return Scaffold(
 
-      body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: ListView.builder(
-                itemCount: services.length,
-                itemBuilder: (context, index){
-                  return services.isEmpty // Check if the usedCars list is empty
-                      ? const Center(child: CircularProgressIndicator()):
-                  HomeContainer(
-                    garagesModel: services[index],
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          PageTransition(
-                              child: GarageSingle(garagesModel: services[index],),
-                              type: PageTransitionType.rightToLeft));
-                    },
+      body: Padding(
+        padding: const EdgeInsets.only(top: 25),
+        child: SafeArea(
+          child: services.isEmpty // Check if the usedCars list is empty
+              ? const Center(child: CircularProgressIndicator()):Column(
+            children: [
+              Expanded(
+                child: ListView.builder(
+                  itemCount: services.length,
+                  itemBuilder: (context, index){
+                    return
+                    HomeContainer(
+                      garagesModel: services[index],
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            PageTransition(
+                                child: GarageSingle(garagesModel: services[index],),
+                                type: PageTransitionType.rightToLeft));
+                      },
 
-                  );
-                },
-              ),
-            )
-          ],
+                    );
+                  },
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -28,6 +28,7 @@ class _SparePartsState extends State<SpareParts> {
     initialize();
 
   }
+  bool isSearching = false;
   bool isLoading = true;
   List<SparePartsModel> spareParts= [];
   List<SparePartsModel> searchList = [];
@@ -47,7 +48,12 @@ class _SparePartsState extends State<SpareParts> {
             ),
             child:  TextField(
               controller: _searchController,
-              onChanged: (value) => search(value.toLowerCase()),
+              onChanged: (value) {
+                search(value.toLowerCase());
+                setState(() {
+                  isSearching = true;
+                });
+              },
               decoration:  InputDecoration(
                 prefixIcon: const Icon(Icons.search_outlined,),
                 border: InputBorder.none,
@@ -65,6 +71,25 @@ class _SparePartsState extends State<SpareParts> {
             ),
           ),
           const Divider(),
+          Align(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                  padding: const EdgeInsets.only(left: 30),
+                  child: Visibility(
+                    visible: isSearching != false,
+                    child:Text("FOUND ${searchList.length ?? '0' } RESULTS", style: const TextStyle(fontSize: 14, color: Colors.grey),),)
+              )
+
+          ),          Align(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                  padding: const EdgeInsets.only(left: 30),
+                  child: Visibility(
+                    visible: isSearching != true,
+                    child: const Text("ALL SPARE PARTS", style: TextStyle(fontSize: 14, color: Colors.grey),),)
+              )
+
+          ),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(10.0),

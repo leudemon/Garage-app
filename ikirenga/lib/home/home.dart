@@ -125,7 +125,7 @@ class _HomeState extends State<Home> {
                 ),
                 const Expanded(
 
-                  child: Text('  Welcome Back, Severin!',
+                  child: Text('  Welcome Back!',
                       style: TextStyle(fontFamily:'Lato', fontSize: 20.0, fontWeight: FontWeight.bold)),
                 ),
                 IconButton(

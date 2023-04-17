@@ -35,7 +35,7 @@ class Cars extends StatelessWidget {
                   topRight: Radius.circular(30),
                 ),
                 child: Image.network(
-                  usedCarsModel.image,
+                  usedCarsModel.image.first,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -46,7 +46,7 @@ class Cars extends StatelessWidget {
                   SizedBox(height: 20.h,),
 
                   Text(
-                    usedCarsModel.title,
+                    usedCarsModel.make,
                     style: TextStyle(
                         fontSize: 18.sp,
                         fontWeight: FontWeight.bold,

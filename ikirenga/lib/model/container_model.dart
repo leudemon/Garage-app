@@ -26,17 +26,17 @@ class UsedCarData{
 }
 
 class UsedCarsModel {
-  final String title;
-  final String image;
+  List <String> image;
   final int price;
   final String condition;
   final String make;
   final String model;
+  final String title;
   final String transmission;
   final String fuelType;
   final int year;
+
   UsedCarsModel({
-    required this.title,
     required this.image,
     required this.price,
     required this.condition,
@@ -45,8 +45,9 @@ class UsedCarsModel {
     required this.transmission,
     required this.fuelType,
     required this.year,
-  });
+  }) : title = '$make $model';
 }
+
 
 
 

@@ -6,13 +6,36 @@ import 'package:provider/provider.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../../../cart/my_cart.dart';
 import '../../../model/viewmodel/sparepart_cartmodel.dart';
+import 'package:ikirengaauto/productpages/widget/garage_single_detail/imageCarousel';
 
-class SingleCarDetail extends StatelessWidget {
+class SingleCarDetail extends StatefulWidget {
+  final List<String> imageUrls;
+
   final UsedCarsModel usedCarsModel;
-  const SingleCarDetail({super.key, required this.usedCarsModel});
+  const SingleCarDetail({super.key, required this.usedCarsModel, required this.imageUrls});
+
+  @override
+  State<SingleCarDetail> createState() => _SingleCarDetailState();
+
+}
+
+class _SingleCarDetailState extends State<SingleCarDetail> {
+  late final PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(initialPage: 0);
+  }
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         leadingWidth: 50,
@@ -27,7 +50,7 @@ class SingleCarDetail extends StatelessWidget {
               size: 30,
             )),
         title: Text(
-          '${usedCarsModel.make} ${usedCarsModel.model} ${usedCarsModel.year}',
+          '${widget.usedCarsModel.title} ${widget.usedCarsModel.year}',
           style: TextStyle(
               fontSize: 18.sp,
               color: Colors.black,
@@ -60,7 +83,7 @@ class SingleCarDetail extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(0),
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: Colors.grey[200],
@@ -68,27 +91,26 @@ class SingleCarDetail extends StatelessWidget {
                   ),
                   child: Column(
                     children: [
-                      Image.network(
-                        usedCarsModel.image,
-                        height: 250.h,
-                        width: 300.w,
-                        fit: BoxFit.contain,
-                      ),
-                      Text(usedCarsModel.title,
-                          style: TextStyle(
-                              fontSize: 25.sp,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold)),
-                      SizedBox(height: 10.h),
-                      Text('Rwf ${usedCarsModel.price}',
-                          style: TextStyle(
-                              fontSize: 20.sp,
-                              color: Colors.black54,
-                              fontWeight: FontWeight.w400)),
+                    Container(
+                    height: 200,
+                    child: PageView.builder(
+                      controller: _pageController,
+                      itemCount: widget.imageUrls.length,
+                      itemBuilder: (context, index) {
+                        return ClipRRect(
+                          borderRadius: BorderRadius.circular(10.0),
+                          child: Image.network(widget.imageUrls[index], fit: BoxFit.cover),
+                        );
+
+                      },
+                    ),
+                  ),
+
+
                     ],
                   )),
               SizedBox(height: 40.h),
-              Text(usedCarsModel.title,
+              Text('Description',
                   style: TextStyle(
                       fontSize: 20.sp,
                       color: Colors.black,
@@ -105,7 +127,7 @@ class SingleCarDetail extends StatelessWidget {
                                 color: Colors.black54,
                                 fontWeight: FontWeight.bold)),
                         SizedBox(width: 5.w),
-                        Text(usedCarsModel.condition,
+                        Text(widget.usedCarsModel.condition,
                             style: TextStyle(
                               fontSize: 20.sp,
                               color: Colors.black45,
@@ -120,7 +142,7 @@ class SingleCarDetail extends StatelessWidget {
                                 color: Colors.black54,
                                 fontWeight: FontWeight.bold)),
                         SizedBox(width: 5.w),
-                        Text(usedCarsModel.title,
+                        Text(widget.usedCarsModel.title,
                             style: TextStyle(
                               fontSize: 20.sp,
                               color: Colors.black45,
@@ -135,7 +157,7 @@ class SingleCarDetail extends StatelessWidget {
                                 color: Colors.black54,
                                 fontWeight: FontWeight.bold)),
                         SizedBox(width: 5.w),
-                        Text(usedCarsModel.make,
+                        Text(widget.usedCarsModel.make,
                             style: TextStyle(
                               fontSize: 20.sp,
                               color: Colors.black45,
@@ -150,7 +172,7 @@ class SingleCarDetail extends StatelessWidget {
                                 color: Colors.black54,
                                 fontWeight: FontWeight.bold)),
                         SizedBox(width: 5.w),
-                        Text(usedCarsModel.model,
+                        Text(widget.usedCarsModel.model,
                             style: TextStyle(
                               fontSize: 20.sp,
                               color: Colors.black45,
@@ -165,7 +187,7 @@ class SingleCarDetail extends StatelessWidget {
                                 color: Colors.black54,
                                 fontWeight: FontWeight.bold)),
                         SizedBox(width: 5.w),
-                        Text(usedCarsModel.transmission,
+                        Text(widget.usedCarsModel.transmission,
                             style: TextStyle(
                               fontSize: 20.sp,
                               color: Colors.black45,
@@ -180,7 +202,7 @@ class SingleCarDetail extends StatelessWidget {
                                 color: Colors.black54,
                                 fontWeight: FontWeight.bold)),
                         SizedBox(width: 5.w),
-                        Text(usedCarsModel.fuelType,
+                        Text(widget.usedCarsModel.fuelType,
                             style: TextStyle(
                               fontSize: 20.sp,
                               color: Colors.black45,
@@ -204,12 +226,13 @@ class SingleCarDetail extends StatelessWidget {
                             onPressed: () {
                               Provider.of<CartModel>(context, listen: false)
                                   .addToCart(Item(
-                                  title: usedCarsModel.title,
-                                  image: usedCarsModel.image,
-                                  description: usedCarsModel.title,
-                                  price: usedCarsModel.price));
+                                  title: widget.usedCarsModel.make,
+                                  subtitle: widget.usedCarsModel.model,
+                                  image: widget.usedCarsModel.image.first,
+                                  description: widget.usedCarsModel.title,
+                                  price: widget.usedCarsModel.price));
                               Fluttertoast.showToast(
-                                  msg: "${usedCarsModel.title} ${usedCarsModel.model} added to cart",
+                                  msg: "${widget.usedCarsModel.title} added to cart",
                                   toastLength: Toast.LENGTH_LONG,
                                   gravity: ToastGravity.TOP,
                                   backgroundColor: Colors.yellowAccent[700],
