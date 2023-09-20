@@ -1,6 +1,6 @@
-# Ikirenga Garage Ecommerce Mobile App
+# Garage Ecommerce Mobile App
 
-Welcome to the Ikirenga Garage Ecommerce Mobile App repository! This mobile application is designed to revolutionize the way users access and book garage services right from their smartphones. Whether you're in need of automotive repairs, maintenance, or other related services, our app simplifies the process, making it convenient and efficient.
+Welcome to the Garage Ecommerce Mobile App repository! This mobile application is designed to revolutionize the way users access and book garage services right from their smartphones. Whether you're in need of automotive repairs, maintenance, or other related services, our app simplifies the process, making it convenient and efficient.
 
 ## Features
 
@@ -15,7 +15,7 @@ Welcome to the Ikirenga Garage Ecommerce Mobile App repository! This mobile appl
 
 ## Getting Started
 
-Follow these steps to get started with the Ikirenga Garage Ecommerce Mobile App:
+Follow these steps to get started with Garage Ecommerce Mobile App:
 
 ### Prerequisites
 
@@ -25,4 +25,4 @@ Follow these steps to get started with the Ikirenga Garage Ecommerce Mobile App:
 
 1. Clone this repository to your local machine:
    ```sh
-   git clone https://github.com/your-username/konichiwa-.git
+   git clone https://github.com/your-username/Garage-app.git
